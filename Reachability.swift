@@ -25,6 +25,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
+import SystemConfiguration
+import Foundation
+
 let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
 class Reachability {
@@ -166,7 +169,7 @@ class Reachability {
         
         let reachable = isReachable(flags)
         
-        if reachable == 0 {
+        if !reachable {
             return false
         }
         
