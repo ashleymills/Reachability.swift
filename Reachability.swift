@@ -42,9 +42,9 @@ class Reachability: NSObject, Printable {
     
     var isRunningOnDevice: Bool = {
         #if (arch(i386) || arch(x86_64)) && os(iOS)
-            return true
-            #else
             return false
+            #else
+            return true
         #endif
         }()
     
