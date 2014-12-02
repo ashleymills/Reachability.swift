@@ -20,13 +20,13 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
     reachability.reachableBlock = { reachability in
         if reachability.isReachableViaWiFi() {
-            println("\(Reachable via WiFi)")
+            println("Reachable via WiFi")
         } else {
-            println("\(Reachable via Cellular)")
+            println("Reachable via Cellular")
         }
     }
     reachability.unreachableBlock = { reachability in
-        println("\(Not reachable)")
+        println("Not reachable")
     }
 
     reachability.startNotifier()
