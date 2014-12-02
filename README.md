@@ -14,24 +14,48 @@ To get around this, this reachability replacement uses an `NSTimer` firing at 1/
 
 Just drop the **Reachability.swift** file into your project. That's it!
 
-## Example
+## Example - closures
 
     let reachability = Reachability.reachabilityForInternetConnection()
 
-    reachability.reachableBlock = { reachability in
+    reachability.whenReachable = { reachability in
         if reachability.isReachableViaWiFi() {
             println("Reachable via WiFi")
         } else {
             println("Reachable via Cellular")
         }
     }
-    reachability.unreachableBlock = { reachability in
+    reachability.whenUnreachable = { reachability in
         println("Not reachable")
     }
 
     reachability.startNotifier()
 
-## Let me know
+## Example - notifications
+
+    let reachability = Reachability.reachabilityForInternetConnection()
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
+
+and
+
+    func reachabilityChanged(note: NSNotification) {
+
+        let reachability = note.object as Reachability
+
+        if reachability.isReachable() {
+            if reachability.isReachableViaWiFi() {
+                println("Reachable via WiFi")
+            } else {
+                println("Reachable via Cellular")
+            }
+        } else {
+            println("Not reachable")
+        }
+    }
+
+
+## Let me know!
 
 If you use **Reachability.swift**, please let me know… and tell your friends! 
 

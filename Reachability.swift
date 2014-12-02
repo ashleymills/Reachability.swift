@@ -34,34 +34,47 @@ class Reachability: NSObject, Printable {
     
     typealias NetworkReachable = (Reachability) -> ()
     typealias NetworkUneachable = (Reachability) -> ()
-    
-    enum NetworkStatus {
-        // Apple NetworkStatus Compatible Names.
+
+    enum NetworkStatus: Printable {
+        
         case NotReachable, ReachableViaWiFi, ReachableViaWWAN
+        
+        var description: String {
+            switch self {
+            case .ReachableViaWWAN:
+                return "Cellular"
+            case .ReachableViaWiFi:
+                return "WiFi"
+            case .NotReachable:
+                return "No Connection"
+            }
+        }
     }
     
-    var isRunningOnDevice: Bool = {
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
-            return false
-            #else
-            return true
-        #endif
-        }()
+    // MARK: - *** Public properties ***
     
-    private var reachabilityRef: SCNetworkReachability?
-    //    private var reachabilitySerialQueue: dispatch_queue_t?
-    private var reachabilityObject: AnyObject?
-    var reachableBlock: NetworkReachable?
-    var unreachableBlock: NetworkUneachable?
+    var whenReachable: NetworkReachable?
+    var whenUnreachable: NetworkUneachable?
     var reachableOnWWAN: Bool
-    private var timer: NSTimer?
-    private var previousReachabilityFlags: SCNetworkReachabilityFlags?
-    
-    init(reachabilityRef: SCNetworkReachability) {
-        reachableOnWWAN = true;
-        self.reachabilityRef = reachabilityRef;
+
+    var currentReachabilityStatus: NetworkStatus {
+        if isReachable() {
+            if isReachableViaWiFi() {
+                return .ReachableViaWiFi
+            }
+            if isRunningOnDevice {
+                return .ReachableViaWWAN;
+            }
+        }
+        
+        return .NotReachable
     }
     
+    var currentReachabilityString: String {
+        return "\(currentReachabilityStatus)"
+    }
+    
+    // MARK: - *** Initialisation methods ***
     convenience init(hostname: String) {
         let ref = SCNetworkReachabilityCreateWithName(nil, (hostname as NSString).UTF8String).takeRetainedValue()
         self.init(reachabilityRef: ref)
@@ -94,6 +107,7 @@ class Reachability: NSObject, Printable {
         return Reachability(reachabilityRef: ref)
     }
     
+    // MARK: - *** Notifier methods ***
     func startNotifier() -> Bool {
         
         reachabilityObject = self
@@ -113,66 +127,7 @@ class Reachability: NSObject, Printable {
         timer = nil;
     }
     
-    func timerFired(timer: NSTimer) {
-        
-        let currentReachabilityFlags = reachabilityFlags
-        if let _previousReachabilityFlags = previousReachabilityFlags {
-            if currentReachabilityFlags != previousReachabilityFlags {
-                reachabilityChanged(currentReachabilityFlags)
-                previousReachabilityFlags = currentReachabilityFlags
-            }
-        }
-    }
-    
-    func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
-        if isReachableWithFlags(flags) {
-            if let block = reachableBlock {
-                block(self)
-            }
-        } else {
-            if let block = unreachableBlock {
-                block(self)
-            }
-        }
-        
-        // this makes sure the change notification happens on the MAIN THREAD
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(ReachabilityChangedNotification, object:self)
-        }
-    }
-    
-    private func isReachableWithFlags(flags: SCNetworkReachabilityFlags) -> Bool {
-        
-        let reachable = isReachable(flags)
-        
-        if !reachable {
-            return false
-        }
-        
-        if isConnectionRequiredOrTransient(flags) {
-            return false
-        }
-        
-        if isRunningOnDevice {
-            if isOnWWAN(flags) && !reachableOnWWAN {
-                // We don't want to connect when on 3G.
-                return false
-            }
-        }
-        
-        return true
-    }
-    
-    private func isReachableWithTest(test: (SCNetworkReachabilityFlags) -> (Bool)) -> Bool {
-        var flags: SCNetworkReachabilityFlags = 0
-        let gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, &flags) != 0
-        if gotFlags {
-            return test(flags)
-        }
-        
-        return false
-    }
-    
+    // MARK: - *** Connection test methods ***
     func isReachable() -> Bool {
         return isReachableWithTest({ (flags: SCNetworkReachabilityFlags) -> (Bool) in
             return self.isReachableWithFlags(flags)
@@ -215,6 +170,82 @@ class Reachability: NSObject, Printable {
             
             return false
         }
+    }
+    
+    // MARK: - *** Private methods ***
+    private var isRunningOnDevice: Bool = {
+        #if (arch(i386) || arch(x86_64)) && os(iOS)
+            return false
+            #else
+            return true
+        #endif
+        }()
+    
+    private var reachabilityRef: SCNetworkReachability?
+    private var reachabilityObject: AnyObject?
+    private var timer: NSTimer?
+    private var previousReachabilityFlags: SCNetworkReachabilityFlags?
+    
+    private init(reachabilityRef: SCNetworkReachability) {
+        reachableOnWWAN = true;
+        self.reachabilityRef = reachabilityRef;
+    }
+    
+    func timerFired(timer: NSTimer) {
+        
+        let currentReachabilityFlags = reachabilityFlags
+        if let _previousReachabilityFlags = previousReachabilityFlags {
+            if currentReachabilityFlags != previousReachabilityFlags {
+                reachabilityChanged(currentReachabilityFlags)
+                previousReachabilityFlags = currentReachabilityFlags
+            }
+        }
+    }
+    
+    private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
+        if isReachableWithFlags(flags) {
+            if let block = whenReachable {
+                block(self)
+            }
+        } else {
+            if let block = whenUnreachable {
+                block(self)
+            }
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(ReachabilityChangedNotification, object:self)
+    }
+    
+    private func isReachableWithFlags(flags: SCNetworkReachabilityFlags) -> Bool {
+        
+        let reachable = isReachable(flags)
+        
+        if !reachable {
+            return false
+        }
+        
+        if isConnectionRequiredOrTransient(flags) {
+            return false
+        }
+        
+        if isRunningOnDevice {
+            if isOnWWAN(flags) && !reachableOnWWAN {
+                // We don't want to connect when on 3G.
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    private func isReachableWithTest(test: (SCNetworkReachabilityFlags) -> (Bool)) -> Bool {
+        var flags: SCNetworkReachabilityFlags = 0
+        let gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, &flags) != 0
+        if gotFlags {
+            return test(flags)
+        }
+        
+        return false
     }
     
     // WWAN may be available, but not active until a connection has been established.
@@ -278,21 +309,6 @@ class Reachability: NSObject, Printable {
         return flags & testcase == testcase
     }
     
-    // MARK: - *** xx methods ***
-    
-    var currentReachabilityStatus: NetworkStatus {
-        if isReachable() {
-            if isReachableViaWiFi() {
-                return .ReachableViaWiFi
-            }
-            if isRunningOnDevice {
-                return .ReachableViaWWAN;
-            }
-        }
-        
-        return .NotReachable
-    }
-    
     private var reachabilityFlags: SCNetworkReachabilityFlags {
         var flags: SCNetworkReachabilityFlags = 0
         let gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, &flags) != 0
@@ -301,18 +317,6 @@ class Reachability: NSObject, Printable {
         }
         
         return 0
-    }
-    
-    var currentReachabilityString: String {
-        
-        switch currentReachabilityStatus {
-        case .ReachableViaWWAN:
-            return NSLocalizedString("Cellular", comment: "")
-        case .ReachableViaWiFi:
-            return NSLocalizedString("WiFi", comment: "")
-        case .NotReachable:
-            return NSLocalizedString("No Connection", comment: "");
-        }
     }
     
     override var description: String {
@@ -339,8 +343,8 @@ class Reachability: NSObject, Printable {
         stopNotifier()
         
         reachabilityRef = nil
-        reachableBlock = nil
-        unreachableBlock = nil
+        whenReachable = nil
+        whenUnreachable = nil
     }
 }
 

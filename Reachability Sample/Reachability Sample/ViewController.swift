@@ -8,6 +8,8 @@
 
 import UIKit
 
+let useClosures = false
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var networkStatus: UILabel!
@@ -17,15 +19,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        reachability.reachableBlock = { reachability in
-            self.updateLabelColourWhenReachable(reachability)
-        }
-        reachability.unreachableBlock = { reachability in
-            self.updateLabelColourWhenNotReachable(reachability)
+        if (useClosures) {
+            reachability.whenReachable = { reachability in
+                self.updateLabelColourWhenReachable(reachability)
+            }
+            reachability.whenUnreachable = { reachability in
+                self.updateLabelColourWhenNotReachable(reachability)
+            }
+        } else {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         }
         
         reachability.startNotifier()
         
+        // Initial reachability check
         if reachability.isReachable() {
             updateLabelColourWhenReachable(reachability)
         } else {
@@ -34,7 +41,12 @@ class ViewController: UIViewController {
     }
     
     deinit {
+
         reachability.stopNotifier()
+        
+        if (!useClosures) {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        }
     }
     
     func updateLabelColourWhenReachable(reachability: Reachability) {
@@ -53,6 +65,16 @@ class ViewController: UIViewController {
         self.networkStatus.text = reachability.currentReachabilityString
     }
 
+    
+    func reachabilityChanged(note: NSNotification) {
+        let reachability = note.object as Reachability
+        
+        if reachability.isReachable() {
+            updateLabelColourWhenReachable(reachability)
+        } else {
+            updateLabelColourWhenNotReachable(reachability)
+        }
+    }
 }
 
 
