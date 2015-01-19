@@ -36,6 +36,8 @@ Just drop the **Reachability.swift** file into your project. That's it!
     let reachability = Reachability.reachabilityForInternetConnection()
 
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
+    
+    reachability.startNotifier()
 
 and
 
