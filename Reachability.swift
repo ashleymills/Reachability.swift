@@ -63,7 +63,7 @@ class Reachability: NSObject, Printable {
                 return .ReachableViaWiFi
             }
             if isRunningOnDevice {
-                return .ReachableViaWWAN;
+                return .ReachableViaWWAN
             }
         }
         
@@ -113,7 +113,7 @@ class Reachability: NSObject, Printable {
         reachabilityObject = self
         let reachability = self.reachabilityRef!
         
-        previousReachabilityFlags = reachabilityFlags;
+        previousReachabilityFlags = reachabilityFlags
         if let dispatch_timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
             dispatch_source_set_timer(dispatch_timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
             dispatch_source_set_event_handler(dispatch_timer, { [unowned self] in
@@ -130,7 +130,7 @@ class Reachability: NSObject, Printable {
     
     func stopNotifier() {
         
-        reachabilityObject = nil;
+        reachabilityObject = nil
         
         if let dispatch_timer = dispatch_timer {
             dispatch_source_cancel(dispatch_timer)
@@ -202,8 +202,8 @@ class Reachability: NSObject, Printable {
     private var previousReachabilityFlags: SCNetworkReachabilityFlags?
     
     private init(reachabilityRef: SCNetworkReachability) {
-        reachableOnWWAN = true;
-        self.reachabilityRef = reachabilityRef;
+        reachableOnWWAN = true
+        self.reachabilityRef = reachabilityRef
     }
     
     func timerFired() {
