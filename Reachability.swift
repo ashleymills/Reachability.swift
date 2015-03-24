@@ -114,17 +114,29 @@ class Reachability: NSObject, Printable {
         let reachability = self.reachabilityRef!
         
         previousReachabilityFlags = reachabilityFlags;
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "timerFired:", userInfo: nil, repeats: true)
-        
-        return true;
+        if let dispatch_timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
+            dispatch_source_set_timer(dispatch_timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
+            dispatch_source_set_event_handler(dispatch_timer, { [unowned self] in
+                self.timerFired()
+            })
+            
+            dispatch_resume(dispatch_timer)
+            
+            return true
+        } else {
+            return false
+        }
     }
     
     func stopNotifier() {
         
         reachabilityObject = nil;
         
-        timer?.invalidate()
-        timer = nil;
+        if let dispatch_timer = dispatch_timer {
+            dispatch_source_cancel(dispatch_timer)
+            self.dispatch_timer = nil
+        }
+        
     }
     
     // MARK: - *** Connection test methods ***
@@ -183,7 +195,10 @@ class Reachability: NSObject, Printable {
     
     private var reachabilityRef: SCNetworkReachability?
     private var reachabilityObject: AnyObject?
-    private var timer: NSTimer?
+    private var dispatch_timer: dispatch_source_t?
+    private lazy var timer_queue: dispatch_queue_t = {
+        return dispatch_queue_create("uk.co.joylordsystems.reachability_timer_queue", nil)
+    }()
     private var previousReachabilityFlags: SCNetworkReachabilityFlags?
     
     private init(reachabilityRef: SCNetworkReachability) {
@@ -191,7 +206,7 @@ class Reachability: NSObject, Printable {
         self.reachabilityRef = reachabilityRef;
     }
     
-    func timerFired(timer: NSTimer) {
+    func timerFired() {
         
         let currentReachabilityFlags = reachabilityFlags
         if let _previousReachabilityFlags = previousReachabilityFlags {
