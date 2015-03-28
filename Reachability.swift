@@ -114,13 +114,14 @@ class Reachability: NSObject, Printable {
         let reachability = self.reachabilityRef!
         
         previousReachabilityFlags = reachabilityFlags
-        if let dispatch_timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
-            dispatch_source_set_timer(dispatch_timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
-            dispatch_source_set_event_handler(dispatch_timer, { [unowned self] in
+        if let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
+            dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
+            dispatch_source_set_event_handler(timer, { [unowned self] in
                 self.timerFired()
             })
             
-            dispatch_resume(dispatch_timer)
+            dispatch_timer = timer
+            dispatch_resume(timer)
             
             return true
         } else {
@@ -132,9 +133,9 @@ class Reachability: NSObject, Printable {
         
         reachabilityObject = nil
         
-        if let dispatch_timer = dispatch_timer {
-            dispatch_source_cancel(dispatch_timer)
-            self.dispatch_timer = nil
+        if let timer = dispatch_timer {
+            dispatch_source_cancel(timer)
+            dispatch_timer = nil
         }
         
     }
@@ -207,12 +208,13 @@ class Reachability: NSObject, Printable {
     }
     
     func timerFired() {
-        
         let currentReachabilityFlags = reachabilityFlags
         if let _previousReachabilityFlags = previousReachabilityFlags {
             if currentReachabilityFlags != previousReachabilityFlags {
-                reachabilityChanged(currentReachabilityFlags)
-                previousReachabilityFlags = currentReachabilityFlags
+                dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+                    self.reachabilityChanged(currentReachabilityFlags)
+                    self.previousReachabilityFlags = currentReachabilityFlags
+                })
             }
         }
     }
