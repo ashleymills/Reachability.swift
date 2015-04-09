@@ -63,7 +63,7 @@ class Reachability: NSObject, Printable {
                 return .ReachableViaWiFi
             }
             if isRunningOnDevice {
-                return .ReachableViaWWAN;
+                return .ReachableViaWWAN
             }
         }
         
@@ -113,18 +113,31 @@ class Reachability: NSObject, Printable {
         reachabilityObject = self
         let reachability = self.reachabilityRef!
         
-        previousReachabilityFlags = reachabilityFlags;
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "timerFired:", userInfo: nil, repeats: true)
-        
-        return true;
+        previousReachabilityFlags = reachabilityFlags
+        if let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
+            dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
+            dispatch_source_set_event_handler(timer, { [unowned self] in
+                self.timerFired()
+            })
+            
+            dispatch_timer = timer
+            dispatch_resume(timer)
+            
+            return true
+        } else {
+            return false
+        }
     }
     
     func stopNotifier() {
         
-        reachabilityObject = nil;
+        reachabilityObject = nil
         
-        timer?.invalidate()
-        timer = nil;
+        if let timer = dispatch_timer {
+            dispatch_source_cancel(timer)
+            dispatch_timer = nil
+        }
+        
     }
     
     // MARK: - *** Connection test methods ***
@@ -183,21 +196,25 @@ class Reachability: NSObject, Printable {
     
     private var reachabilityRef: SCNetworkReachability?
     private var reachabilityObject: AnyObject?
-    private var timer: NSTimer?
+    private var dispatch_timer: dispatch_source_t?
+    private lazy var timer_queue: dispatch_queue_t = {
+        return dispatch_queue_create("uk.co.joylordsystems.reachability_timer_queue", nil)
+    }()
     private var previousReachabilityFlags: SCNetworkReachabilityFlags?
     
     private init(reachabilityRef: SCNetworkReachability) {
-        reachableOnWWAN = true;
-        self.reachabilityRef = reachabilityRef;
+        reachableOnWWAN = true
+        self.reachabilityRef = reachabilityRef
     }
     
-    func timerFired(timer: NSTimer) {
-        
+    func timerFired() {
         let currentReachabilityFlags = reachabilityFlags
         if let _previousReachabilityFlags = previousReachabilityFlags {
             if currentReachabilityFlags != previousReachabilityFlags {
-                reachabilityChanged(currentReachabilityFlags)
-                previousReachabilityFlags = currentReachabilityFlags
+                dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+                    self.reachabilityChanged(currentReachabilityFlags)
+                    self.previousReachabilityFlags = currentReachabilityFlags
+                })
             }
         }
     }
