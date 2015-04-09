@@ -67,7 +67,7 @@ class ViewController: UIViewController {
 
     
     func reachabilityChanged(note: NSNotification) {
-        let reachability = note.object as Reachability
+        let reachability = note.object as! Reachability
         
         if reachability.isReachable() {
             updateLabelColourWhenReachable(reachability)
