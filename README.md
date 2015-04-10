@@ -62,7 +62,7 @@ Got a bug fix, or a new feature? Create a pull request and go for it!
 
 ## Let me know!
 
-If you use **Reachability.swift**, please let me know about your app and I'll put a link here… and tell your friends! 
+If you use **Reachability.swift**, please let me know about your app and I'll put a link [here…](https://github.com/ashleymills/Reachability.swift/wiki/Apps-using-Reachability.swift) and tell your friends! 
 
 Cheers,
 Ash
