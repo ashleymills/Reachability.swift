@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.authors      = {
     'Ashley Mills' => 'ashleymills@mac.com'
   }
-  s.summary      = 'Replacement for Apple's Reachability re-written in Swift with callbacks.'
+  s.summary      = 'Replacement for Apple\'s Reachability re-written in Swift with callbacks.'
 
 # Source Info
   s.platform     =  :ios, '8.0'
