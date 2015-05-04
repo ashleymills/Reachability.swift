@@ -6,12 +6,13 @@ Pod::Spec.new do |s|
     'Ashley Mills' => 'ashleymills@mac.com'
   }
   s.summary      = 'Replacement for Apple\'s Reachability re-written in Swift with callbacks.'
+  s.license      = { :type => 'MIT' }
 
 # Source Info
   s.platform     =  :ios, '8.0'
   s.source       =  {
-    :git => 'https://github.com/ashleymills/Reachability.swift',
-    :tag => s.version.to_s
+    :git => 'https://github.com/ashleymills/Reachability.swift.git',
+    :tag => 'v'+s.version.to_s
   }
   s.source_files = 'Reachability.swift'
   s.framework    = 'SystemConfiguration'
