@@ -1,6 +1,6 @@
 # Reachability.swift
 
-Replacement for Apple's Reachability re-written in Swift with callbacks
+Replacement for Apple's Reachability re-written in Swift with closures
 
 Inspired by https://github.com/tonymillion/Reachability 
 
