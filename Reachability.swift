@@ -293,7 +293,11 @@ public class Reachability: NSObject, Printable {
     }
 
     private func isOnWWAN(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsIsWWAN) != 0
+        #if os(iOS)
+            return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsIsWWAN) != 0
+        #else
+            return false
+        #endif
     }
     private func isReachable(flags: SCNetworkReachabilityFlags) -> Bool {
         return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsReachable) != 0

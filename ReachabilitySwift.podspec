@@ -8,7 +8,8 @@ Pod::Spec.new do |s|
   s.summary      = 'Replacement for Apple\'s Reachability re-written in Swift with callbacks.'
 
 # Source Info
-  s.platform     =  :ios, '8.0'
+  s.ios.platform = :ios, "8.0"
+  s.osx.platform = :osx, "10.10"
   s.source       =  {
     :git => 'https://github.com/ashleymills/Reachability.swift',
     :tag => s.version.to_s
