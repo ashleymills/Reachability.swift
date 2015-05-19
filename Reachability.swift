@@ -75,6 +75,12 @@ public class Reachability: NSObject, Printable {
     }
 
     // MARK: - *** Initialisation methods ***
+    
+    public required init(reachabilityRef: SCNetworkReachability) {
+        reachableOnWWAN = true
+        self.reachabilityRef = reachabilityRef
+    }
+    
     public convenience init(hostname: String) {
         let ref = SCNetworkReachabilityCreateWithName(nil, (hostname as NSString).UTF8String).takeRetainedValue()
         self.init(reachabilityRef: ref)
@@ -202,11 +208,6 @@ public class Reachability: NSObject, Printable {
         return dispatch_queue_create("uk.co.joylordsystems.reachability_timer_queue", nil)
         }()
     private var previousReachabilityFlags: SCNetworkReachabilityFlags?
-
-    private init(reachabilityRef: SCNetworkReachability) {
-        reachableOnWWAN = true
-        self.reachabilityRef = reachabilityRef
-    }
 
     func timerFired() {
         let currentReachabilityFlags = reachabilityFlags
