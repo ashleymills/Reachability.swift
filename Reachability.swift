@@ -56,6 +56,7 @@ public class Reachability: NSObject, Printable {
     public var whenReachable: NetworkReachable?
     public var whenUnreachable: NetworkUneachable?
     public var reachableOnWWAN: Bool
+    public var notificationCenter = NSNotificationCenter.defaultCenter()
 
     public var currentReachabilityStatus: NetworkStatus {
         if isReachable() {
@@ -232,7 +233,7 @@ public class Reachability: NSObject, Printable {
             }
         }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(ReachabilityChangedNotification, object:self)
+        notificationCenter.postNotificationName(ReachabilityChangedNotification, object:self)
     }
 
     private func isReachableWithFlags(flags: SCNetworkReachabilityFlags) -> Bool {
