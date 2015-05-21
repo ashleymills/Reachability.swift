@@ -56,6 +56,7 @@ public class Reachability: NSObject, Printable {
     public var whenReachable: NetworkReachable?
     public var whenUnreachable: NetworkUneachable?
     public var reachableOnWWAN: Bool
+    public var notificationCenter = NSNotificationCenter.defaultCenter()
 
     public var currentReachabilityStatus: NetworkStatus {
         if isReachable() {
@@ -75,6 +76,12 @@ public class Reachability: NSObject, Printable {
     }
 
     // MARK: - *** Initialisation methods ***
+    
+    public required init(reachabilityRef: SCNetworkReachability) {
+        reachableOnWWAN = true
+        self.reachabilityRef = reachabilityRef
+    }
+    
     public convenience init(hostname: String) {
         let ref = SCNetworkReachabilityCreateWithName(nil, (hostname as NSString).UTF8String).takeRetainedValue()
         self.init(reachabilityRef: ref)
@@ -203,11 +210,6 @@ public class Reachability: NSObject, Printable {
         }()
     private var previousReachabilityFlags: SCNetworkReachabilityFlags?
 
-    private init(reachabilityRef: SCNetworkReachability) {
-        reachableOnWWAN = true
-        self.reachabilityRef = reachabilityRef
-    }
-
     func timerFired() {
         let currentReachabilityFlags = reachabilityFlags
         if let _previousReachabilityFlags = previousReachabilityFlags {
@@ -231,7 +233,7 @@ public class Reachability: NSObject, Printable {
             }
         }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(ReachabilityChangedNotification, object:self)
+        notificationCenter.postNotificationName(ReachabilityChangedNotification, object:self)
     }
 
     private func isReachableWithFlags(flags: SCNetworkReachabilityFlags) -> Bool {
