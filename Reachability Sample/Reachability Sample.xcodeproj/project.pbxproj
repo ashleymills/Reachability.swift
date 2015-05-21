@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A19CAA51B0E999E00548B1A /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A19CAA41B0E999E00548B1A /* Reachability.framework */; };
+		0A19CAA61B0E999E00548B1A /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A19CAA41B0E999E00548B1A /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA25599F19D0D1990073826D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25599E19D0D1990073826D /* AppDelegate.swift */; };
 		CA2559A119D0D1990073826D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2559A019D0D1990073826D /* ViewController.swift */; };
 		CA2559A419D0D1990073826D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2559A219D0D1990073826D /* Main.storyboard */; };
 		CA2559A619D0D1990073826D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2559A519D0D1990073826D /* Images.xcassets */; };
 		CA2559A919D0D1990073826D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2559A719D0D1990073826D /* LaunchScreen.xib */; };
 		CA2559B519D0D1990073826D /* Reachability_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2559B419D0D1990073826D /* Reachability_SampleTests.swift */; };
-		CA2559BF19D0D1AF0073826D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2559BE19D0D1AF0073826D /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +27,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0A19CAA71B0E999E00548B1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A19CAA61B0E999E00548B1A /* Reachability.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A19CAA41B0E999E00548B1A /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA25599919D0D1990073826D /* Reachability Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reachability Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA25599D19D0D1990073826D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA25599E19D0D1990073826D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +53,6 @@
 		CA2559AE19D0D1990073826D /* Reachability SampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reachability SampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2559B319D0D1990073826D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA2559B419D0D1990073826D /* Reachability_SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability_SampleTests.swift; sourceTree = "<group>"; };
-		CA2559BE19D0D1AF0073826D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../../Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A19CAA51B0E999E00548B1A /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +77,7 @@
 		CA25599019D0D1990073826D = {
 			isa = PBXGroup;
 			children = (
+				0A19CAA41B0E999E00548B1A /* Reachability.framework */,
 				CA25599B19D0D1990073826D /* Reachability Sample */,
 				CA2559B119D0D1990073826D /* Reachability SampleTests */,
 				CA25599A19D0D1990073826D /* Products */,
@@ -79,7 +96,6 @@
 		CA25599B19D0D1990073826D /* Reachability Sample */ = {
 			isa = PBXGroup;
 			children = (
-				CA2559BE19D0D1AF0073826D /* Reachability.swift */,
 				CA25599E19D0D1990073826D /* AppDelegate.swift */,
 				CA2559A019D0D1990073826D /* ViewController.swift */,
 				CA2559A219D0D1990073826D /* Main.storyboard */,
@@ -125,6 +141,7 @@
 				CA25599519D0D1990073826D /* Sources */,
 				CA25599619D0D1990073826D /* Frameworks */,
 				CA25599719D0D1990073826D /* Resources */,
+				0A19CAA71B0E999E00548B1A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,7 +234,6 @@
 			files = (
 				CA2559A119D0D1990073826D /* ViewController.swift in Sources */,
 				CA25599F19D0D1990073826D /* AppDelegate.swift in Sources */,
-				CA2559BF19D0D1AF0073826D /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +358,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Reachability-diymfgdhtrybbbbasrmxgqyczjei/Build/Products/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "Reachability Sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,6 +372,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Reachability-diymfgdhtrybbbbasrmxgqyczjei/Build/Products/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "Reachability Sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
