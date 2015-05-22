@@ -17,7 +17,7 @@
 		0A19CA7D1B0E970E00548B1A /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A19CA811B0E970E00548B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A19CA821B0E970E00548B1A /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		0A19CA991B0E973400548B1A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../../../../../../../../src/Reachability.swift/Reachability.swift; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A19CA991B0E973400548B1A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Reachability.swift; sourceTree = "<group>"; };
 		0A19CAAD1B0E9ADA00548B1A /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -385,6 +385,7 @@
 				0A19CA951B0E970E00548B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A19CAC01B0E9ADA00548B1A /* Build configuration list for PBXNativeTarget "Reachability-Mac" */ = {
 			isa = XCConfigurationList;
@@ -393,6 +394,7 @@
 				0A19CAC21B0E9ADA00548B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
