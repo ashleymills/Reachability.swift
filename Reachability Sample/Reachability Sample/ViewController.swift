@@ -20,29 +20,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         if (useClosures) {
-            reachability.whenReachable = { reachability in
+            reachability?.whenReachable = { reachability in
                 self.updateLabelColourWhenReachable(reachability)
             }
-            reachability.whenUnreachable = { reachability in
+            reachability?.whenUnreachable = { reachability in
                 self.updateLabelColourWhenNotReachable(reachability)
             }
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         }
         
-        reachability.startNotifier()
+        reachability?.startNotifier()
         
         // Initial reachability check
-        if reachability.isReachable() {
-            updateLabelColourWhenReachable(reachability)
-        } else {
-            updateLabelColourWhenNotReachable(reachability)
+        if let reachability = reachability {
+            if reachability.isReachable() {
+                updateLabelColourWhenReachable(reachability)
+            } else {
+                updateLabelColourWhenNotReachable(reachability)
+            }
         }
     }
     
     deinit {
 
-        reachability.stopNotifier()
+        reachability?.stopNotifier()
         
         if (!useClosures) {
             NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
