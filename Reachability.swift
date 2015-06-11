@@ -220,9 +220,11 @@ public class Reachability: NSObject, Printable {
         if let _previousReachabilityFlags = previousReachabilityFlags {
             if currentReachabilityFlags != previousReachabilityFlags {
                 dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-                    self.reachabilityChanged(currentReachabilityFlags)
-                    self.previousReachabilityFlags = currentReachabilityFlags
-                    })
+                    if(self.previousReachabilityFlags != currentReachabilityFlags){
+                        self.reachabilityChanged(currentReachabilityFlags)
+                        self.previousReachabilityFlags = currentReachabilityFlags
+                    }
+                })
             }
         }
     }
