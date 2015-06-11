@@ -85,6 +85,7 @@ public class Reachability: NSObject, Printable {
     public convenience init(hostname: String) {
         let ref = SCNetworkReachabilityCreateWithName(nil, (hostname as NSString).UTF8String).takeRetainedValue()
         self.init(reachabilityRef: ref)
+        self.reachabilityRefHostname = hostname
     }
 
     public class func reachabilityForInternetConnection() -> Reachability {
@@ -121,7 +122,7 @@ public class Reachability: NSObject, Printable {
         reachabilityObject = self
         let reachability = self.reachabilityRef!
 
-        previousReachabilityFlags = reachabilityFlags
+//        previousReachabilityFlags = reachabilityFlags
         if let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue) {
             dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), 500 * NSEC_PER_MSEC, 100 * NSEC_PER_MSEC)
             dispatch_source_set_event_handler(timer, { [unowned self] in
@@ -203,14 +204,18 @@ public class Reachability: NSObject, Printable {
         }()
 
     private var reachabilityRef: SCNetworkReachability?
+    private var reachabilityRefHostname :String?
     private var reachabilityObject: AnyObject?
     private var dispatch_timer: dispatch_source_t?
     private lazy var timer_queue: dispatch_queue_t = {
         return dispatch_queue_create("uk.co.joylordsystems.reachability_timer_queue", nil)
         }()
-    private var previousReachabilityFlags: SCNetworkReachabilityFlags?
+    private var previousReachabilityFlags: SCNetworkReachabilityFlags? = 888
 
     func timerFired() {
+        if(previousReachabilityFlags! == 0 && reachabilityRefHostname != nil){
+            reachabilityRef = SCNetworkReachabilityCreateWithName(nil, (reachabilityRefHostname! as NSString).UTF8String).takeRetainedValue()
+        }
         let currentReachabilityFlags = reachabilityFlags
         if let _previousReachabilityFlags = previousReachabilityFlags {
             if currentReachabilityFlags != previousReachabilityFlags {
