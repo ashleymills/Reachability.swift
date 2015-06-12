@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.11"
   s.source       =  {
     :git => 'https://github.com/ashleymills/Reachability.swift.git',
+    :branch => 'develop',
     :tag => 'v'+s.version.to_s
-    :branch => 'develop'
   }
   s.source_files = 'Reachability.swift'
   s.framework    = 'SystemConfiguration'
