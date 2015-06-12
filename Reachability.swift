@@ -31,7 +31,7 @@ import Foundation
 public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
 func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
-    let reachability = unsafeBitCast(info.memory, Reachability.self)
+    let reachability = Unmanaged<Reachability>.fromOpaque(COpaquePointer(info)).takeUnretainedValue()
     reachability.reachabilityChanged(flags)
 }
 
@@ -127,21 +127,27 @@ public class Reachability: NSObject {
     // MARK: - *** Notifier methods ***
     public func startNotifier() -> Bool {
 
-        var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+        if notifierRunning { return true }
         
-        var s = self
-        withUnsafeMutablePointer(&s) {
-            context.info = UnsafeMutablePointer($0)
+        var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+        context.info = UnsafeMutablePointer(Unmanaged.passUnretained(self).toOpaque())
+        
+        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) != 0 {
+            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) != 0 {
+                notifierRunning = true
+                return true
+            }
         }
         
-        return SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) != 0
+        stopNotifier()
+        
+        return false
     }
     
 
     public func stopNotifier() {
 
         SCNetworkReachabilitySetCallback(reachabilityRef!, nil, nil)
-
         reachabilityRef = nil
     }
 
@@ -199,7 +205,9 @@ public class Reachability: NSObject {
         #endif
         }()
 
+    private var notifierRunning = false
     private var reachabilityRef: SCNetworkReachability?
+    private let reachabilitySerialQueue = dispatch_queue_create("uk.co.ashleymills.reachability", DISPATCH_QUEUE_SERIAL)
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
         if isReachableWithFlags(flags) {
@@ -238,7 +246,6 @@ public class Reachability: NSObject {
     }
 
     private func isReachableWithTest(test: (SCNetworkReachabilityFlags) -> (Bool)) -> Bool {
-        print("\(test)")
 
         if let reachabilityRef = reachabilityRef {
             
@@ -322,10 +329,14 @@ public class Reachability: NSObject {
 
     private var reachabilityFlags: SCNetworkReachabilityFlags {
         if let reachabilityRef = reachabilityRef {
-            let flags = UnsafeMutablePointer<SCNetworkReachabilityFlags>()
-            let gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, flags) != 0
-            if gotFlags {
-                return flags.memory
+            
+            var flags = SCNetworkReachabilityFlags(rawValue: 0)
+            let gotFlags = withUnsafeMutablePointer(&flags) {
+                SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
+            }
+            
+            if gotFlags != 0 {
+                return flags
             }
         }
 
