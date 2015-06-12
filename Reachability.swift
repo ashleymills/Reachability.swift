@@ -32,7 +32,10 @@ public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
 func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
     let reachability = Unmanaged<Reachability>.fromOpaque(COpaquePointer(info)).takeUnretainedValue()
-    reachability.reachabilityChanged(flags)
+
+    dispatch_async(dispatch_get_main_queue()) {
+        reachability.reachabilityChanged(flags)
+    }
 }
 
 
