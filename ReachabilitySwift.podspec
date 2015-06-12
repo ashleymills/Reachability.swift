@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'ReachabilitySwift'
-  s.version      = '2.0'
+  s.version      = '2.0-beta1'
   s.homepage     = 'https://github.com/ashleymills/Reachability.swift'
   s.authors      = {
     'Ashley Mills' => 'ashleymills@mac.com'
@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.source       =  {
     :git => 'https://github.com/ashleymills/Reachability.swift.git',
     :tag => 'v'+s.version.to_s
+    :branch => 'develop'
   }
   s.source_files = 'Reachability.swift'
   s.framework    = 'SystemConfiguration'
