@@ -118,7 +118,7 @@ public class Reachability: NSObject {
         localWifiAddress.sin_family = sa_family_t(AF_INET)
 
         // IN_LINKLOCALNETNUM is defined in <netinet/in.h> as 169.254.0.0
-        let address: Int64 = 0xA9FE0000
+        let address: UInt32 = 0xA9FE0000
         localWifiAddress.sin_addr.s_addr = in_addr_t(address.bigEndian)
 
         let ref = withUnsafePointer(&localWifiAddress) {
@@ -135,8 +135,8 @@ public class Reachability: NSObject {
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutablePointer(Unmanaged.passUnretained(self).toOpaque())
         
-        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) != 0 {
-            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) != 0 {
+        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) {
+            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) {
                 notifierRunning = true
                 return true
             }
@@ -152,7 +152,7 @@ public class Reachability: NSObject {
         if let reachabilityRef = reachabilityRef {
             SCNetworkReachabilitySetCallback(reachabilityRef, nil, nil)
         }
-        reachabilityRef = nil
+        notifierRunning = false
     }
 
     // MARK: - *** Connection test methods ***
@@ -258,7 +258,7 @@ public class Reachability: NSObject {
                 SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
             }
             
-            if gotFlags != 0 {
+            if gotFlags {
                 return test(flags)
             }
         }
@@ -339,7 +339,7 @@ public class Reachability: NSObject {
                 SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
             }
             
-            if gotFlags != 0 {
+            if gotFlags {
                 return flags
             }
         }
