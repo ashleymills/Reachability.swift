@@ -135,8 +135,8 @@ public class Reachability: NSObject {
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutablePointer(Unmanaged.passUnretained(self).toOpaque())
         
-        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) != 0 {
-            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) != 0 {
+        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) {
+            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) {
                 notifierRunning = true
                 return true
             }
@@ -258,7 +258,7 @@ public class Reachability: NSObject {
                 SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
             }
             
-            if gotFlags != 0 {
+            if gotFlags {
                 return test(flags)
             }
         }
@@ -339,7 +339,7 @@ public class Reachability: NSObject {
                 SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
             }
             
-            if gotFlags != 0 {
+            if gotFlags {
                 return flags
             }
         }
