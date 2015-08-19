@@ -33,7 +33,7 @@ public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 public class Reachability: NSObject, Printable {
 
     public typealias NetworkReachable = (Reachability) -> ()
-    public typealias NetworkUneachable = (Reachability) -> ()
+    public typealias NetworkUnreachable = (Reachability) -> ()
 
     public enum NetworkStatus: Printable {
 
@@ -54,7 +54,7 @@ public class Reachability: NSObject, Printable {
     // MARK: - *** Public properties ***
 
     public var whenReachable: NetworkReachable?
-    public var whenUnreachable: NetworkUneachable?
+    public var whenUnreachable: NetworkUnreachable?
     public var reachableOnWWAN: Bool
     public var notificationCenter = NSNotificationCenter.defaultCenter()
 
