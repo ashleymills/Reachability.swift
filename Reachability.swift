@@ -42,7 +42,7 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
 public class Reachability: NSObject {
 
     public typealias NetworkReachable = (Reachability) -> ()
-    public typealias NetworkUneachable = (Reachability) -> ()
+    public typealias NetworkUnreachable = (Reachability) -> ()
 
     public enum NetworkStatus: CustomStringConvertible {
 
@@ -63,7 +63,7 @@ public class Reachability: NSObject {
     // MARK: - *** Public properties ***
 
     public var whenReachable: NetworkReachable?
-    public var whenUnreachable: NetworkUneachable?
+    public var whenUnreachable: NetworkUnreachable?
     public var reachableOnWWAN: Bool
     public var notificationCenter = NSNotificationCenter.defaultCenter()
 

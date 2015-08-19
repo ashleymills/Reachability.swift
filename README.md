@@ -8,8 +8,25 @@ Inspired by https://github.com/tonymillion/Reachability
 
 - If an application has the privacy option “Use cellular data” turned off, the Reachability class still reports isReachable() to be true. There is currently no (non-private) API to detect this. If you need this feature, please raise file a [bug report](https://bugreport.apple.com) with Apple to get this fixed. See devforums thread for details: https://devforums.apple.com/message/1059332#1059332
 
-## Use
+## Installation
+### CocoaPods
+[CocoaPods][] is a dependency manager for Cocoa projects. To install Reachability.swift with CocoaPods:
 
+ 1. Make sure CocoaPods is [installed][CocoaPods Installation].
+
+ 2. Update your Podfile to include the following:
+
+    ``` ruby
+    use_frameworks!
+    pod 'ReachabilitySwift', git: 'https://github.com/ashleymills/Reachability.swift'
+    ```
+
+ 3. Run `pod install`.
+
+[CocoaPods]: https://cocoapods.org
+[CocoaPods Installation]: https://guides.cocoapods.org/using/getting-started.html#getting-started
+
+### Manual
 Just drop the **Reachability.swift** file into your project. That's it!
 
 ## Example - closures
