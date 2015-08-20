@@ -2,7 +2,9 @@
 
 Replacement for Apple's Reachability re-written in Swift with closures
 
-Inspired by https://github.com/tonymillion/Reachability 
+Inspired by https://github.com/tonymillion/Reachability
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 **NOTES:**
 
