@@ -68,6 +68,8 @@ reachability.stopNotifier()
 
 ## Example - notifications
 
+This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
+
 ````
     let reachability = Reachability.reachabilityForInternetConnection()
 
