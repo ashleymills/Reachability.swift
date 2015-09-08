@@ -60,6 +60,12 @@ Just drop the **Reachability.swift** file into your project. That's it!
     reachability.startNotifier()
 ````
 
+and for stopping notifications
+
+````
+reachability.stopNotifier()
+````
+
 ## Example - notifications
 
 ````
@@ -87,6 +93,15 @@ and
             println("Not reachable")
         }
     }
+````
+
+and for stopping notifications
+
+````
+reachability.stopNotifier()
+NSNotificationCenter.defaultCenter().removeObserver(self, 
+                                                    name: ReachabilityChangedNotification, 
+                                                    object: reachability)
 ````
 
 ## Want to help?
