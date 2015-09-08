@@ -33,20 +33,32 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
 ## Example - closures
 
+````
     let reachability = Reachability.reachabilityForInternetConnection()
 
     reachability.whenReachable = { reachability in
-        if reachability.isReachableViaWiFi() {
-            println("Reachable via WiFi")
-        } else {
-            println("Reachable via Cellular")
+        // keep in mind this is called on a background thread
+        // and if you are updating the UI it needs to happen
+        // on the main thread, like this:
+        dispatch_async(dispatch_get_main_queue()) {
+            if reachability.isReachableViaWiFi() {
+                println("Reachable via WiFi")
+            } else {
+                println("Reachable via Cellular")
+            }
         }
     }
     reachability.whenUnreachable = { reachability in
-        println("Not reachable")
+        // keep in mind this is called on a background thread
+        // and if you are updating the UI it needs to happen
+        // on the main thread, like this:
+         dispatch_async(dispatch_get_main_queue()) {
+             println("Not reachable")
+         }
     }
 
     reachability.startNotifier()
+````
 
 ## Example - notifications
 
