@@ -52,9 +52,9 @@ Just drop the **Reachability.swift** file into your project. That's it!
         // keep in mind this is called on a background thread
         // and if you are updating the UI it needs to happen
         // on the main thread, like this:
-         dispatch_async(dispatch_get_main_queue()) {
-             println("Not reachable")
-         }
+        dispatch_async(dispatch_get_main_queue()) {
+            println("Not reachable")
+        }
     }
 
     reachability.startNotifier()
@@ -71,7 +71,10 @@ reachability.stopNotifier()
 ````
     let reachability = Reachability.reachabilityForInternetConnection()
 
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
+    NSNotificationCenter.defaultCenter().addObserver(self, 
+                                                     selector: "reachabilityChanged:", 
+                                                     name: ReachabilityChangedNotification, 
+                                                     object: reachability)
     
     reachability.startNotifier()
 ````
