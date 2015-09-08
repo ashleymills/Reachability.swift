@@ -62,14 +62,17 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
 ## Example - notifications
 
+````
     let reachability = Reachability.reachabilityForInternetConnection()
 
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
     
     reachability.startNotifier()
+````
 
 and
 
+````
     func reachabilityChanged(note: NSNotification) {
 
         let reachability = note.object as! Reachability
@@ -84,6 +87,7 @@ and
             println("Not reachable")
         }
     }
+````
 
 ## Want to help?
 
