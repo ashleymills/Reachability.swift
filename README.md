@@ -41,7 +41,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
     }
 
 
-    reachability?.whenReachable = { reachability in
+    reachability!.whenReachable = { reachability in
         // this is called on a background thread, but UI updates must
         // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
@@ -52,7 +52,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
             }
         }
     }
-    reachability?.whenUnreachable = { reachability in
+    reachability!.whenUnreachable = { reachability in
         // this is called on a background thread, but UI updates must
         // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
@@ -60,13 +60,18 @@ Just drop the **Reachability.swift** file into your project. That's it!
         }
     }
 
-    try? reachability.startNotifier()
+    do {
+        try reachability!.startNotifier()
+    } catch {
+        print(\"Unable to start notifier")
+    }
+
 ````
 
 and for stopping notifications
 
 ````
-reachability.stopNotifier()
+reachability?.stopNotifier()
 ````
 
 ## Example - notifications
@@ -74,14 +79,20 @@ reachability.stopNotifier()
 This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
 
 ````
-    let reachability = Reachability.reachabilityForInternetConnection()
+    let reachability: Reachability?
+    do {
+        reachability = try Reachability.reachabilityForInternetConnection()
+    } catch {
+        print("Unable to create Reachability")
+        return
+    }
 
     NSNotificationCenter.defaultCenter().addObserver(self, 
                                                      selector: "reachabilityChanged:", 
                                                      name: ReachabilityChangedNotification, 
-                                                     object: reachability)
+                                                     object: reachability!)
     
-    reachability.startNotifier()
+    reachability!.startNotifier()
 ````
 
 and
@@ -106,10 +117,10 @@ and
 and for stopping notifications
 
 ````
-reachability.stopNotifier()
+reachability!.stopNotifier()
 NSNotificationCenter.defaultCenter().removeObserver(self, 
                                                     name: ReachabilityChangedNotification, 
-                                                    object: reachability)
+                                                    object: reachability!)
 ````
 
 ## Want to help?
