@@ -32,12 +32,11 @@ Just drop the **Reachability.swift** file into your project. That's it!
 ## Example - closures
 
 ````
-    let reachability = Reachability.reachabilityForInternetConnection()
+    let reachability = try? Reachability.reachabilityForInternetConnection()!
 
-    reachability.whenReachable = { reachability in
-        // keep in mind this is called on a background thread
-        // and if you are updating the UI it needs to happen
-        // on the main thread, like this:
+    reachability?.whenReachable = { reachability in
+        // this is called on a background thread, but UI updates must
+        // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
             if reachability.isReachableViaWiFi() {
                 println("Reachable via WiFi")
@@ -46,16 +45,15 @@ Just drop the **Reachability.swift** file into your project. That's it!
             }
         }
     }
-    reachability.whenUnreachable = { reachability in
-        // keep in mind this is called on a background thread
-        // and if you are updating the UI it needs to happen
-        // on the main thread, like this:
+    reachability?.whenUnreachable = { reachability in
+        // this is called on a background thread, but UI updates must
+        // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
             println("Not reachable")
         }
     }
 
-    reachability.startNotifier()
+    try? reachability.startNotifier()
 ````
 
 and for stopping notifications
