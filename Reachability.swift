@@ -28,6 +28,12 @@ POSSIBILITY OF SUCH DAMAGE.
 import SystemConfiguration
 import Foundation
 
+enum ReachabilityError: ErrorType {
+    case FailedToCreateWithAddress(sockaddr_in)
+    case UnableToSetCallback
+    case UnableToSetDispatchQueue
+}
+
 public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
 func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
@@ -86,7 +92,7 @@ public class Reachability: NSObject {
 
     // MARK: - *** Initialisation methods ***
     
-    required public init?(reachabilityRef: SCNetworkReachability?) {
+    required public init(reachabilityRef: SCNetworkReachability) {
         reachableOnWWAN = true
         self.reachabilityRef = reachabilityRef
     }
@@ -94,24 +100,25 @@ public class Reachability: NSObject {
     public convenience init?(hostname: String) {
         
         let nodename = (hostname as NSString).UTF8String
-        let ref = SCNetworkReachabilityCreateWithName(nil, nodename)
+        guard let ref = SCNetworkReachabilityCreateWithName(nil, nodename) else { return nil }
+
         self.init(reachabilityRef: ref)
     }
 
-    public class func reachabilityForInternetConnection() -> Reachability? {
-
+    public class func reachabilityForInternetConnection() throws -> Reachability? {
+        
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        let ref = withUnsafePointer(&zeroAddress) {
+        guard let ref = withUnsafePointer(&zeroAddress, {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }
+        }) else { throw ReachabilityError.FailedToCreateWithAddress(zeroAddress) }
         
         return Reachability(reachabilityRef: ref)
     }
 
-    public class func reachabilityForLocalWiFi() -> Reachability? {
+    public class func reachabilityForLocalWiFi() throws -> Reachability? {
 
         var localWifiAddress: sockaddr_in = sockaddr_in(sin_len: __uint8_t(0), sin_family: sa_family_t(0), sin_port: in_port_t(0), sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
         localWifiAddress.sin_len = UInt8(sizeofValue(localWifiAddress))
@@ -121,30 +128,32 @@ public class Reachability: NSObject {
         let address: UInt32 = 0xA9FE0000
         localWifiAddress.sin_addr.s_addr = in_addr_t(address.bigEndian)
 
-        let ref = withUnsafePointer(&localWifiAddress) {
+        guard let ref = withUnsafePointer(&localWifiAddress, {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }
+        }) else { throw ReachabilityError.FailedToCreateWithAddress(localWifiAddress) }
+        
         return Reachability(reachabilityRef: ref)
     }
 
     // MARK: - *** Notifier methods ***
-    public func startNotifier() -> Bool {
+    public func startNotifier() throws {
 
-        if notifierRunning { return true }
+        if notifierRunning { return }
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutablePointer(Unmanaged.passUnretained(self).toOpaque())
         
-        if SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) {
-            if SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) {
-                notifierRunning = true
-                return true
-            }
+        if !SCNetworkReachabilitySetCallback(reachabilityRef!, callback, &context) {
+            stopNotifier()
+            throw ReachabilityError.UnableToSetCallback
         }
-        
-        stopNotifier()
-        
-        return false
+
+        if !SCNetworkReachabilitySetDispatchQueue(reachabilityRef!, reachabilitySerialQueue) {
+            stopNotifier()
+            throw ReachabilityError.UnableToSetDispatchQueue
+        }
+
+        notifierRunning = true
     }
     
 

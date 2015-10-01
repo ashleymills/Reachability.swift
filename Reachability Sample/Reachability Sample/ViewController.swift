@@ -14,11 +14,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var networkStatus: UILabel!
     
-    let reachability = Reachability.reachabilityForInternetConnection()
+    var reachability: Reachability?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        do {
+            guard let reachability = try Reachability.reachabilityForInternetConnection() else { return }
+            self.reachability = reachability
+        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
+            networkStatus.textColor = UIColor.redColor()
+            networkStatus.text = "Unable to create\nReachability with address:\n\(address)"
+            return
+        } catch {}
+        
         if (useClosures) {
             reachability?.whenReachable = { reachability in
                 self.updateLabelColourWhenReachable(reachability)
@@ -30,7 +39,13 @@ class ViewController: UIViewController {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         }
         
-        reachability?.startNotifier()
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            networkStatus.textColor = UIColor.redColor()
+            networkStatus.text = "Unable to start\nnotifier"
+            return
+        }
         
         // Initial reachability check
         if let reachability = reachability {
