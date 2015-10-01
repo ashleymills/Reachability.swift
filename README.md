@@ -32,7 +32,14 @@ Just drop the **Reachability.swift** file into your project. That's it!
 ## Example - closures
 
 ````
-    let reachability = try? Reachability.reachabilityForInternetConnection()!
+    let reachability: Reachability?
+    do {
+        reachability = try Reachability.reachabilityForInternetConnection()
+    } catch {
+        print("Unable to create Reachability")
+        return
+    }
+
 
     reachability?.whenReachable = { reachability in
         // this is called on a background thread, but UI updates must
