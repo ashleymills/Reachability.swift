@@ -151,6 +151,7 @@ public class Reachability: NSObject {
     public func stopNotifier() {
         if let reachabilityRef = reachabilityRef {
             SCNetworkReachabilitySetCallback(reachabilityRef, nil, nil)
+            SCNetworkReachabilitySetDispatchQueue(reachabilityRef, nil)
         }
         notifierRunning = false
     }
