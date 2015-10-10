@@ -34,34 +34,34 @@ Just drop the **Reachability.swift** file into your project. That's it!
 ````
     let reachability = Reachability.reachabilityForInternetConnection()
 
-    reachability.whenReachable = { reachability in
+    reachability?.whenReachable = { reachability in
         // keep in mind this is called on a background thread
         // and if you are updating the UI it needs to happen
         // on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
             if reachability.isReachableViaWiFi() {
-                println("Reachable via WiFi")
+                print("Reachable via WiFi")
             } else {
-                println("Reachable via Cellular")
+                print("Reachable via Cellular")
             }
         }
     }
-    reachability.whenUnreachable = { reachability in
+    reachability?.whenUnreachable = { reachability in
         // keep in mind this is called on a background thread
         // and if you are updating the UI it needs to happen
         // on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
-            println("Not reachable")
+            print("Not reachable")
         }
     }
 
-    reachability.startNotifier()
+    reachability?.startNotifier()
 ````
 
 and for stopping notifications
 
 ````
-reachability.stopNotifier()
+reachability?.stopNotifier()
 ````
 
 ## Example - notifications
@@ -76,7 +76,7 @@ This sample will use `NSNotification`s to notify when the interface has changed.
                                                      name: ReachabilityChangedNotification, 
                                                      object: reachability)
     
-    reachability.startNotifier()
+    reachability?.startNotifier()
 ````
 
 and
@@ -88,12 +88,12 @@ and
 
         if reachability.isReachable() {
             if reachability.isReachableViaWiFi() {
-                println("Reachable via WiFi")
+                print("Reachable via WiFi")
             } else {
-                println("Reachable via Cellular")
+                print("Reachable via Cellular")
             }
         } else {
-            println("Not reachable")
+            print("Not reachable")
         }
     }
 ````
