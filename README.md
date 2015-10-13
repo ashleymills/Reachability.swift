@@ -46,9 +46,9 @@ Just drop the **Reachability.swift** file into your project. That's it!
         // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
             if reachability.isReachableViaWiFi() {
-                println("Reachable via WiFi")
+                print("Reachable via WiFi")
             } else {
-                println("Reachable via Cellular")
+                print("Reachable via Cellular")
             }
         }
     }
@@ -56,7 +56,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
         // this is called on a background thread, but UI updates must
         // be on the main thread, like this:
         dispatch_async(dispatch_get_main_queue()) {
-            println("Not reachable")
+            print("Not reachable")
         }
     }
 
@@ -104,12 +104,12 @@ and
 
         if reachability.isReachable() {
             if reachability.isReachableViaWiFi() {
-                println("Reachable via WiFi")
+                print("Reachable via WiFi")
             } else {
-                println("Reachable via Cellular")
+                print("Reachable via Cellular")
             }
         } else {
-            println("Not reachable")
+            print("Not reachable")
         }
     }
 ````
