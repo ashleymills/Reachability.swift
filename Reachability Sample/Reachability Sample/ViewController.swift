@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         do {
-            guard let reachability = try Reachability.reachabilityForInternetConnection() else { return }
+            let reachability = try Reachability.reachabilityForInternetConnection()
             self.reachability = reachability
         } catch ReachabilityError.FailedToCreateWithAddress(let address) {
             networkStatus.textColor = UIColor.redColor()
