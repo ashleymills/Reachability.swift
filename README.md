@@ -63,7 +63,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
     do {
         try reachability.startNotifier()
     } catch {
-        print(\"Unable to start notifier")
+        print("Unable to start notifier")
     }
 
 ````
