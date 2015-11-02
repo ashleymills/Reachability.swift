@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Reachability
 
 let useClosures = false
 

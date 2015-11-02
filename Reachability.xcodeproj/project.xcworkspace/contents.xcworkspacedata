@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Reachability Sample.xcodeproj">
+      location = "self:Reachability.xcodeproj">
    </FileRef>
 </Workspace>
