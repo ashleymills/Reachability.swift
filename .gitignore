@@ -24,3 +24,8 @@ DerivedData
 #
 # Pods/
 .DS_Store
+# Carthage
+#
+# https://github.com/Carthage/Carthage
+#
+Carthage/
