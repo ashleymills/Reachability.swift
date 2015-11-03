@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AE4FE451BE8D7310042EFDA /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AE4FE441BE8D7310042EFDA /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AE4FE4A1BE8D7600042EFDA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3D8031A22034000FA39BD /* Reachability.swift */; };
 		CAE3D7D31A22010300FA39BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3D7D21A22010300FA39BD /* ViewController.swift */; };
 		CAE3D7E71A22010300FA39BD /* Reachability_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3D7E61A22010300FA39BD /* Reachability_TestTests.swift */; };
 		CAE3D8011A2202CD00FA39BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE3D7D91A22010300FA39BD /* LaunchScreen.xib */; };
@@ -26,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2AE4FE421BE8D7310042EFDA /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AE4FE441BE8D7310042EFDA /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2AE4FE461BE8D7310042EFDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE3D7CB1A22010200FA39BD /* Reachability Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reachability Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE3D7CF1A22010200FA39BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE3D7D01A22010200FA39BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2AE4FE3E1BE8D7310042EFDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAE3D7C81A22010200FA39BD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,11 +69,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AE4FE431BE8D7310042EFDA /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				2AE4FE441BE8D7310042EFDA /* Reachability.h */,
+				2AE4FE461BE8D7310042EFDA /* Info.plist */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		CAE3D7C21A22010200FA39BD = {
 			isa = PBXGroup;
 			children = (
 				CAE3D7CD1A22010200FA39BD /* Reachability Test */,
 				CAE3D7E31A22010300FA39BD /* Reachability TestTests */,
+				2AE4FE431BE8D7310042EFDA /* Reachability */,
 				CAE3D7CC1A22010200FA39BD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +93,7 @@
 			children = (
 				CAE3D7CB1A22010200FA39BD /* Reachability Test.app */,
 				CAE3D7E01A22010300FA39BD /* Reachability TestTests.xctest */,
+				2AE4FE421BE8D7310042EFDA /* Reachability.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,7 +139,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2AE4FE3F1BE8D7310042EFDA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE4FE451BE8D7310042EFDA /* Reachability.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		2AE4FE411BE8D7310042EFDA /* Reachability */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AE4FE491BE8D7310042EFDA /* Build configuration list for PBXNativeTarget "Reachability" */;
+			buildPhases = (
+				2AE4FE3D1BE8D7310042EFDA /* Sources */,
+				2AE4FE3E1BE8D7310042EFDA /* Frameworks */,
+				2AE4FE3F1BE8D7310042EFDA /* Headers */,
+				2AE4FE401BE8D7310042EFDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reachability;
+			productName = Reachability;
+			productReference = 2AE4FE421BE8D7310042EFDA /* Reachability.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		CAE3D7CA1A22010200FA39BD /* Reachability Test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAE3D7EA1A22010300FA39BD /* Build configuration list for PBXNativeTarget "Reachability Test" */;
@@ -162,6 +214,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ashley Mills";
 				TargetAttributes = {
+					2AE4FE411BE8D7310042EFDA = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					CAE3D7CA1A22010200FA39BD = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -186,11 +241,19 @@
 			targets = (
 				CAE3D7CA1A22010200FA39BD /* Reachability Test */,
 				CAE3D7DF1A22010300FA39BD /* Reachability TestTests */,
+				2AE4FE411BE8D7310042EFDA /* Reachability */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2AE4FE401BE8D7310042EFDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAE3D7C91A22010200FA39BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +273,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2AE4FE3D1BE8D7310042EFDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE4FE4A1BE8D7600042EFDA /* Reachability.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAE3D7C71A22010200FA39BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +329,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2AE4FE471BE8D7310042EFDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Reachability/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2AE4FE481BE8D7310042EFDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Reachability/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		CAE3D7E81A22010300FA39BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +509,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2AE4FE491BE8D7310042EFDA /* Build configuration list for PBXNativeTarget "Reachability" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AE4FE471BE8D7310042EFDA /* Debug */,
+				2AE4FE481BE8D7310042EFDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CAE3D7C61A22010200FA39BD /* Build configuration list for PBXProject "Reachability Test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
