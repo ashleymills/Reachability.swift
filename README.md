@@ -2,7 +2,7 @@
 
 Replacement for Apple's Reachability re-written in Swift with closures
 
-Inspired by https://github.com/tonymillion/Reachability 
+Inspired by https://github.com/tonymillion/Reachability
 
 **NOTES:**
 
@@ -25,6 +25,27 @@ Inspired by https://github.com/tonymillion/Reachability
 
 [CocoaPods]: https://cocoapods.org
 [CocoaPods Installation]: https://guides.cocoapods.org/using/getting-started.html#getting-started
+
+### Carthage
+[Carthage][] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+To install Reachability.swift with Carthage:
+
+1. Install Carthage via [Homebrew][]
+  ```bash
+  $ brew update
+  $ brew install carthage
+  ```
+
+2. Add `github "ashleymills/Reachability.swift"` to your Cartfile.
+
+3. Run `carthage update`.
+
+4. Drag `Reachability.framework` from the `Carthage/Build/iOS/` directory to the `Linked Frameworks and Libraries` section of your Xcode project’s `General` settings.
+
+5. Add `$(SRCROOT)/Carthage/Build/iOS/Reachability.framework` to `Input Files` of Run Script Phase for Carthage.
+
+[Carthage]: https://github.com/Carthage/Carthage
+[Homebrew]: http://brew.sh
 
 ### Manual
 Just drop the **Reachability.swift** file into your project. That's it!
@@ -86,9 +107,9 @@ do {
     return
 }
 
-NSNotificationCenter.defaultCenter().addObserver(self, 
-                                                 selector: "reachabilityChanged:", 
-                                                 name: ReachabilityChangedNotification, 
+NSNotificationCenter.defaultCenter().addObserver(self,
+                                                 selector: "reachabilityChanged:",
+                                                 name: ReachabilityChangedNotification,
                                                  object: reachability)
 
 reachability.startNotifier()
@@ -117,8 +138,8 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NSNotificationCenter.defaultCenter().removeObserver(self, 
-                                                    name: ReachabilityChangedNotification, 
+NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                    name: ReachabilityChangedNotification,
                                                     object: reachability)
 ```
 
@@ -128,8 +149,7 @@ Got a bug fix, or a new feature? Create a pull request and go for it!
 
 ## Let me know!
 
-If you use **Reachability.swift**, please let me know about your app and I'll put a link [here…](https://github.com/ashleymills/Reachability.swift/wiki/Apps-using-Reachability.swift) and tell your friends! 
+If you use **Reachability.swift**, please let me know about your app and I'll put a link [here…](https://github.com/ashleymills/Reachability.swift/wiki/Apps-using-Reachability.swift) and tell your friends!
 
 Cheers,
 Ash
-
