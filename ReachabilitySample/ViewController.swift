@@ -47,15 +47,6 @@ class ViewController: UIViewController {
             networkStatus.text = "Unable to start\nnotifier"
             return
         }
-        
-        // Initial reachability check
-        if let reachability = reachability {
-            if reachability.isReachable() {
-                updateLabelColourWhenReachable(reachability)
-            } else {
-                updateLabelColourWhenNotReachable(reachability)
-            }
-        }
     }
     
     deinit {
@@ -68,6 +59,7 @@ class ViewController: UIViewController {
     }
     
     func updateLabelColourWhenReachable(reachability: Reachability) {
+        print("\(reachability.description) - \(reachability.currentReachabilityString)")
         if reachability.isReachableViaWiFi() {
             self.networkStatus.textColor = UIColor.greenColor()
         } else {
@@ -78,6 +70,8 @@ class ViewController: UIViewController {
     }
 
     func updateLabelColourWhenNotReachable(reachability: Reachability) {
+        print("\(reachability.description) - \(reachability.currentReachabilityString)")
+
         self.networkStatus.textColor = UIColor.redColor()
         
         self.networkStatus.text = reachability.currentReachabilityString
