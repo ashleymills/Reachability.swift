@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     func setupReachability(useHostName useHostName: Bool, useClosures: Bool) {
         let hostName = "google.com"
         hostNameLabel.text = useHostName ? hostName : "No host name"
+        
+        print("--- set up with host name: \(hostNameLabel.text!)")
+
         do {
             let reachability = try useHostName ? Reachability(hostname: hostName) : Reachability.reachabilityForInternetConnection()
             self.reachability = reachability
@@ -57,6 +60,7 @@ class ViewController: UIViewController {
     }
     
     func startNotifier() {
+        print("--- start notifier")
         do {
             try reachability?.startNotifier()
         } catch {
@@ -67,6 +71,7 @@ class ViewController: UIViewController {
     }
     
     func stopNotifier() {
+        print("--- stop notifier")
         reachability?.stopNotifier()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
         reachability = nil
