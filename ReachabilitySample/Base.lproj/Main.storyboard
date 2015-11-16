@@ -25,16 +25,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EE-X2-pKr">
+                                <rect key="frame" x="275.5" y="242" width="49" height="24"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UBQ-2c-x8L" firstAttribute="top" secondItem="5EE-X2-pKr" secondAttribute="bottom" constant="8" symbolic="YES" id="CuO-ho-b10"/>
                             <constraint firstAttribute="centerY" secondItem="UBQ-2c-x8L" secondAttribute="centerY" id="K7q-cv-Lfi"/>
+                            <constraint firstItem="5EE-X2-pKr" firstAttribute="centerX" secondItem="UBQ-2c-x8L" secondAttribute="centerX" id="MZr-wz-ELn"/>
                             <constraint firstItem="UBQ-2c-x8L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="YBI-sa-7Z9"/>
+                            <constraint firstItem="5EE-X2-pKr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="225" id="pMO-lY-Wq8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UBQ-2c-x8L" secondAttribute="trailing" constant="20" id="xcC-HE-ZUz"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pMO-lY-Wq8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="hostNameLabel" destination="5EE-X2-pKr" id="qt8-ZE-mUg"/>
                         <outlet property="networkStatus" destination="UBQ-2c-x8L" id="vop-Uf-5Ev"/>
                     </connections>
                 </viewController>
