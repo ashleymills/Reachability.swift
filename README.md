@@ -7,6 +7,8 @@ Inspired by https://github.com/tonymillion/Reachability
 ## Supporting **Reachability.swift**
 Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. If you'd like to help keep me motivated, please download my free app, [Foto Flipper] from the App Store. (To really motivate me, pay $0.99 for the IAP!)
 
+And don't forget to **★** the repo. This increases its visibility and encourages others to contribute.
+
 Thanks
 Ash
 
