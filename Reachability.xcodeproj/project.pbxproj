@@ -14,11 +14,27 @@
 		AA73449A1BE76820008AFE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7344991BE76820008AFE69 /* Assets.xcassets */; };
 		AA7344B11BE76862008AFE69 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
 		AA7344B51BE769D6008AFE69 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7344B31BE769D6008AFE69 /* LaunchScreen.xib */; };
+		CA9C94E81C033FD800E82950 /* ReachabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9C94E71C033FD800E82950 /* ReachabilityTests.swift */; };
+		CA9C94EA1C033FD800E82950 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7344721BE7678B008AFE69 /* Reachability.framework */; };
 		CAC230C51BF2180000F6464E /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7344721BE7678B008AFE69 /* Reachability.framework */; };
 		CAC230C61BF2180000F6464E /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA7344721BE7678B008AFE69 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CA9C94EB1C033FD800E82950 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA7344691BE7678B008AFE69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA7344711BE7678B008AFE69;
+			remoteInfo = Reachability;
+		};
+		CA9C94F01C03711F00E82950 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA7344691BE7678B008AFE69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA73448F1BE76820008AFE69;
+			remoteInfo = ReachabilitySample;
+		};
 		CAC230C71BF2180000F6464E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA7344691BE7678B008AFE69 /* Project object */;
@@ -54,6 +70,9 @@
 		AA73449E1BE76820008AFE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7344B01BE76862008AFE69 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AA7344B41BE769D6008AFE69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CA9C94E51C033FD800E82950 /* ReachabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReachabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA9C94E71C033FD800E82950 /* ReachabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTests.swift; sourceTree = "<group>"; };
+		CA9C94E91C033FD800E82950 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +91,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA9C94E21C033FD800E82950 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9C94EA1C033FD800E82950 /* Reachability.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,6 +107,7 @@
 			children = (
 				AA7344741BE7678B008AFE69 /* Reachability */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
+				CA9C94E61C033FD800E82950 /* ReachabilityTests */,
 				AA7344731BE7678B008AFE69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +117,7 @@
 			children = (
 				AA7344721BE7678B008AFE69 /* Reachability.framework */,
 				AA7344901BE76820008AFE69 /* ReachabilitySample.app */,
+				CA9C94E51C033FD800E82950 /* ReachabilityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +143,15 @@
 				AA73449E1BE76820008AFE69 /* Info.plist */,
 			);
 			path = ReachabilitySample;
+			sourceTree = "<group>";
+		};
+		CA9C94E61C033FD800E82950 /* ReachabilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA9C94E71C033FD800E82950 /* ReachabilityTests.swift */,
+				CA9C94E91C033FD800E82950 /* Info.plist */,
+			);
+			path = ReachabilityTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +205,25 @@
 			productReference = AA7344901BE76820008AFE69 /* ReachabilitySample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CA9C94E41C033FD800E82950 /* ReachabilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA9C94EF1C033FD800E82950 /* Build configuration list for PBXNativeTarget "ReachabilityTests" */;
+			buildPhases = (
+				CA9C94E11C033FD800E82950 /* Sources */,
+				CA9C94E21C033FD800E82950 /* Frameworks */,
+				CA9C94E31C033FD800E82950 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA9C94EC1C033FD800E82950 /* PBXTargetDependency */,
+				CA9C94F11C03711F00E82950 /* PBXTargetDependency */,
+			);
+			name = ReachabilityTests;
+			productName = ReachabilityTests;
+			productReference = CA9C94E51C033FD800E82950 /* ReachabilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -182,6 +239,9 @@
 					};
 					AA73448F1BE76820008AFE69 = {
 						CreatedOnToolsVersion = 7.1;
+					};
+					CA9C94E41C033FD800E82950 = {
+						CreatedOnToolsVersion = 7.1.1;
 					};
 				};
 			};
@@ -200,6 +260,7 @@
 			targets = (
 				AA7344711BE7678B008AFE69 /* Reachability */,
 				AA73448F1BE76820008AFE69 /* ReachabilitySample */,
+				CA9C94E41C033FD800E82950 /* ReachabilityTests */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +280,13 @@
 				AA7344B51BE769D6008AFE69 /* LaunchScreen.xib in Resources */,
 				AA73449A1BE76820008AFE69 /* Assets.xcassets in Resources */,
 				AA7344981BE76820008AFE69 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA9C94E31C033FD800E82950 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,9 +310,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA9C94E11C033FD800E82950 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9C94E81C033FD800E82950 /* ReachabilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CA9C94EC1C033FD800E82950 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA7344711BE7678B008AFE69 /* Reachability */;
+			targetProxy = CA9C94EB1C033FD800E82950 /* PBXContainerItemProxy */;
+		};
+		CA9C94F11C03711F00E82950 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA73448F1BE76820008AFE69 /* ReachabilitySample */;
+			targetProxy = CA9C94F01C03711F00E82950 /* PBXContainerItemProxy */;
+		};
 		CAC230C81BF2180000F6464E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA7344711BE7678B008AFE69 /* Reachability */;
@@ -365,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -375,6 +462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -384,6 +472,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -394,6 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -402,11 +492,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ReachabilitySample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.ReachabilitySample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Debug;
 		};
@@ -414,10 +506,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ReachabilitySample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.ReachabilitySample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = Release;
+		};
+		CA9C94ED1C033FD800E82950 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ReachabilityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.ReachabilityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CA9C94EE1C033FD800E82950 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ReachabilityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.ReachabilityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -448,6 +566,15 @@
 			buildConfigurations = (
 				AA7344AB1BE76820008AFE69 /* Debug */,
 				AA7344AC1BE76820008AFE69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA9C94EF1C033FD800E82950 /* Build configuration list for PBXNativeTarget "ReachabilityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9C94ED1C033FD800E82950 /* Debug */,
+				CA9C94EE1C033FD800E82950 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

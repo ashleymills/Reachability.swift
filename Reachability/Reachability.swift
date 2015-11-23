@@ -157,8 +157,10 @@ public class Reachability: NSObject {
         }
 
         // Perform an intial check
-        let flags = reachabilityFlags
-        reachabilityChanged(flags)
+        dispatch_async(reachabilitySerialQueue) { () -> Void in
+            let flags = self.reachabilityFlags
+            self.reachabilityChanged(flags)
+        }
         
         notifierRunning = true
     }

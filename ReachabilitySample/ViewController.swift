@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     func setupReachability(useHostName useHostName: Bool, useClosures: Bool) {
-        let hostName = "google.com"
+        let hostName = "googledcom"
         hostNameLabel.text = useHostName ? hostName : "No host name"
         
         print("--- set up with host name: \(hostNameLabel.text!)")
