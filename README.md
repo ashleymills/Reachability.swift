@@ -4,9 +4,13 @@ Replacement for Apple's Reachability re-written in Swift with closures
 
 Inspired by https://github.com/tonymillion/Reachability
 
-**NOTES:**
+## Supporting **Reachability.swift**
+Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. If you'd like to help keep me motivated, please download my free app, [Foto Flipper] from the App Store. (To really motivate me, pay $0.99 for the IAP!)
 
-- If an application has the privacy option “Use cellular data” turned off, the Reachability class still reports isReachable() to be true. There is currently no (non-private) API to detect this. If you need this feature, please raise file a [bug report](https://bugreport.apple.com) with Apple to get this fixed. See devforums thread for details: https://devforums.apple.com/message/1059332#1059332
+And don't forget to **★** the repo. This increases its visibility and encourages others to contribute.
+
+Thanks
+Ash
 
 ## Installation
 ### Manual
@@ -49,6 +53,7 @@ To install Reachability.swift with Carthage:
 
 [Carthage]: https://github.com/Carthage/Carthage
 [Homebrew]: http://brew.sh
+[Foto Flipper]: http://itunes.com/apps/fotoflipper
 
 ## Example - closures
 
