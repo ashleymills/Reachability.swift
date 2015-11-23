@@ -20,26 +20,32 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Start reachability without a hostname intially
-        setupReachability(useHostName: false, useClosures: true)
+        setupReachability(hostName: nil, useClosures: true)
         startNotifier()
 
         // After 5 seconds, stop and re-start reachability, this time using a hostname
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(5) * NSEC_PER_SEC))
         dispatch_after(dispatchTime, dispatch_get_main_queue()) {
             self.stopNotifier()
-            self.setupReachability(useHostName: true, useClosures: true)
+            self.setupReachability(hostName: "google.com", useClosures: true)
             self.startNotifier()
+
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(5) * NSEC_PER_SEC))
+            dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+                self.stopNotifier()
+                self.setupReachability(hostName: "invalidhost", useClosures: true)
+                self.startNotifier()            }
+
         }
     }
     
-    func setupReachability(useHostName useHostName: Bool, useClosures: Bool) {
-        let hostName = "googledcom"
-        hostNameLabel.text = useHostName ? hostName : "No host name"
+    func setupReachability(hostName hostName: String?, useClosures: Bool) {
+        hostNameLabel.text = hostName != nil ? hostName : "No host name"
         
         print("--- set up with host name: \(hostNameLabel.text!)")
 
         do {
-            let reachability = try useHostName ? Reachability(hostname: hostName) : Reachability.reachabilityForInternetConnection()
+            let reachability = try hostName == nil ? Reachability.reachabilityForInternetConnection() : Reachability(hostname: hostName!)
             self.reachability = reachability
         } catch ReachabilityError.FailedToCreateWithAddress(let address) {
             networkStatus.textColor = UIColor.redColor()
