@@ -49,10 +49,14 @@ class ViewController: UIViewController {
         
         if (useClosures) {
             reachability?.whenReachable = { reachability in
-                self.updateLabelColourWhenReachable(reachability)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.updateLabelColourWhenReachable(reachability)
+                }
             }
             reachability?.whenUnreachable = { reachability in
-                self.updateLabelColourWhenNotReachable(reachability)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.updateLabelColourWhenNotReachable(reachability)
+                }
             }
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
