@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		00C54B141C09CD9C001C3F12 /* ReachabilityMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C54B191C09CDF6001C3F12 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
+		00C54B221C09CF68001C3F12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C54B211C09CF68001C3F12 /* AppDelegate.swift */; };
+		00C54B241C09CF68001C3F12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C54B231C09CF68001C3F12 /* ViewController.swift */; };
+		00C54B261C09CF68001C3F12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C54B251C09CF68001C3F12 /* Assets.xcassets */; };
+		00C54B291C09CF68001C3F12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C54B271C09CF68001C3F12 /* Main.storyboard */; };
+		00C54B2E1C09D1AA001C3F12 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C54B111C09CD9C001C3F12 /* Reachability.framework */; };
+		00C54B2F1C09D1AA001C3F12 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00C54B111C09CD9C001C3F12 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA7344761BE7678B008AFE69 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = AA7344751BE7678B008AFE69 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA7344931BE76820008AFE69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344921BE76820008AFE69 /* AppDelegate.swift */; };
 		AA7344951BE76820008AFE69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344941BE76820008AFE69 /* ViewController.swift */; };
@@ -21,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		00C54B301C09D1AA001C3F12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA7344691BE7678B008AFE69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00C54B101C09CD9C001C3F12;
+			remoteInfo = ReachabilityMac;
+		};
 		CAC230C71BF2180000F6464E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA7344691BE7678B008AFE69 /* Project object */;
@@ -31,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		00C54B331C09D1AA001C3F12 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00C54B2F1C09D1AA001C3F12 /* Reachability.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAC230C91BF2180100F6464E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,6 +72,12 @@
 		00C54B111C09CD9C001C3F12 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityMac.h; sourceTree = "<group>"; };
 		00C54B151C09CD9C001C3F12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00C54B1F1C09CF67001C3F12 /* ReachabilityMacSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReachabilityMacSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C54B211C09CF68001C3F12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00C54B231C09CF68001C3F12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		00C54B251C09CF68001C3F12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00C54B281C09CF68001C3F12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00C54B2A1C09CF68001C3F12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7344721BE7678B008AFE69 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7344751BE7678B008AFE69 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AA7344771BE7678B008AFE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +96,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C54B321C09D1AA001C3F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C54B2E1C09D1AA001C3F12 /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,12 +134,25 @@
 			path = ReachabilityMac;
 			sourceTree = "<group>";
 		};
+		00C54B201C09CF68001C3F12 /* ReachabilityMacSample */ = {
+			isa = PBXGroup;
+			children = (
+				00C54B211C09CF68001C3F12 /* AppDelegate.swift */,
+				00C54B231C09CF68001C3F12 /* ViewController.swift */,
+				00C54B251C09CF68001C3F12 /* Assets.xcassets */,
+				00C54B271C09CF68001C3F12 /* Main.storyboard */,
+				00C54B2A1C09CF68001C3F12 /* Info.plist */,
+			);
+			path = ReachabilityMacSample;
+			sourceTree = "<group>";
+		};
 		AA7344681BE7678B008AFE69 = {
 			isa = PBXGroup;
 			children = (
 				AA7344741BE7678B008AFE69 /* Reachability */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
 				00C54B121C09CD9C001C3F12 /* ReachabilityMac */,
+				00C54B201C09CF68001C3F12 /* ReachabilityMacSample */,
 				AA7344731BE7678B008AFE69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +163,7 @@
 				AA7344721BE7678B008AFE69 /* Reachability.framework */,
 				AA7344901BE76820008AFE69 /* ReachabilitySample.app */,
 				00C54B111C09CD9C001C3F12 /* Reachability.framework */,
+				00C54B1F1C09CF67001C3F12 /* ReachabilityMacSample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,6 +231,25 @@
 			productReference = 00C54B111C09CD9C001C3F12 /* Reachability.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		00C54B1E1C09CF67001C3F12 /* ReachabilityMacSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C54B2B1C09CF68001C3F12 /* Build configuration list for PBXNativeTarget "ReachabilityMacSample" */;
+			buildPhases = (
+				00C54B1B1C09CF67001C3F12 /* Sources */,
+				00C54B1D1C09CF67001C3F12 /* Resources */,
+				00C54B321C09D1AA001C3F12 /* Frameworks */,
+				00C54B331C09D1AA001C3F12 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00C54B311C09D1AA001C3F12 /* PBXTargetDependency */,
+			);
+			name = ReachabilityMacSample;
+			productName = ReachabilityMacSample;
+			productReference = 00C54B1F1C09CF67001C3F12 /* ReachabilityMacSample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		AA7344711BE7678B008AFE69 /* Reachability */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA7344861BE7678B008AFE69 /* Build configuration list for PBXNativeTarget "Reachability" */;
@@ -229,6 +300,9 @@
 					00C54B101C09CD9C001C3F12 = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
+					00C54B1E1C09CF67001C3F12 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					AA7344711BE7678B008AFE69 = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -253,6 +327,7 @@
 				AA7344711BE7678B008AFE69 /* Reachability */,
 				00C54B101C09CD9C001C3F12 /* ReachabilityMac */,
 				AA73448F1BE76820008AFE69 /* ReachabilitySample */,
+				00C54B1E1C09CF67001C3F12 /* ReachabilityMacSample */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +337,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C54B1D1C09CF67001C3F12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C54B261C09CF68001C3F12 /* Assets.xcassets in Resources */,
+				00C54B291C09CF68001C3F12 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +377,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		00C54B1B1C09CF67001C3F12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C54B241C09CF68001C3F12 /* ViewController.swift in Sources */,
+				00C54B221C09CF68001C3F12 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA73446D1BE7678B008AFE69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +406,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		00C54B311C09D1AA001C3F12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00C54B101C09CD9C001C3F12 /* ReachabilityMac */;
+			targetProxy = 00C54B301C09D1AA001C3F12 /* PBXContainerItemProxy */;
+		};
 		CAC230C81BF2180000F6464E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA7344711BE7678B008AFE69 /* Reachability */;
@@ -321,6 +419,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		00C54B271C09CF68001C3F12 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00C54B281C09CF68001C3F12 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		AA7344961BE76820008AFE69 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -357,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Reachability;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -380,9 +487,42 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Reachability;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		00C54B2C1C09CF68001C3F12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = ReachabilityMacSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability.ReachabilityMacSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		00C54B2D1C09CF68001C3F12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = ReachabilityMacSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability.ReachabilityMacSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -548,6 +688,16 @@
 				00C54B171C09CD9C001C3F12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00C54B2B1C09CF68001C3F12 /* Build configuration list for PBXNativeTarget "ReachabilityMacSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C54B2C1C09CF68001C3F12 /* Debug */,
+				00C54B2D1C09CF68001C3F12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Reachability" */ = {
 			isa = XCConfigurationList;
