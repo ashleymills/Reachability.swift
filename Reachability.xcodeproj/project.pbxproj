@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C54B141C09CD9C001C3F12 /* ReachabilityMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00C54B191C09CDF6001C3F12 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
 		AA7344761BE7678B008AFE69 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = AA7344751BE7678B008AFE69 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA7344931BE76820008AFE69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344921BE76820008AFE69 /* AppDelegate.swift */; };
 		AA7344951BE76820008AFE69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344941BE76820008AFE69 /* ViewController.swift */; };
@@ -43,6 +45,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C54B111C09CD9C001C3F12 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityMac.h; sourceTree = "<group>"; };
+		00C54B151C09CD9C001C3F12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7344721BE7678B008AFE69 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7344751BE7678B008AFE69 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AA7344771BE7678B008AFE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +62,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		00C54B0D1C09CD9C001C3F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA73446E1BE7678B008AFE69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,11 +87,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00C54B121C09CD9C001C3F12 /* ReachabilityMac */ = {
+			isa = PBXGroup;
+			children = (
+				00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */,
+				00C54B151C09CD9C001C3F12 /* Info.plist */,
+			);
+			path = ReachabilityMac;
+			sourceTree = "<group>";
+		};
 		AA7344681BE7678B008AFE69 = {
 			isa = PBXGroup;
 			children = (
 				AA7344741BE7678B008AFE69 /* Reachability */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
+				00C54B121C09CD9C001C3F12 /* ReachabilityMac */,
 				AA7344731BE7678B008AFE69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +111,7 @@
 			children = (
 				AA7344721BE7678B008AFE69 /* Reachability.framework */,
 				AA7344901BE76820008AFE69 /* ReachabilitySample.app */,
+				00C54B111C09CD9C001C3F12 /* Reachability.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +142,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		00C54B0E1C09CD9C001C3F12 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C54B141C09CD9C001C3F12 /* ReachabilityMac.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA73446F1BE7678B008AFE69 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,6 +161,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		00C54B101C09CD9C001C3F12 /* ReachabilityMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C54B181C09CD9C001C3F12 /* Build configuration list for PBXNativeTarget "ReachabilityMac" */;
+			buildPhases = (
+				00C54B0C1C09CD9C001C3F12 /* Sources */,
+				00C54B0D1C09CD9C001C3F12 /* Frameworks */,
+				00C54B0E1C09CD9C001C3F12 /* Headers */,
+				00C54B0F1C09CD9C001C3F12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReachabilityMac;
+			productName = ReachabilityMac;
+			productReference = 00C54B111C09CD9C001C3F12 /* Reachability.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		AA7344711BE7678B008AFE69 /* Reachability */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA7344861BE7678B008AFE69 /* Build configuration list for PBXNativeTarget "Reachability" */;
@@ -177,6 +226,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Ashley Mills";
 				TargetAttributes = {
+					00C54B101C09CD9C001C3F12 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					AA7344711BE7678B008AFE69 = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -199,12 +251,20 @@
 			projectRoot = "";
 			targets = (
 				AA7344711BE7678B008AFE69 /* Reachability */,
+				00C54B101C09CD9C001C3F12 /* ReachabilityMac */,
 				AA73448F1BE76820008AFE69 /* ReachabilitySample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		00C54B0F1C09CD9C001C3F12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA7344701BE7678B008AFE69 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +285,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		00C54B0C1C09CD9C001C3F12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C54B191C09CDF6001C3F12 /* Reachability.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA73446D1BE7678B008AFE69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,6 +340,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		00C54B161C09CD9C001C3F12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ReachabilityMac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_NAME = Reachability;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		00C54B171C09CD9C001C3F12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ReachabilityMac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joylordsystems.Reachability;
+				PRODUCT_NAME = Reachability;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		AA7344841BE7678B008AFE69 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -427,6 +541,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		00C54B181C09CD9C001C3F12 /* Build configuration list for PBXNativeTarget "ReachabilityMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C54B161C09CD9C001C3F12 /* Debug */,
+				00C54B171C09CD9C001C3F12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Reachability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
