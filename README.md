@@ -1,6 +1,8 @@
 # Reachability.swift
 
-Replacement for Apple's Reachability re-written in Swift with closures
+Reachability.swift is a replacement for Apple's Reachability sample, re-written in Swift with closures.
+
+It is compatible with **iOS** (8.0 - 9.2), **OSX** (10.9 - 10.11) and **tvOS** (9.0 - 9.1)
 
 Inspired by https://github.com/tonymillion/Reachability
 
