@@ -150,6 +150,10 @@ NSNotificationCenter.defaultCenter().removeObserver(self,
                                                     object: reachability)
 ```
 
+## Got a problem?
+
+Please read https://github.com/ashleymills/Reachability.swift/wiki/Raising-an-issue before raising an issue.
+
 ## Want to help?
 
 Got a bug fix, or a new feature? Create a pull request and go for it!
