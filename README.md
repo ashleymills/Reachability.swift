@@ -34,6 +34,9 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
 [CocoaPods]: https://cocoapods.org
 [CocoaPods Installation]: https://guides.cocoapods.org/using/getting-started.html#getting-started
+ 
+ 4. In your code import Reachability like so:
+   `import ReachabilitySwift`
 
 ### Carthage
 [Carthage][] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
