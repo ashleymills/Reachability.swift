@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
@@ -675,11 +674,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KAp-ef-6cs">
-                                <rect key="frame" x="195.5" y="99" width="89" height="72"/>
+                                <rect key="frame" x="195" y="99" width="89" height="72"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cNs-r2-0uP">
-                                        <rect key="frame" x="20.5" y="50" width="48" height="22"/>
-                                        <animations/>
+                                        <rect key="frame" x="20" y="50" width="48" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="gdj-xw-bfB">
                                             <font key="font" metaFont="system" size="18"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -688,7 +686,6 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MjF-ru-a5O">
                                         <rect key="frame" x="-2" y="0.0" width="93" height="42"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="uUN-Xj-e4e">
                                             <font key="font" metaFont="system" size="35"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -696,7 +693,6 @@
                                         </textFieldCell>
                                     </textField>
                                 </subviews>
-                                <animations/>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -711,7 +707,6 @@
                             <constraint firstItem="KAp-ef-6cs" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="CGT-Lm-Dnp"/>
                             <constraint firstItem="KAp-ef-6cs" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Rs0-PB-IpO"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="hostNameLabel" destination="cNs-r2-0uP" id="fHt-R6-n5a"/>
