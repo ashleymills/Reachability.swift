@@ -122,7 +122,11 @@ NSNotificationCenter.defaultCenter().addObserver(self,
                                                  name: ReachabilityChangedNotification,
                                                  object: reachability)
 
-reachability.startNotifier()
+do {
+    try reachability.startNotifier()
+} catch {
+    print("Unable to start notifier")
+}
 ```
 
 and
@@ -147,7 +151,7 @@ func reachabilityChanged(note: NSNotification) {
 and for stopping notifications
 
 ```swift
-reachability.stopNotifier()
+reachability?.stopNotifier()
 NSNotificationCenter.defaultCenter().removeObserver(self,
                                                     name: ReachabilityChangedNotification,
                                                     object: reachability)
