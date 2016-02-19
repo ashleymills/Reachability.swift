@@ -119,7 +119,11 @@ NSNotificationCenter.defaultCenter().addObserver(self,
                                                  name: ReachabilityChangedNotification,
                                                  object: reachability)
 
-reachability.startNotifier()
+do{
+      try reachability.startNotifier()
+    }catch{
+      print("could not start reachability notifier")
+    }
 ```
 
 and
