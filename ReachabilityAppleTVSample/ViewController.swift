@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Reachability
+import ReachabilitySwift
 
 class ViewController: UIViewController {
     

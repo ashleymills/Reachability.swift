@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Reachability
+import ReachabilitySwift
 
 class ViewController: NSViewController {
   @IBOutlet weak var networkStatus: NSTextField!
