@@ -38,9 +38,6 @@ Just drop the **Reachability.swift** file into your project. That's it!
  4. In your code import Reachability like so:
    `import ReachabilitySwift`
 
- 4. In your code import Reachability like so:
-   `import ReachabilitySwift`
-
 ### Carthage
 [Carthage][] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 To install Reachability.swift with Carthage:
