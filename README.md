@@ -27,7 +27,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
     ``` ruby
     use_frameworks!
-    pod 'ReachabilitySwift', git: 'https://github.com/ashleymills/Reachability.swift'
+    pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     ```
 
  3. Run `pod install`.
@@ -35,6 +35,9 @@ Just drop the **Reachability.swift** file into your project. That's it!
 [CocoaPods]: https://cocoapods.org
 [CocoaPods Installation]: https://guides.cocoapods.org/using/getting-started.html#getting-started
  
+ 4. In your code import Reachability like so:
+   `import ReachabilitySwift`
+
  4. In your code import Reachability like so:
    `import ReachabilitySwift`
 
@@ -109,20 +112,23 @@ reachability.stopNotifier()
 This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
 
 ```swift
-let reachability: Reachability
+//declare this property where it won't go out of scope relative to your listener
+var reachability: Reachability?
+
+//declare this inside of viewWillAppear
 do {
-    reachability = try Reachability.reachabilityForInternetConnection()
-} catch {
-    print("Unable to create Reachability")
-    return
-}
+      reachability = try Reachability.reachabilityForInternetConnection()
+    } catch {
+      print("Unable to create Reachability")
+      return
+    }
 
-NSNotificationCenter.defaultCenter().addObserver(self,
-                                                 selector: "reachabilityChanged:",
-                                                 name: ReachabilityChangedNotification,
-                                                 object: reachability)
-
-reachability.startNotifier()
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
+    do{
+      try reachability?.startNotifier()
+    }catch{
+      print("could not start reachability notifier")
+    }
 ```
 
 and
@@ -130,17 +136,17 @@ and
 ```swift
 func reachabilityChanged(note: NSNotification) {
 
-    let reachability = note.object as! Reachability
+  let reachability = note.object as! Reachability
 
-    if reachability.isReachable() {
-        if reachability.isReachableViaWiFi() {
-            print("Reachable via WiFi")
-        } else {
-            print("Reachable via Cellular")
-        }
+  if reachability.isReachable() {
+    if reachability.isReachableViaWiFi() {
+      print("Reachable via WiFi")
     } else {
-        print("Not reachable")
+      print("Reachable via Cellular")
     }
+  } else {
+    print("Network not reachable")
+  }
 }
 ```
 
