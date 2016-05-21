@@ -9,9 +9,6 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT' }
 
 # Source Info
-  s.ios.platform = :ios, "9.2"
-  s.osx.platform = :osx, "10.11"
-  s.tvos.platform = :tvos, "9.1"
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
   s.tvos.deployment_target  = "9.0"
