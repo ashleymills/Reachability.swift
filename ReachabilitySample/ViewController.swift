@@ -24,13 +24,13 @@ class ViewController: UIViewController {
         startNotifier()
 
         // After 5 seconds, stop and re-start reachability, this time using a hostname
-        let dispatchTime = DispatchTime.now() + Double(Int64(UInt64(5) * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
         DispatchQueue.main.after(when: dispatchTime) {
             self.stopNotifier()
             self.setupReachability(hostName: "google.com", useClosures: true)
             self.startNotifier()
 
-            let dispatchTime = DispatchTime.now() + Double(Int64(UInt64(5) * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+            let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
             DispatchQueue.main.after(when: dispatchTime) {
                 self.stopNotifier()
                 self.setupReachability(hostName: "invalidhost", useClosures: true)
