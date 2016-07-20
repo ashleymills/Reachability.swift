@@ -106,7 +106,7 @@ public class Reachability: NSObject {
     public convenience init(hostname: String) throws {
         
         guard let nodename = (hostname as NSString).utf8String,
-            ref = SCNetworkReachabilityCreateWithName(nil, nodename) else { throw ReachabilityError.FailedToCreateWithHostname(hostname) }
+            let ref = SCNetworkReachabilityCreateWithName(nil, nodename) else { throw ReachabilityError.FailedToCreateWithHostname(hostname) }
 
         self.init(reachabilityRef: ref)
     }
@@ -144,7 +144,7 @@ public class Reachability: NSObject {
     // MARK: - *** Notifier methods ***
     public func startNotifier() throws {
 
-        guard let reachabilityRef = reachabilityRef where !notifierRunning else { return }
+        guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutablePointer<Void>(Unmanaged<Reachability>.passUnretained(self).toOpaque())
