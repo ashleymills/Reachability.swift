@@ -58,15 +58,15 @@ public class Reachability: NSObject {
 
     public enum NetworkStatus: CustomStringConvertible {
 
-        case NotReachable, ReachableViaWiFi, ReachableViaWWAN
+        case notReachable, reachableViaWiFi, reachableViaWWAN
 
         public var description: String {
             switch self {
-            case .ReachableViaWWAN:
+            case .reachableViaWWAN:
                 return "Cellular"
-            case .ReachableViaWiFi:
+            case .reachableViaWiFi:
                 return "WiFi"
-            case .NotReachable:
+            case .notReachable:
                 return "No Connection"
             }
         }
@@ -81,15 +81,15 @@ public class Reachability: NSObject {
     }
 
     public var currentReachabilityStatus: NetworkStatus {
-        if isReachable {
-            if isReachableViaWiFi {
-                return .ReachableViaWiFi
-            }
-            if isRunningOnDevice {
-                return .ReachableViaWWAN
-            }
+        guard isReachable else { return .notReachable }
+        if isReachableViaWiFi {
+            return .reachableViaWiFi
         }
-        return .NotReachable
+        if isRunningOnDevice {
+            return .reachableViaWWAN
+        }
+        
+        return .notReachable
     }
     
     private var previousFlags: SCNetworkReachabilityFlags?
