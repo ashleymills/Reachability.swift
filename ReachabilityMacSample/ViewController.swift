@@ -18,7 +18,6 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.wantsLayer = true
-    view.layer?.backgroundColor = .white.cgColor
 
     // Start reachability without a hostname intially
     setupReachability(useHostName: false, useClosures: true)

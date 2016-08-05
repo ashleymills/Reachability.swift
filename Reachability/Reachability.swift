@@ -62,12 +62,9 @@ public class Reachability: NSObject {
 
         public var description: String {
             switch self {
-            case .reachableViaWWAN:
-                return "Cellular"
-            case .reachableViaWiFi:
-                return "WiFi"
-            case .notReachable:
-                return "No Connection"
+            case .reachableViaWWAN: return "Cellular"
+            case .reachableViaWiFi: return "WiFi"
+            case .notReachable: return "No Connection"
             }
         }
     }
