@@ -53,7 +53,7 @@ class ViewController: UIViewController {
             return
         } catch {}
         
-        if (useClosures) {
+        if useClosures {
             reachability?.whenReachable = { reachability in
                 DispatchQueue.main.async {
                     self.updateLabelColourWhenReachable(reachability)

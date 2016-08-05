@@ -47,7 +47,7 @@ class ViewController: UIViewController {
             return
         } catch {}
         
-        if (useClosures) {
+        if useClosures {
             reachability?.whenReachable = { reachability in
                 self.updateLabelColourWhenReachable(reachability)
             }
