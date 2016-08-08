@@ -51,7 +51,7 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
     }
 }
 
-public class Reachability: NSObject {
+public class Reachability {
 
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUnreachable = (Reachability) -> ()
@@ -110,6 +110,26 @@ public class Reachability: NSObject {
         self.reachabilityRef = reachabilityRef
     }
     
+    public convenience init?(hostname: String) {
+        
+        guard let ref = SCNetworkReachabilityCreateWithName(nil, hostname) else { return nil }
+        
+        self.init(reachabilityRef: ref)
+    }
+    
+    public convenience init?() {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let ref = withUnsafePointer(&zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }) else { return nil }
+        
+        self.init(reachabilityRef: ref)
+    }
+    
     deinit {
         stopNotifier()
 
@@ -120,26 +140,6 @@ public class Reachability: NSObject {
 }
 
 public extension Reachability {
-    
-    convenience init(hostname: String) throws {
-        
-        guard let ref = SCNetworkReachabilityCreateWithName(nil, hostname) else { throw ReachabilityError.FailedToCreateWithHostname(hostname) }
-        
-        self.init(reachabilityRef: ref)
-    }
-    
-    class func reachabilityForInternetConnection() throws -> Reachability {
-        
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        guard let ref = withUnsafePointer(&zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }) else { throw ReachabilityError.FailedToCreateWithAddress(zeroAddress) }
-        
-        return Reachability(reachabilityRef: ref)
-    }
     
     // MARK: - *** Notifier methods ***
     func startNotifier() throws {
@@ -211,7 +211,7 @@ public extension Reachability {
         return !isOnWWANFlagSet
     }
     
-    override var description: String {
+    var description: String {
         
         let W = isRunningOnDevice ? (isOnWWANFlagSet ? "W" : "-") : "X"
         let R = isReachableFlagSet ? "R" : "-"
