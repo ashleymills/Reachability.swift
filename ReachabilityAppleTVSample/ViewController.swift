@@ -38,14 +38,8 @@ class ViewController: UIViewController {
         
         print("--- set up with host name: \(hostNameLabel.text!)")
         
-        do {
-            let reachability = try useHostName ? Reachability(hostname: hostName) : Reachability.reachabilityForInternetConnection()
-            self.reachability = reachability
-        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
-            networkStatus.textColor = .red
-            networkStatus.text = "Unable to create\nReachability with address:\n\(address)"
-            return
-        } catch {}
+        let reachability = useHostName ? Reachability(hostname: hostName) : Reachability()
+        self.reachability = reachability
         
         if useClosures {
             reachability?.whenReachable = { reachability in
