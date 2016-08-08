@@ -243,26 +243,6 @@ private extension Reachability {
         previousFlags = flags
     }
     
-    // WWAN may be available, but not active until a connection has been established.
-    // WiFi may require a connection for VPN on Demand.
-    func isConnectionRequired() -> Bool {
-        return connectionRequired()
-    }
-    
-    func connectionRequired() -> Bool {
-        return isConnectionRequiredFlagSet
-    }
-    
-    // Dynamic, on demand connection?
-    func isConnectionOnDemand() -> Bool {
-        return isConnectionRequiredFlagSet && isConnectionOnTrafficOrDemandFlagSet
-    }
-    
-    // Is user intervention required?
-    func isInterventionRequired() -> Bool {
-        return isConnectionRequiredFlagSet && isInterventionRequiredFlagSet
-    }
-    
     var isOnWWANFlagSet: Bool {
         #if os(iOS)
             return reachabilityFlags.contains(.isWWAN)
