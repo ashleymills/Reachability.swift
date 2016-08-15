@@ -37,7 +37,7 @@ public enum ReachabilityError: Error {
     case UnableToSetDispatchQueue
 }
 
-public let ReachabilityChangedNotification = "ReachabilityChangedNotification" as NSNotification.Name
+public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
 
 func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>?) {
