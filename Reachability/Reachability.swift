@@ -39,8 +39,7 @@ public enum ReachabilityError: Error {
 
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>?) {
+func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
 
     guard let info = info else { return }
     
@@ -114,11 +113,11 @@ public class Reachability: NSObject {
     public class func reachabilityForInternetConnection() throws -> Reachability {
         
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        guard let ref = withUnsafePointer(&zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        guard let ref = withUnsafePointer(to: &zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer<sockaddr>(OpaquePointer($0)))
         }) else { throw ReachabilityError.FailedToCreateWithAddress(zeroAddress) }
         
         return Reachability(reachabilityRef: ref)
@@ -127,15 +126,15 @@ public class Reachability: NSObject {
     public class func reachabilityForLocalWiFi() throws -> Reachability {
 
         var localWifiAddress: sockaddr_in = sockaddr_in(sin_len: __uint8_t(0), sin_family: sa_family_t(0), sin_port: in_port_t(0), sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        localWifiAddress.sin_len = UInt8(sizeofValue(localWifiAddress))
+        localWifiAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         localWifiAddress.sin_family = sa_family_t(AF_INET)
 
         // IN_LINKLOCALNETNUM is defined in <netinet/in.h> as 169.254.0.0
         let address: UInt32 = 0xA9FE0000
         localWifiAddress.sin_addr.s_addr = in_addr_t(address.bigEndian)
 
-        guard let ref = withUnsafePointer(&localWifiAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        guard let ref = withUnsafePointer(to: &localWifiAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer<sockaddr>(OpaquePointer($0)))
         }) else { throw ReachabilityError.FailedToCreateWithAddress(localWifiAddress) }
         
         return Reachability(reachabilityRef: ref)
@@ -147,7 +146,7 @@ public class Reachability: NSObject {
         guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = UnsafeMutablePointer<Void>(Unmanaged<Reachability>.passUnretained(self).toOpaque())
+        context.info = Unmanaged<Reachability>.passUnretained(self).toOpaque()
         
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
@@ -222,7 +221,7 @@ public class Reachability: NSObject {
     
     private let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
 
-    private func reachabilityChanged(flags:SCNetworkReachabilityFlags) {
+    fileprivate func reachabilityChanged(flags:SCNetworkReachabilityFlags) {
         
         guard previousFlags != flags else { return }
         
@@ -328,7 +327,7 @@ public class Reachability: NSObject {
         guard let reachabilityRef = reachabilityRef else { return SCNetworkReachabilityFlags() }
         
         var flags = SCNetworkReachabilityFlags()
-        let gotFlags = withUnsafeMutablePointer(&flags) {
+        let gotFlags = withUnsafeMutablePointer(to: &flags) {
             SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
         }
         
