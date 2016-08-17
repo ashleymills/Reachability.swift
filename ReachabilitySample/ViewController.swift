@@ -25,13 +25,13 @@ class ViewController: UIViewController {
 
         // After 5 seconds, stop and re-start reachability, this time using a hostname
         let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
-        DispatchQueue.main.after(when: dispatchTime) {
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.stopNotifier()
             self.setupReachability(hostName: "google.com", useClosures: true)
             self.startNotifier()
 
             let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
-            DispatchQueue.main.after(when: dispatchTime) {
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.stopNotifier()
                 self.setupReachability(hostName: "invalidhost", useClosures: true)
                 self.startNotifier()            }
@@ -44,16 +44,10 @@ class ViewController: UIViewController {
         
         print("--- set up with host name: \(hostNameLabel.text!)")
 
-        do {
-            let reachability = try hostName == nil ? Reachability.reachabilityForInternetConnection() : Reachability(hostname: hostName!)
-            self.reachability = reachability
-        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
-            networkStatus.textColor = UIColor.red()
-            networkStatus.text = "Unable to create\nReachability with address:\n\(address)"
-            return
-        } catch {}
+        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
+        self.reachability = reachability
         
-        if (useClosures) {
+        if useClosures {
             reachability?.whenReachable = { reachability in
                 DispatchQueue.main.async {
                     self.updateLabelColourWhenReachable(reachability)
@@ -74,7 +68,7 @@ class ViewController: UIViewController {
         do {
             try reachability?.startNotifier()
         } catch {
-            networkStatus.textColor = UIColor.red()
+            networkStatus.textColor = .red
             networkStatus.text = "Unable to start\nnotifier"
             return
         }
@@ -89,10 +83,10 @@ class ViewController: UIViewController {
     
     func updateLabelColourWhenReachable(_ reachability: Reachability) {
         print("\(reachability.description) - \(reachability.currentReachabilityString)")
-        if reachability.isReachableViaWiFi() {
-            self.networkStatus.textColor = UIColor.green()
+        if reachability.isReachableViaWiFi {
+            self.networkStatus.textColor = .green
         } else {
-            self.networkStatus.textColor = UIColor.blue()
+            self.networkStatus.textColor = .blue
         }
         
         self.networkStatus.text = reachability.currentReachabilityString
@@ -101,7 +95,7 @@ class ViewController: UIViewController {
     func updateLabelColourWhenNotReachable(_ reachability: Reachability) {
         print("\(reachability.description) - \(reachability.currentReachabilityString)")
 
-        self.networkStatus.textColor = UIColor.red()
+        self.networkStatus.textColor = .red
         
         self.networkStatus.text = reachability.currentReachabilityString
     }
@@ -110,7 +104,7 @@ class ViewController: UIViewController {
     func reachabilityChanged(_ note: Notification) {
         let reachability = note.object as! Reachability
         
-        if reachability.isReachable() {
+        if reachability.isReachable {
             updateLabelColourWhenReachable(reachability)
         } else {
             updateLabelColourWhenNotReachable(reachability)

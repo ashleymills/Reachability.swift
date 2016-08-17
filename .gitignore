@@ -24,3 +24,6 @@ DerivedData
 #
 # Pods/
 .DS_Store
+
+# Carthage
+Carthage/Build
