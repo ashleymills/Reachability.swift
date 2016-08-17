@@ -37,10 +37,9 @@ public enum ReachabilityError: Error {
     case UnableToSetDispatchQueue
 }
 
-public let ReachabilityChangedNotification = "ReachabilityChangedNotification" as NSNotification.Name
+public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>?) {
+func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
 
     guard let info = info else { return }
     
@@ -90,9 +89,9 @@ public class Reachability {
         return .notReachable
     }
     
-    private var previousFlags: SCNetworkReachabilityFlags?
+    fileprivate var previousFlags: SCNetworkReachabilityFlags?
     
-    private var isRunningOnDevice: Bool = {
+    fileprivate var isRunningOnDevice: Bool = {
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             return false
         #else
@@ -100,10 +99,10 @@ public class Reachability {
         #endif
     }()
     
-    private var notifierRunning = false
-    private var reachabilityRef: SCNetworkReachability?
+    fileprivate var notifierRunning = false
+    fileprivate var reachabilityRef: SCNetworkReachability?
     
-    private let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
+    fileprivate let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
     
     required public init(reachabilityRef: SCNetworkReachability) {
         reachableOnWWAN = true
@@ -119,11 +118,11 @@ public class Reachability {
     
     public convenience init?() {
         
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
+        var zeroAddress = sockaddr()
+        zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
+        zeroAddress.sa_family = sa_family_t(AF_INET)
         
-        guard let ref = withUnsafePointer(&zeroAddress, {
+        guard let ref: SCNetworkReachability = withUnsafePointer(to: &zeroAddress, {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else { return nil }
         
@@ -147,8 +146,7 @@ public extension Reachability {
         guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = UnsafeMutablePointer<Void>(Unmanaged<Reachability>.passUnretained(self).toOpaque())
-        
+        context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())        
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
             throw ReachabilityError.UnableToSetCallback
@@ -227,7 +225,7 @@ public extension Reachability {
     }
 }
 
-private extension Reachability {
+fileprivate extension Reachability {
     
     func reachabilityChanged() {
         
@@ -286,7 +284,7 @@ private extension Reachability {
         guard let reachabilityRef = reachabilityRef else { return SCNetworkReachabilityFlags() }
         
         var flags = SCNetworkReachabilityFlags()
-        let gotFlags = withUnsafeMutablePointer(&flags) {
+        let gotFlags = withUnsafeMutablePointer(to: &flags) {
             SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
         }
         
