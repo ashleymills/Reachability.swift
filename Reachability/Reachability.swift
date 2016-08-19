@@ -118,13 +118,12 @@ public class Reachability {
     
     public convenience init?() {
         
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-        zeroAddress.sin_family = sa_family_t(AF_INET)
+        var zeroAddress = sockaddr()
+        zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
+        zeroAddress.sa_family = sa_family_t(AF_INET)
         
-
-        guard let ref = withUnsafePointer(to: &zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer<sockaddr>(OpaquePointer($0)))
+        guard let ref: SCNetworkReachability = withUnsafePointer(to: &zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else { return nil }
         
         self.init(reachabilityRef: ref)
@@ -148,7 +147,7 @@ public extension Reachability {
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = Unmanaged<Reachability>.passUnretained(self).toOpaque()
-        
+
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
             throw ReachabilityError.unableToSetCallback
