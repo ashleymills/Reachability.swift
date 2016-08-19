@@ -226,7 +226,7 @@ public extension Reachability {
     }
 }
 
-private extension Reachability {
+fileprivate extension Reachability {
     
     func reachabilityChanged() {
         
