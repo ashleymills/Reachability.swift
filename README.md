@@ -114,18 +114,18 @@ var reachability: Reachability?
 
 //declare this inside of viewWillAppear
 do {
-      reachability = try Reachability.reachabilityForInternetConnection()
-    } catch {
-      print("Unable to create Reachability")
-      return
-    }
+    reachability = try Reachability.reachabilityForInternetConnection()
+} catch {
+    print("Unable to create Reachability")
+    return
+}
 
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
-    do{
-      try reachability?.startNotifier()
-    }catch{
-      print("could not start reachability notifier")
-    }
+NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(YourClass.reachabilityChanged(_:), name: ReachabilityChangedNotification, object: reachability)
+do {
+    try reachability?.startNotifier()
+} catch {
+    print("could not start reachability notifier")
+}
 ```
 
 and
@@ -133,17 +133,17 @@ and
 ```swift
 func reachabilityChanged(note: NSNotification) {
 
-  let reachability = note.object as! Reachability
+    let reachability = note.object as! Reachability
 
-  if reachability.isReachable() {
-    if reachability.isReachableViaWiFi() {
-      print("Reachable via WiFi")
+    if reachability.isReachable() {
+        if reachability.isReachableViaWiFi() {
+            print("Reachable via WiFi")
+        } else {
+            print("Reachable via Cellular")
+        }
     } else {
-      print("Reachable via Cellular")
+        print("Network not reachable")
     }
-  } else {
-    print("Network not reachable")
-  }
 }
 ```
 
