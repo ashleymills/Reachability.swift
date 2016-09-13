@@ -21,9 +21,7 @@ To install **Reachability.swift** for Swift 3.x using CocoaPods, include the fol
 ```
 pod 'ReachabilitySwift', '~> 3'
 ```
-##Swift 3 / Breaking changes#
-
-The following iOS 10 branch contains the following breaking changes:
+##Swift 3 breaking changes#
 
 Previously:
 ```swift
