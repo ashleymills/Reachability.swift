@@ -6,7 +6,22 @@ It is compatible with **iOS** (8.0 - 10.0), **OSX** (10.9 - 10.12) and **tvOS** 
 
 Inspired by https://github.com/tonymillion/Reachability
 
-#IMPORTANT - iOS 10 / Swift 3 / Breaking changes#
+#IMPORTANT
+
+##Supporting Swift 2.3 and Swift 3
+
+The source has been updated to support both Swift 2.3 (tag v2.4) and Swift 3 (tag v3.0)  
+
+To install **Reachability.swift** for Swift 2.3 using CocoaPods, include the following in your Podfile
+```
+pod 'ReachabilitySwift', '~> 2.4'
+```
+
+To install **Reachability.swift** for Swift 3.x using CocoaPods, include the following in your Podfile
+```
+pod 'ReachabilitySwift', '~> 3'
+```
+##Swift 3 / Breaking changes#
 
 The following iOS 10 branch contains the following breaking changes:
 
