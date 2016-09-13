@@ -56,7 +56,7 @@ class ViewController: NSViewController {
         self.updateLabelColourWhenNotReachable(reachability)
       }
     } else {
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
     }
   }
 
