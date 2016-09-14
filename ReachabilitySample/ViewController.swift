@@ -20,26 +20,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Start reachability without a hostname intially
-        setupReachability(hostName: nil, useClosures: true)
+        setupReachability(nil, useClosures: true)
         startNotifier()
 
         // After 5 seconds, stop and re-start reachability, this time using a hostname
         let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.stopNotifier()
-            self.setupReachability(hostName: "google.com", useClosures: true)
+            self.setupReachability("google.com", useClosures: true)
             self.startNotifier()
 
             let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.stopNotifier()
-                self.setupReachability(hostName: "invalidhost", useClosures: true)
+                self.setupReachability("invalidhost", useClosures: true)
                 self.startNotifier()            }
 
         }
     }
     
-    func setupReachability(hostName: String?, useClosures: Bool) {
+    func setupReachability(_ hostName: String?, useClosures: Bool) {
         hostNameLabel.text = hostName != nil ? hostName : "No host name"
         
         print("--- set up with host name: \(hostNameLabel.text!)")
