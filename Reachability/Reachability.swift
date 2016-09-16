@@ -72,6 +72,7 @@ public class Reachability {
     public var whenUnreachable: NetworkUnreachable?
     public var reachableOnWWAN: Bool
     
+    // The notification center on which "reachability changed" events are being posted
     public var notificationCenter: NotificationCenter = NotificationCenter.default
 
     public var currentReachabilityString: String {
