@@ -25,8 +25,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
-// Reachability.swift version 2.2beta2
-
 import SystemConfiguration
 import Foundation
 
