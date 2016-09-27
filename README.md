@@ -175,8 +175,8 @@ func reachabilityChanged(note: NSNotification) {
 
   let reachability = note.object as! Reachability
 
-  if reachability.isReachable() {
-    if reachability.isReachableViaWiFi() {
+  if reachability.isReachable {
+    if reachability.isReachableViaWiFi {
       print("Reachable via WiFi")
     } else {
       print("Reachable via Cellular")
