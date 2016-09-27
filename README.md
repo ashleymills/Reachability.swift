@@ -160,7 +160,7 @@ let reachability = Reachability()!
 
 //declare this inside of viewWillAppear
 
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
+     NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
     do{
       try reachability.startNotifier()
     }catch{
