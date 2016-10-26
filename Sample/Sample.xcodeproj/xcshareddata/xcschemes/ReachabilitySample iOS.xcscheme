@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00C54B1E1C09CF67001C3F12"
-               BuildableName = "ReachabilitySample macOS.app"
-               BlueprintName = "ReachabilitySample macOS"
-               ReferencedContainer = "container:Samples.xcodeproj">
+               BlueprintIdentifier = "AA73448F1BE76820008AFE69"
+               BuildableName = "ReachabilitySample iOS.app"
+               BlueprintName = "ReachabilitySample iOS"
+               ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00C54B1E1C09CF67001C3F12"
-            BuildableName = "ReachabilitySample macOS.app"
-            BlueprintName = "ReachabilitySample macOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            BlueprintIdentifier = "AA73448F1BE76820008AFE69"
+            BuildableName = "ReachabilitySample iOS.app"
+            BlueprintName = "ReachabilitySample iOS"
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00C54B1E1C09CF67001C3F12"
-            BuildableName = "ReachabilitySample macOS.app"
-            BlueprintName = "ReachabilitySample macOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            BlueprintIdentifier = "AA73448F1BE76820008AFE69"
+            BuildableName = "ReachabilitySample iOS.app"
+            BlueprintName = "ReachabilitySample iOS"
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00C54B1E1C09CF67001C3F12"
-            BuildableName = "ReachabilitySample macOS.app"
-            BlueprintName = "ReachabilitySample macOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            BlueprintIdentifier = "AA73448F1BE76820008AFE69"
+            BuildableName = "ReachabilitySample iOS.app"
+            BlueprintName = "ReachabilitySample iOS"
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

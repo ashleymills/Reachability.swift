@@ -5,6 +5,6 @@
       location = "group:Reachability.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Samples/Samples.xcodeproj">
+      location = "group:Sample/Sample.xcodeproj">
    </FileRef>
 </Workspace>

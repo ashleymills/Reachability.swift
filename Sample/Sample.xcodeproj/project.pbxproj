@@ -306,12 +306,12 @@
 					};
 					AA73448F1BE76820008AFE69 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Samples" */;
+			buildConfigurationList = AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Sample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -681,7 +681,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Samples" */ = {
+		AA73446C1BE7678B008AFE69 /* Build configuration list for PBXProject "Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA7344841BE7678B008AFE69 /* Debug */,

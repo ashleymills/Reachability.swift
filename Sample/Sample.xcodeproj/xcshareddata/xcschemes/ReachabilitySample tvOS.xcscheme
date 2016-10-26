@@ -17,7 +17,7 @@
                BlueprintIdentifier = "57A45A001C197BE800384AE4"
                BuildableName = "ReachabilitySample tvOS.app"
                BlueprintName = "ReachabilitySample tvOS"
-               ReferencedContainer = "container:Samples.xcodeproj">
+               ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "57A45A001C197BE800384AE4"
             BuildableName = "ReachabilitySample tvOS.app"
             BlueprintName = "ReachabilitySample tvOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "57A45A001C197BE800384AE4"
             BuildableName = "ReachabilitySample tvOS.app"
             BlueprintName = "ReachabilitySample tvOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "57A45A001C197BE800384AE4"
             BuildableName = "ReachabilitySample tvOS.app"
             BlueprintName = "ReachabilitySample tvOS"
-            ReferencedContainer = "container:Samples.xcodeproj">
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
