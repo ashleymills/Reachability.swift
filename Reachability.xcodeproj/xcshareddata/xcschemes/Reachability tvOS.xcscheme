@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "57A45A001C197BE800384AE4"
-               BuildableName = "ReachabilityAppleTVSample.app"
-               BlueprintName = "ReachabilityAppleTVSample"
+               BlueprintIdentifier = "57A45A291C197F4800384AE4"
+               BuildableName = "Reachability.framework"
+               BlueprintName = "Reachability tvOS"
                ReferencedContainer = "container:Reachability.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57A45A001C197BE800384AE4"
-            BuildableName = "ReachabilityAppleTVSample.app"
-            BlueprintName = "ReachabilityAppleTVSample"
-            ReferencedContainer = "container:Reachability.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57A45A001C197BE800384AE4"
-            BuildableName = "ReachabilityAppleTVSample.app"
-            BlueprintName = "ReachabilityAppleTVSample"
+            BlueprintIdentifier = "57A45A291C197F4800384AE4"
+            BuildableName = "Reachability.framework"
+            BlueprintName = "Reachability tvOS"
             ReferencedContainer = "container:Reachability.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "57A45A001C197BE800384AE4"
-            BuildableName = "ReachabilityAppleTVSample.app"
-            BlueprintName = "ReachabilityAppleTVSample"
+            BlueprintIdentifier = "57A45A291C197F4800384AE4"
+            BuildableName = "Reachability.framework"
+            BlueprintName = "Reachability tvOS"
             ReferencedContainer = "container:Reachability.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
