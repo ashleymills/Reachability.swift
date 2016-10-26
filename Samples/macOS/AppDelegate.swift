@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ReachabilityMacSample
+//  ReachabilitySample macOS
 //
 //  Created by Reda Lemeden on 28/11/2015.
 //  Copyright © 2015 Ashley Mills. All rights reserved.

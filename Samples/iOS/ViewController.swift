@@ -1,16 +1,16 @@
 //
 //  ViewController.swift
-//  ReachabilityAppleTVSample
+//  ReachabilitySample iOS
 //
-//  Created by Stefan Schmitt on 10/12/15.
-//  Copyright © 2015 Ashley Mills. All rights reserved.
+//  Created by Ashley Mills on 22/09/2014.
+//  Copyright (c) 2014 Joylord Systems. All rights reserved.
 //
 
 import UIKit
 import Reachability
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var networkStatus: UILabel!
     @IBOutlet weak var hostNameLabel: UILabel!
     
@@ -18,35 +18,45 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Start reachability without a hostname intially
-        setupReachability(useHostName: false, useClosures: true)
+        setupReachability(nil, useClosures: true)
         startNotifier()
-        
+
         // After 5 seconds, stop and re-start reachability, this time using a hostname
-        let dispatchTime = DispatchTime.now() + Double(Int64(UInt64(5) * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.stopNotifier()
-            self.setupReachability(useHostName: true, useClosures: true)
+            self.setupReachability("google.com", useClosures: true)
             self.startNotifier()
+
+            let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.stopNotifier()
+                self.setupReachability("invalidhost", useClosures: true)
+                self.startNotifier()            }
+
         }
     }
     
-    func setupReachability(useHostName: Bool, useClosures: Bool) {
-        let hostName = "google.com"
-        hostNameLabel.text = useHostName ? hostName : "No host name"
+    func setupReachability(_ hostName: String?, useClosures: Bool) {
+        hostNameLabel.text = hostName != nil ? hostName : "No host name"
         
         print("--- set up with host name: \(hostNameLabel.text!)")
-        
-        let reachability = useHostName ? Reachability(hostname: hostName) : Reachability()
+
+        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
         self.reachability = reachability
         
         if useClosures {
             reachability?.whenReachable = { reachability in
-                self.updateLabelColourWhenReachable(reachability)
+                DispatchQueue.main.async {
+                    self.updateLabelColourWhenReachable(reachability)
+                }
             }
             reachability?.whenUnreachable = { reachability in
-                self.updateLabelColourWhenNotReachable(reachability)
+                DispatchQueue.main.async {
+                    self.updateLabelColourWhenNotReachable(reachability)
+                }
             }
         } else {
             NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
@@ -81,15 +91,15 @@ class ViewController: UIViewController {
         
         self.networkStatus.text = reachability.currentReachabilityString
     }
-    
+
     func updateLabelColourWhenNotReachable(_ reachability: Reachability) {
         print("\(reachability.description) - \(reachability.currentReachabilityString)")
-        
+
         self.networkStatus.textColor = .red
         
         self.networkStatus.text = reachability.currentReachabilityString
     }
-    
+
     
     func reachabilityChanged(_ note: Notification) {
         let reachability = note.object as! Reachability
@@ -104,6 +114,7 @@ class ViewController: UIViewController {
     deinit {
         stopNotifier()
     }
-    
+
 }
+
 

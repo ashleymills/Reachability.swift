@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ReachabilityAppleTVSample
+//  ReachabilitySample tvOS
 //
 //  Created by Stefan Schmitt on 10/12/15.
 //  Copyright © 2015 Ashley Mills. All rights reserved.
@@ -12,9 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        return true
-    }
+
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+		return true
+	}
+
 }
 
