@@ -6,7 +6,7 @@
 //  Copyright © 2015 Ashley Mills. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for Reachability.
 FOUNDATION_EXPORT double ReachabilityVersionNumber;

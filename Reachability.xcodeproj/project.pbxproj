@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C54B141C09CD9C001C3F12 /* ReachabilityMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C54B131C09CD9C001C3F12 /* ReachabilityMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C54B191C09CDF6001C3F12 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
 		00C54B221C09CF68001C3F12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C54B211C09CF68001C3F12 /* AppDelegate.swift */; };
 		00C54B241C09CF68001C3F12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C54B231C09CF68001C3F12 /* ViewController.swift */; };
@@ -15,11 +14,12 @@
 		00C54B291C09CF68001C3F12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C54B271C09CF68001C3F12 /* Main.storyboard */; };
 		00C54B2E1C09D1AA001C3F12 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C54B111C09CD9C001C3F12 /* Reachability.framework */; };
 		00C54B2F1C09D1AA001C3F12 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00C54B111C09CD9C001C3F12 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		32A5EC6F1DC1520400EC94A3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = AA7344751BE7678B008AFE69 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32A5EC701DC1520D00EC94A3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = AA7344751BE7678B008AFE69 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57A45A041C197BE800384AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A45A031C197BE800384AE4 /* AppDelegate.swift */; };
 		57A45A061C197BE800384AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A45A051C197BE800384AE4 /* ViewController.swift */; };
 		57A45A091C197BE800384AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A45A071C197BE800384AE4 /* Main.storyboard */; };
 		57A45A0B1C197BE800384AE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57A45A0A1C197BE800384AE4 /* Assets.xcassets */; };
-		57A45A2D1C197F4800384AE4 /* ReachabilityTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 57A45A2C1C197F4800384AE4 /* ReachabilityTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57A45A311C197F4800384AE4 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A45A2A1C197F4800384AE4 /* Reachability.framework */; };
 		57A45A321C197F4800384AE4 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57A45A2A1C197F4800384AE4 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A45A371C1985B300384AE4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
@@ -273,7 +273,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C54B141C09CD9C001C3F12 /* ReachabilityMac.h in Headers */,
+				32A5EC6F1DC1520400EC94A3 /* Reachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +281,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A45A2D1C197F4800384AE4 /* ReachabilityTV.h in Headers */,
+				32A5EC701DC1520D00EC94A3 /* Reachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
