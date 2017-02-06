@@ -17,9 +17,18 @@ To install **Reachability.swift** for Swift 2.3 using CocoaPods, include the fol
 pod 'ReachabilitySwift', '~> 2.4'
 ```
 
+To install **Reachability.swift** for Swift 2.3 using Carthage, include the following in your Cartfile
+```
+github "ashleymills/Reachability.swift" ~> 2.3
+```
+
 To install **Reachability.swift** for Swift 3.x using CocoaPods, include the following in your Podfile
 ```
 pod 'ReachabilitySwift', '~> 3'
+```
+To install **Reachability.swift** for Swift 3.x using Carthage, include the following in your Cartfile
+```
+github "ashleymills/Reachability.swift" ~> 3.0
 ```
 ##Swift 3 breaking changes#
 
