@@ -142,7 +142,7 @@ public class Reachability {
 public extension Reachability {
     
     // MARK: - *** Notifier methods ***
-    func startNotifier() throws {
+    func startNotifier(withImmediateCheck checkImmediately: Bool = false) throws {
         
         guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
         
@@ -159,8 +159,10 @@ public extension Reachability {
         }
         
         // Perform an intial check
-        reachabilitySerialQueue.async {
-            self.reachabilityChanged()
+        if checkImmediately {
+            reachabilitySerialQueue.async {
+                self.reachabilityChanged()
+            }
         }
         
         notifierRunning = true
