@@ -130,7 +130,7 @@ let reachability = Reachability()!
 reachability.whenReachable = { reachability in
     // this is called on a background thread, but UI updates must
     // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
         if reachability.isReachableViaWiFi() {
             print("Reachable via WiFi")
         } else {
@@ -141,7 +141,7 @@ reachability.whenReachable = { reachability in
 reachability.whenUnreachable = { reachability in
     // this is called on a background thread, but UI updates must
     // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
         print("Not reachable")
     }
 }
