@@ -6,9 +6,9 @@ It is compatible with **iOS** (8.0 - 10.0), **OSX** (10.9 - 10.12) and **tvOS** 
 
 Inspired by https://github.com/tonymillion/Reachability
 
-#IMPORTANT
+# IMPORTANT
 
-##Supporting Swift 2.3 and Swift 3
+## Supporting Swift 2.3 and Swift 3
 
 The source has been updated to support both Swift 2.3 (tag v2.4) and Swift 3 (tag v3.0)  
 
@@ -30,7 +30,7 @@ To install **Reachability.swift** for Swift 3.x using Carthage, include the foll
 ```
 github "ashleymills/Reachability.swift" ~> 3.0
 ```
-##Swift 3 breaking changes#
+## Swift 3 breaking changes#
 
 Previously:
 ```swift
