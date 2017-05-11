@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Start reachability without a hostname intially
+        // Start reachability without a hostname initially
         setupReachability(useHostName: false, useClosures: true)
         startNotifier()
         

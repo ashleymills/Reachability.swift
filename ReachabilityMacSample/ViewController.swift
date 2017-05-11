@@ -19,7 +19,7 @@ class ViewController: NSViewController {
     super.viewDidLoad()
     view.wantsLayer = true
 
-    // Start reachability without a hostname intially
+    // Start reachability without a hostname initially
     setupReachability(useHostName: false, useClosures: true)
     startNotifier()
 
