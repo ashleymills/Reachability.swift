@@ -39,7 +39,7 @@ class ReachabilityTests: XCTestCase {
             dispatch_async(dispatch_get_main_queue()) {
                 print("Pass: \(validHostName) is reachable - \(reachability)")
                 
-                // Only fulfill the expectaion on host reachable
+                // Only fulfill the expectation on host reachable
                 expectation.fulfill()
             }
         }
