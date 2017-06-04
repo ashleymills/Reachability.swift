@@ -200,7 +200,7 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NSNotificationCenter.defaultCenter().removeObserver(self,
+NSNotificationCenter.default.removeObserver(self,
                                                     name: ReachabilityChangedNotification,
                                                     object: reachability)
 ```
