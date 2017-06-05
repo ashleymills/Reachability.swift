@@ -90,7 +90,7 @@ class ViewController: NSViewController {
     self.networkStatus.stringValue = reachability.currentReachabilityString
   }
 
-  func reachabilityChanged(_ note: Notification) {
+  @objc func reachabilityChanged(_ note: Notification) {
     let reachability = note.object as! Reachability
 
     if reachability.isReachable {
