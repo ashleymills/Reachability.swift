@@ -6,9 +6,19 @@ It is compatible with **iOS** (8.0 - 10.0), **OSX** (10.9 - 10.12) and **tvOS** 
 
 Inspired by https://github.com/tonymillion/Reachability
 
-#IMPORTANT
+# IMPORTANT
 
-##Supporting Swift 2.3 and Swift 3
+## Swift 4
+
+The develop branch has been updated to Swift 4. As of Xcode 9.0 beta, there are no breaking changes. To use this version of Reachability.swift in your app:
+### CocoaPods
+```
+pod 'ReachabilitySwift', :branch => 'develop'
+```
+### Carthage
+Add `github "ashleymills/Reachability.swift" "develop"` to your Cartfile.
+
+## Supporting Swift 2.3 and Swift 3
 
 The source has been updated to support both Swift 2.3 (tag v2.4) and Swift 3 (tag v3.0)  
 
@@ -17,11 +27,20 @@ To install **Reachability.swift** for Swift 2.3 using CocoaPods, include the fol
 pod 'ReachabilitySwift', '~> 2.4'
 ```
 
+To install **Reachability.swift** for Swift 2.3 using Carthage, include the following in your Cartfile
+```
+github "ashleymills/Reachability.swift" ~> 2.3
+```
+
 To install **Reachability.swift** for Swift 3.x using CocoaPods, include the following in your Podfile
 ```
 pod 'ReachabilitySwift', '~> 3'
 ```
-##Swift 3 breaking changes#
+To install **Reachability.swift** for Swift 3.x using Carthage, include the following in your Cartfile
+```
+github "ashleymills/Reachability.swift" ~> 3.0
+```
+## Swift 3 breaking changes#
 
 Previously:
 ```swift
@@ -121,8 +140,8 @@ let reachability = Reachability()!
 reachability.whenReachable = { reachability in
     // this is called on a background thread, but UI updates must
     // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
-        if reachability.isReachableViaWiFi() {
+    DispatchQueue.main.async {
+        if reachability.isReachableViaWiFi {
             print("Reachable via WiFi")
         } else {
             print("Reachable via Cellular")
@@ -132,7 +151,7 @@ reachability.whenReachable = { reachability in
 reachability.whenUnreachable = { reachability in
     // this is called on a background thread, but UI updates must
     // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
         print("Not reachable")
     }
 }
@@ -152,7 +171,7 @@ reachability.stopNotifier()
 
 ## Example - notifications
 
-This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
+This sample will use `Notification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
@@ -171,7 +190,7 @@ let reachability = Reachability()!
 and
 
 ```swift
-func reachabilityChanged(note: NSNotification) {
+func reachabilityChanged(note: Notification) {
 
   let reachability = note.object as! Reachability
 
@@ -191,7 +210,7 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NSNotificationCenter.defaultCenter().removeObserver(self,
+NotificationCenter.default.removeObserver(self,
                                                     name: ReachabilityChangedNotification,
                                                     object: reachability)
 ```

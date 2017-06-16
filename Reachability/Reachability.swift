@@ -158,7 +158,7 @@ public extension Reachability {
             throw ReachabilityError.UnableToSetDispatchQueue
         }
         
-        // Perform an intial check
+        // Perform an initial check
         reachabilitySerialQueue.async {
             self.reachabilityChanged()
         }
