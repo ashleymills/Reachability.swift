@@ -122,10 +122,8 @@ public class Reachability {
         var zeroAddress = sockaddr()
         zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
         zeroAddress.sa_family = sa_family_t(AF_INET)
-        
-        guard let ref: SCNetworkReachability = withUnsafePointer(to: &zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }) else { return nil }
+
+        guard let ref = SCNetworkReachabilityCreateWithAddress(nil, &zeroAddress) else { return nil }
         
         self.init(reachabilityRef: ref)
     }
@@ -277,11 +275,7 @@ fileprivate extension Reachability {
     
     var reachabilityFlags: SCNetworkReachabilityFlags {
         var flags = SCNetworkReachabilityFlags()
-        let gotFlags = withUnsafeMutablePointer(to: &flags) {
-            SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
-        }
-        
-        if gotFlags {
+        if SCNetworkReachabilityGetFlags(reachabilityRef, &flags) {
             return flags
         } else {
             return SCNetworkReachabilityFlags()
