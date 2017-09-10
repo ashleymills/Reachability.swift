@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Reachability
+@testable import Reachability
 
 class ReachabilityTests: XCTestCase {
     
@@ -24,27 +24,25 @@ class ReachabilityTests: XCTestCase {
         // Testing with an invalid host will initially show as UNreachable, but then the callback
         // gets fired a second time reporting the host as reachable
         
-        let reachability: Reachability
+    
         let validHostName = "google.com"
         
-        do {
-            try reachability = Reachability(hostname: validHostName)
-        } catch {
+        guard let reachability = Reachability(hostname: validHostName) else {
             XCTAssert(false, "Unable to create reachability")
             return
         }
         
-        let expectation = expectationWithDescription("Check valid host")
+        let expected = expectation(description: "Check valid host")
         reachability.whenReachable = { reachability in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print("Pass: \(validHostName) is reachable - \(reachability)")
                 
                 // Only fulfill the expectation on host reachable
-                expectation.fulfill()
+                expected.fulfill()
             }
         }
         reachability.whenUnreachable = { reachability in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print("\(validHostName) is initially unreachable - \(reachability)")
                 // Expectation isn't fulfilled here, so wait will time out if this is the only closure called
             }
@@ -57,34 +55,30 @@ class ReachabilityTests: XCTestCase {
             return
         }
         
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         
         reachability.stopNotifier()
     }
 
     func testInvalidHost() {
-        
-        let reachability: Reachability
         let invalidHostName = "invalidhost"
 
-        do {
-            try reachability = Reachability(hostname: invalidHostName)
-        } catch {
+        guard let reachability = Reachability(hostname: invalidHostName) else {
             XCTAssert(false, "Unable to create reachability")
             return
         }
         
-        let expectation = expectationWithDescription("Check invalid host")
+        let expected = expectation(description: "Check invalid host")
         reachability.whenReachable = { reachability in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 XCTAssert(false, "\(invalidHostName) should never be reachable - \(reachability))")
             }
         }
         
         reachability.whenUnreachable = { reachability in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print("Pass: \(invalidHostName) is unreachable - \(reachability))")
-                expectation.fulfill()
+                expected.fulfill()
             }
         }
         
@@ -95,7 +89,7 @@ class ReachabilityTests: XCTestCase {
             return
         }
         
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         
         reachability.stopNotifier()
     }
