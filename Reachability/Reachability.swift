@@ -48,7 +48,7 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
     }
 }
 
-public class Reachability {
+open class Reachability {
 
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUnreachable = (Reachability) -> ()
@@ -66,18 +66,18 @@ public class Reachability {
         }
     }
 
-    public var whenReachable: NetworkReachable?
-    public var whenUnreachable: NetworkUnreachable?
-    public var reachableOnWWAN: Bool
+    open var whenReachable: NetworkReachable?
+    open var whenUnreachable: NetworkUnreachable?
+    open var reachableOnWWAN: Bool
     
     // The notification center on which "reachability changed" events are being posted
-    public var notificationCenter: NotificationCenter = NotificationCenter.default
+    open var notificationCenter: NotificationCenter = NotificationCenter.default
 
-    public var currentReachabilityString: String {
+    open var currentReachabilityString: String {
         return "\(currentReachabilityStatus)"
     }
 
-    public var currentReachabilityStatus: NetworkStatus {
+    open var currentReachabilityStatus: NetworkStatus {
         guard isReachable else { return .notReachable }
         
         if isReachableViaWiFi {
