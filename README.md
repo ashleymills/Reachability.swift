@@ -2,76 +2,49 @@
 
 Reachability.swift is a replacement for Apple's Reachability sample, re-written in Swift with closures.
 
-It is compatible with **iOS** (8.0 - 10.0), **OSX** (10.9 - 10.12) and **tvOS** (9.0 - 10.0)
+It is compatible with **iOS** (8.0 - 11.0), **OSX** (10.9 - 10.13) and **tvOS** (9.0 - 11.0)
 
 Inspired by https://github.com/tonymillion/Reachability
 
 # IMPORTANT
 
-## Swift 4
+## Version 4.0 breaking changes#
 
-The develop branch has been updated to Swift 4. As of Xcode 9.0 beta, there are no breaking changes. To use this version of Reachability.swift in your app:
-### CocoaPods
-```
-pod 'ReachabilitySwift', :branch => 'develop'
-```
-### Carthage
-Add `github "ashleymills/Reachability.swift" "develop"` to your Cartfile.
+### Previously
 
-## Supporting Swift 2.3 and Swift 3
 
-The source has been updated to support both Swift 2.3 (tag v2.4) and Swift 3 (tag v3.0)  
-
-To install **Reachability.swift** for Swift 2.3 using CocoaPods, include the following in your Podfile
-```
-pod 'ReachabilitySwift', '~> 2.4'
-```
-
-To install **Reachability.swift** for Swift 2.3 using Carthage, include the following in your Cartfile
-```
-github "ashleymills/Reachability.swift" ~> 2.3
-```
-
-To install **Reachability.swift** for Swift 3.x using CocoaPods, include the following in your Podfile
-```
-pod 'ReachabilitySwift', '~> 3'
-```
-To install **Reachability.swift** for Swift 3.x using Carthage, include the following in your Cartfile
-```
-github "ashleymills/Reachability.swift" ~> 3.0
-```
-## Swift 3 breaking changes#
-
-Previously:
 ```swift
-class func reachabilityForInternetConnection() throws
-```
-Now: 
-```swift
-init?()
-```
-
-Previously: 
-```swift
-init(hostname: String) throws
-```
-Now:
-```swift
-init?(hostname: String)
-```
-
-Previously:
-```swift
-public enum NetworkStatus: CustomStringConvertible {
-    case NotReachable, ReachableViaWiFi, ReachableViaWWAN
-}
-```
-Now:
-```swift
-public enum NetworkStatus: CustomStringConvertible {
+enum NetworkStatus {
     case notReachable, reachableViaWiFi, reachableViaWWAN
 }
+var currentReachabilityStatus: NetworkStatus
 ```
+
+### Now:
+
+```swift
+enum Connection {
+    case none, wifi, cellular
+}
+var connection: Connection
+```
+
+### Other changes:
+
+- `isReachableViaWWAN` has been renamed to `isReachableViaCellular`
+
+- `reachableOnWWAN` has been renamed to `allowsCellularConnection`
+
+- `reachability.currentReachabilityString` has been deprecated. Use `"\(reachability.connection)"` instead.
+
+- `isReachable` has been deprecated. Use `connection != .none` instead.
+
+- `isReachableViaWWAN` has been deprecated. Use `connection == .cellular` instead.
+
+- The notification for reachability changes has been renamed from `ReachabilityChangedNotification` to `Notification.Name.reachabilityChanged`
+
+- All closure callbacks and notification are fired on the main queue (including when `startNotifier()` is called)
+
 
 ## Got a problem?
 
@@ -133,27 +106,21 @@ To install Reachability.swift with Carthage:
 
 ## Example - closures
 
+NOTE: All closures are run on the **main queue**.
+
 ```swift
 //declare this property where it won't go out of scope relative to your listener
 let reachability = Reachability()!
 
 reachability.whenReachable = { reachability in
-    // this is called on a background thread, but UI updates must
-    // be on the main thread, like this:
-    DispatchQueue.main.async {
-        if reachability.isReachableViaWiFi {
-            print("Reachable via WiFi")
-        } else {
-            print("Reachable via Cellular")
-        }
+    if reachability.isReachableViaWiFi {
+        print("Reachable via WiFi")
+    } else {
+        print("Reachable via Cellular")
     }
 }
 reachability.whenUnreachable = { reachability in
-    // this is called on a background thread, but UI updates must
-    // be on the main thread, like this:
-    DispatchQueue.main.async {
-        print("Not reachable")
-    }
+    print("Not reachable")
 }
 
 do {
@@ -171,7 +138,7 @@ reachability.stopNotifier()
 
 ## Example - notifications
 
-This sample will use `Notification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
+NOTE: All notifications are delviered on the **main queue**.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
@@ -211,8 +178,8 @@ and for stopping notifications
 ```swift
 reachability.stopNotifier()
 NotificationCenter.default.removeObserver(self,
-                                                    name: ReachabilityChangedNotification,
-                                                    object: reachability)
+                                          name: ReachabilityChangedNotification,
+                                          object: reachability)
 ```
 
 ## Want to help?
