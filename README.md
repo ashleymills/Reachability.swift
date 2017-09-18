@@ -13,7 +13,7 @@ Inspired by https://github.com/tonymillion/Reachability
 The develop branch has been updated to Swift 4. As of Xcode 9.0 beta, there are no breaking changes. To use this version of Reachability.swift in your app:
 ### CocoaPods
 ```
-pod 'ReachabilitySwift', :branch => 'develop'
+pod 'ReachabilitySwift', :git => 'git@github.com:ashleymills/Reachability.swift.git', :branch => 'develop'
 ```
 ### Carthage
 Add `github "ashleymills/Reachability.swift" "develop"` to your Cartfile.
