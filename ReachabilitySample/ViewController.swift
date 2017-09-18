@@ -10,56 +10,50 @@ import UIKit
 import Reachability
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var networkStatus: UILabel!
     @IBOutlet weak var hostNameLabel: UILabel!
     
     var reachability: Reachability?
+    let hostNames = [nil, "google.com", "invalidhost"]
+    var hostIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Start reachability without a hostname initially
-        setupReachability(nil, useClosures: true)
+        
+        startHost(at: 0)
+    }
+    
+    func startHost(at index: Int) {
+        stopNotifier()
+        setupReachability(hostNames[index], useClosures: true)
         startNotifier()
-
-        // After 5 seconds, stop and re-start reachability, this time using a hostname
-        let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.stopNotifier()
-            self.setupReachability("google.com", useClosures: true)
-            self.startNotifier()
-
-            let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(5)
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.stopNotifier()
-                self.setupReachability("invalidhost", useClosures: true)
-                self.startNotifier()            }
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.startHost(at: (index + 1) % 3)
         }
     }
     
     func setupReachability(_ hostName: String?, useClosures: Bool) {
-        hostNameLabel.text = hostName != nil ? hostName : "No host name"
-        
+        let reachability: Reachability?
+        if let hostName = hostName {
+            reachability = Reachability(hostname: hostName)
+            hostNameLabel.text = hostName
+        } else {
+            reachability = Reachability()
+            hostNameLabel.text = "No host name"
+        }
+        self.reachability = reachability
         print("--- set up with host name: \(hostNameLabel.text!)")
 
-        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
-        self.reachability = reachability
-        
         if useClosures {
             reachability?.whenReachable = { reachability in
-                DispatchQueue.main.async {
-                    self.updateLabelColourWhenReachable(reachability)
-                }
+                self.updateLabelColourWhenReachable(reachability)
             }
             reachability?.whenUnreachable = { reachability in
-                DispatchQueue.main.async {
-                    self.updateLabelColourWhenNotReachable(reachability)
-                }
+                self.updateLabelColourWhenNotReachable(reachability)
             }
         } else {
-            NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
+            NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
         }
     }
     
@@ -77,34 +71,34 @@ class ViewController: UIViewController {
     func stopNotifier() {
         print("--- stop notifier")
         reachability?.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: nil)
         reachability = nil
     }
     
     func updateLabelColourWhenReachable(_ reachability: Reachability) {
-        print("\(reachability.description) - \(reachability.currentReachabilityString)")
-        if reachability.isReachableViaWiFi {
+        print("\(reachability.description) - \(reachability.connection)")
+        if reachability.connection == .wifi {
             self.networkStatus.textColor = .green
         } else {
             self.networkStatus.textColor = .blue
         }
         
-        self.networkStatus.text = reachability.currentReachabilityString
+        self.networkStatus.text = "\(reachability.connection)"
     }
-
+    
     func updateLabelColourWhenNotReachable(_ reachability: Reachability) {
-        print("\(reachability.description) - \(reachability.currentReachabilityString)")
-
+        print("\(reachability.description) - \(reachability.connection)")
+        
         self.networkStatus.textColor = .red
         
-        self.networkStatus.text = reachability.currentReachabilityString
+        self.networkStatus.text = "\(reachability.connection)"
     }
-
     
-    func reachabilityChanged(_ note: Notification) {
+    
+    @objc func reachabilityChanged(_ note: Notification) {
         let reachability = note.object as! Reachability
         
-        if reachability.isReachable {
+        if reachability.connection != .none {
             updateLabelColourWhenReachable(reachability)
         } else {
             updateLabelColourWhenNotReachable(reachability)
@@ -114,7 +108,7 @@ class ViewController: UIViewController {
     deinit {
         stopNotifier()
     }
-
+    
 }
 
 
