@@ -8,9 +8,9 @@ Inspired by https://github.com/tonymillion/Reachability
 
 # IMPORTANT
 
-## Version 4.0 breaking changes#
+## Version 4.0 breaking changes
 
-### Previously
+### Previously:
 
 
 ```swift
