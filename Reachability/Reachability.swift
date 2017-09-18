@@ -101,7 +101,7 @@ public class Reachability {
     }()
     
     fileprivate var notifierRunning = false
-    fileprivate var reachabilityRef: SCNetworkReachability?
+    fileprivate let reachabilityRef: SCNetworkReachability
     
     fileprivate let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
     
@@ -122,20 +122,14 @@ public class Reachability {
         var zeroAddress = sockaddr()
         zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
         zeroAddress.sa_family = sa_family_t(AF_INET)
-        
-        guard let ref: SCNetworkReachability = withUnsafePointer(to: &zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
-        }) else { return nil }
+
+        guard let ref = SCNetworkReachabilityCreateWithAddress(nil, &zeroAddress) else { return nil }
         
         self.init(reachabilityRef: ref)
     }
     
     deinit {
         stopNotifier()
-
-        reachabilityRef = nil
-        whenReachable = nil
-        whenUnreachable = nil
     }
 }
 
@@ -144,7 +138,7 @@ public extension Reachability {
     // MARK: - *** Notifier methods ***
     func startNotifier() throws {
         
-        guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
+        guard !notifierRunning else { return }
         
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())        
@@ -168,7 +162,6 @@ public extension Reachability {
     
     func stopNotifier() {
         defer { notifierRunning = false }
-        guard let reachabilityRef = reachabilityRef else { return }
         
         SCNetworkReachabilitySetCallback(reachabilityRef, nil, nil)
         SCNetworkReachabilitySetDispatchQueue(reachabilityRef, nil)
@@ -281,15 +274,8 @@ fileprivate extension Reachability {
     }
     
     var reachabilityFlags: SCNetworkReachabilityFlags {
-        
-        guard let reachabilityRef = reachabilityRef else { return SCNetworkReachabilityFlags() }
-        
         var flags = SCNetworkReachabilityFlags()
-        let gotFlags = withUnsafeMutablePointer(to: &flags) {
-            SCNetworkReachabilityGetFlags(reachabilityRef, UnsafeMutablePointer($0))
-        }
-        
-        if gotFlags {
+        if SCNetworkReachabilityGetFlags(reachabilityRef, &flags) {
             return flags
         } else {
             return SCNetworkReachabilityFlags()
