@@ -113,13 +113,13 @@ NOTE: All closures are run on the **main queue**.
 let reachability = Reachability()!
 
 reachability.whenReachable = { reachability in
-    if reachability.isReachableViaWiFi {
+    if reachability.connection == .wifi {
         print("Reachable via WiFi")
     } else {
         print("Reachable via Cellular")
     }
 }
-reachability.whenUnreachable = { reachability in
+reachability.whenUnreachable = { _ in
     print("Not reachable")
 }
 
@@ -146,7 +146,7 @@ let reachability = Reachability()!
 
 //declare this inside of viewWillAppear
 
-     NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+     NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
     do{
       try reachability.startNotifier()
     }catch{
@@ -161,13 +161,12 @@ func reachabilityChanged(note: Notification) {
 
   let reachability = note.object as! Reachability
 
-  if reachability.isReachable {
-    if reachability.isReachableViaWiFi {
+  switch reachability.connection {
+  case .wifi:
       print("Reachable via WiFi")
-    } else {
+  case .cellular:
       print("Reachable via Cellular")
-    }
-  } else {
+  case .none:
     print("Network not reachable")
   }
 }
@@ -177,9 +176,7 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NotificationCenter.default.removeObserver(self,
-                                          name: ReachabilityChangedNotification,
-                                          object: reachability)
+NotificationCenter.default.removeObserver(self, name: .eachabilityChanged, object: reachability)
 ```
 
 ## Want to help?
