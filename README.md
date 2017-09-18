@@ -141,7 +141,7 @@ reachability.whenReachable = { reachability in
     // this is called on a background thread, but UI updates must
     // be on the main thread, like this:
     DispatchQueue.main.async {
-        if reachability.isReachableViaWiFi() {
+        if reachability.isReachableViaWiFi {
             print("Reachable via WiFi")
         } else {
             print("Reachable via Cellular")
@@ -171,7 +171,7 @@ reachability.stopNotifier()
 
 ## Example - notifications
 
-This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
+This sample will use `Notification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
@@ -190,7 +190,7 @@ let reachability = Reachability()!
 and
 
 ```swift
-func reachabilityChanged(note: NSNotification) {
+func reachabilityChanged(note: Notification) {
 
   let reachability = note.object as! Reachability
 
@@ -210,7 +210,7 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NSNotificationCenter.default.removeObserver(self,
+NotificationCenter.default.removeObserver(self,
                                                     name: ReachabilityChangedNotification,
                                                     object: reachability)
 ```
