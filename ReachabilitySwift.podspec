@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'ReachabilitySwift'
-  s.version      = '3'
+  s.version      = '4.0-beta1'
   s.homepage     = 'https://github.com/ashleymills/Reachability.swift'
   s.authors      = {
     'Ashley Mills' => 'ashleymills@mac.com'
