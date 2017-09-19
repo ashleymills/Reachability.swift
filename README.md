@@ -109,7 +109,7 @@ To install Reachability.swift with Carthage:
 
 [Carthage]: https://github.com/Carthage/Carthage
 [Homebrew]: http://brew.sh
-[Foto Flipper]: http://itunes.com/apps/fotoflipper
+[Photo Flipper]: http://itunes.com/apps/fotoflipper
 
 ## Example - closures
 
