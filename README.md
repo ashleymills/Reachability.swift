@@ -96,9 +96,13 @@ To install Reachability.swift with Carthage:
 
 3. Run `carthage update`.
 
-4. Drag `Reachability.framework` from the `Carthage/Build/iOS/` directory to the `Linked Frameworks and Libraries` section of your Xcode project’s `General` settings.
+4. Drag `ReachabilitySwiift.framework` from the `Carthage/Build/iOS/` directory to the `Linked Frameworks and Libraries` section of your Xcode project’s `General` settings.
 
-5. Add `$(SRCROOT)/Carthage/Build/iOS/Reachability.framework` to `Input Files` of Run Script Phase for Carthage.
+5. Add `$(SRCROOT)/Carthage/Build/iOS/ReachabilitySwiift.framework` to `Input Files` of Run Script Phase for Carthage.
+
+6. In your code import Reachability likse so:
+`import ReachabilitySwift`
+
 
 [Carthage]: https://github.com/Carthage/Carthage
 [Homebrew]: http://brew.sh
