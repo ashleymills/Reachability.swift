@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 import SystemConfiguration
 import Foundation
 
-public enum ReachabilityError: Error {
+public enum ReachabilityError: Swift.Error {
     case FailedToCreateWithAddress(sockaddr_in)
     case FailedToCreateWithHostname(String)
     case UnableToSetCallback
