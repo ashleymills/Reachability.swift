@@ -50,7 +50,7 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
     reachability.reachabilityChanged()
 }
 
-public class Reachability {
+public class Reachability: ReachabilityProtocol {
 
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUnreachable = (Reachability) -> ()
