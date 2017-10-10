@@ -30,6 +30,7 @@
 		AA73449A1BE76820008AFE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7344991BE76820008AFE69 /* Assets.xcassets */; };
 		AA7344B11BE76862008AFE69 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7344B01BE76862008AFE69 /* Reachability.swift */; };
 		AA7344B51BE769D6008AFE69 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7344B31BE769D6008AFE69 /* LaunchScreen.xib */; };
+		CA6187661F8D220200FD5234 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = CA6187651F8D220200FD5234 /* CHANGELOG.md */; };
 		CAC230C51BF2180000F6464E /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7344721BE7678B008AFE69 /* Reachability.framework */; };
 		CAC230C61BF2180000F6464E /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA7344721BE7678B008AFE69 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -125,6 +126,10 @@
 		AA7344B01BE76862008AFE69 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AA7344B41BE769D6008AFE69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CA1983301F6FD0CD007D2DD1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CA6187601F8D21D700FD5234 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		CA6187611F8D21D700FD5234 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CA6187621F8D21D700FD5234 /* ReachabilitySwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReachabilitySwift.podspec; sourceTree = "<group>"; };
+		CA6187651F8D220200FD5234 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +227,10 @@
 			isa = PBXGroup;
 			children = (
 				CA1983301F6FD0CD007D2DD1 /* README.md */,
+				CA6187651F8D220200FD5234 /* CHANGELOG.md */,
+				CA6187601F8D21D700FD5234 /* CONTRIBUTING.md */,
+				CA6187611F8D21D700FD5234 /* LICENSE */,
+				CA6187621F8D21D700FD5234 /* ReachabilitySwift.podspec */,
 				AA7344741BE7678B008AFE69 /* Reachability */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
 				00C54B121C09CD9C001C3F12 /* ReachabilityMac */,
@@ -565,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7344B11BE76862008AFE69 /* Reachability.swift in Sources */,
+				CA6187661F8D220200FD5234 /* CHANGELOG.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
