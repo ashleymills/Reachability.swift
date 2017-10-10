@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.1.0] - 2017-10-10
+### Changed
+
+- Version update only to fix Cocoapods issue
+
 ## [4.0.0] - 2017-10-10
 ### Changed
 - `NetworkStatus` renamed `Connection`
