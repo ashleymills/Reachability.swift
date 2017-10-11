@@ -42,8 +42,6 @@ var connection: Connection
 
 ### Other changes:
 
-- `isReachableViaWWAN` has been renamed to `isReachableViaCellular`
-
 - `reachableOnWWAN` has been renamed to `allowsCellularConnection`
 
 - `reachability.currentReachabilityString` has been deprecated. Use `"\(reachability.connection)"` instead.
