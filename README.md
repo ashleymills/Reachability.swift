@@ -57,7 +57,7 @@ var connection: Connection
 
 ## Got a problem?
 
-Please read https://github.com/ashleymills/Reachability.swift/wiki/Raising-an-issue before raising an issue.
+Please read https://github.com/ashleymills/Reachability.swift/blob/master/CONTRIBUTING.md before raising an issue.
 
 ## Installation
 ### Manual
