@@ -9,13 +9,7 @@ Inspired by https://github.com/tonymillion/Reachability
 ## Supporting **Reachability.swift**
 Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. 
 
-If you're an iOS developer who's looking for a quick and easy way to create App Store screenshots, please try out my app [Screenshot Producer](https://itunes.apple.com/app/apple-store/id1252374855?pt=215893&ct=reachability&mt=8)…
-
- Devices | Layout | Copy | Localize | Export      
-:------:|:------:|:------:|:------:|:------:
-![](http://is2.mzstatic.com/image/thumb/Purple118/v4/64/af/55/64af55bc-2ef0-691c-f5f3-4963685f7f63/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple128/v4/fb/4c/bd/fb4cbd2f-dd04-22ba-4fdf-5ac652693fb8/source/552x414bb.jpg) |  ![](http://is1.mzstatic.com/image/thumb/Purple118/v4/5a/4f/cf/5a4fcfdf-ca04-0307-9f2e-83178e8ad90d/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple128/v4/17/ea/56/17ea562e-e045-96e7-fcac-cfaaf4f499fd/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple118/v4/59/9e/dd/599edd50-f05c-f413-8e88-e614731fd828/source/552x414bb.jpg)
-
-And don't forget to **★** the repo. This increases its visibility and encourages others to contribute.
+Don't forget to **★** the repo. This increases its visibility and encourages others to contribute.
 
 Thanks
 Ash
