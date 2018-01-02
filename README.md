@@ -168,7 +168,7 @@ let reachability = Reachability()!
 and
 
 ```swift
-func reachabilityChanged(note: Notification) {
+@objc func reachabilityChanged(note: Notification) {
 
   let reachability = note.object as! Reachability
 
