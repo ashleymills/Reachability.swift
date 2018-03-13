@@ -53,7 +53,12 @@ class ViewController: UIViewController {
                 self.updateLabelColourWhenNotReachable(reachability)
             }
         } else {
-            NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(reachabilityChanged(_:)),
+                name: .reachabilityChanged,
+                object: reachability
+            )
         }
     }
     
@@ -93,8 +98,7 @@ class ViewController: UIViewController {
         
         self.networkStatus.text = "\(reachability.connection)"
     }
-    
-    
+
     @objc func reachabilityChanged(_ note: Notification) {
         let reachability = note.object as! Reachability
         
@@ -108,7 +112,4 @@ class ViewController: UIViewController {
     deinit {
         stopNotifier()
     }
-    
 }
-
-

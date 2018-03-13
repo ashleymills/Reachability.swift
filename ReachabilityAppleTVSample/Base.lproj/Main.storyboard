@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,33 +22,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jew-4p-o9x">
-                                <rect key="frame" x="695" y="408" width="530" height="91"/>
-                                <animations/>
+                                <rect key="frame" x="924" y="468" width="72" height="91"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="530" id="MBv-Rz-Tzd"/>
                                     <constraint firstAttribute="height" constant="91" id="dMv-aK-0ih"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wE4-fM-BF3">
-                                <rect key="frame" x="695" y="507" width="530" height="165"/>
-                                <animations/>
+                                <rect key="frame" x="906" y="567" width="108" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="46"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wE4-fM-BF3" secondAttribute="bottom" constant="408" id="BDI-ry-4pH"/>
-                            <constraint firstItem="wE4-fM-BF3" firstAttribute="trailing" secondItem="Jew-4p-o9x" secondAttribute="trailing" id="GGb-7m-6uX"/>
-                            <constraint firstItem="Jew-4p-o9x" firstAttribute="leading" secondItem="wE4-fM-BF3" secondAttribute="leading" id="Q1c-Jb-iKN"/>
-                            <constraint firstItem="wE4-fM-BF3" firstAttribute="top" secondItem="Jew-4p-o9x" secondAttribute="bottom" constant="8" symbolic="YES" id="U8V-qN-EPr"/>
-                            <constraint firstItem="Jew-4p-o9x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vng-pT-hW8"/>
-                            <constraint firstItem="Jew-4p-o9x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="408" id="cMK-9n-7pq"/>
+                            <constraint firstItem="Jew-4p-o9x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="McL-OC-xmz"/>
+                            <constraint firstItem="wE4-fM-BF3" firstAttribute="top" secondItem="Jew-4p-o9x" secondAttribute="bottom" constant="8" id="TRM-vy-Pvk"/>
+                            <constraint firstItem="Jew-4p-o9x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="408" id="j6d-xn-evu"/>
+                            <constraint firstItem="wE4-fM-BF3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ne8-Vk-QZp"/>
                         </constraints>
                     </view>
                     <connections>

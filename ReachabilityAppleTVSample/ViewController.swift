@@ -53,7 +53,12 @@ class ViewController: UIViewController {
                 self.updateLabelColourWhenNotReachable(reachability)
             }
         } else {
-            NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(ViewController.reachabilityChanged(_:)),
+                name: .reachabilityChanged,
+                object: reachability
+            )
         }
     }
     
@@ -108,6 +113,4 @@ class ViewController: UIViewController {
     deinit {
         stopNotifier()
     }
-    
 }
-
