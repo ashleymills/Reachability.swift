@@ -20,11 +20,6 @@ class ReachabilityTests: XCTestCase {
     }
     
     func testValidHost() {
-        
-        // Testing with an invalid host will initially show as UNreachable, but then the callback
-        // gets fired a second time reporting the host as reachable
-        
-    
         let validHostName = "google.com"
         
         guard let reachability = Reachability(hostname: validHostName) else {
@@ -61,6 +56,9 @@ class ReachabilityTests: XCTestCase {
     }
 
     func testInvalidHost() {
+        // Testing with an invalid host will initially show as reachable, but then the callback
+        // gets fired a second time reporting the host as unreachable
+
         let invalidHostName = "invalidhost"
 
         guard let reachability = Reachability(hostname: invalidHostName) else {
@@ -93,5 +91,5 @@ class ReachabilityTests: XCTestCase {
         
         reachability.stopNotifier()
     }
-    
+
 }
