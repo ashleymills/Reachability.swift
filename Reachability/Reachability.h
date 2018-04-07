@@ -6,7 +6,7 @@
 //  Copyright © 2015 Ashley Mills. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Reachability.
 FOUNDATION_EXPORT double ReachabilityVersionNumber;
@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double ReachabilityVersionNumber;
 FOUNDATION_EXPORT const unsigned char ReachabilityVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Reachability/PublicHeader.h>
-
-
