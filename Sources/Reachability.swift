@@ -44,7 +44,7 @@ extension Notification.Name {
 
 func callback(reachability: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
     guard let info = info else { return }
-    
+
     let reachability = Unmanaged<Reachability>.fromOpaque(info).takeUnretainedValue()
     reachability.reachabilityChanged()
 }
@@ -79,7 +79,7 @@ public class Reachability {
 
     public var whenReachable: NetworkReachable?
     public var whenUnreachable: NetworkUnreachable?
-    
+
     @available(*, deprecated: 4.0, renamed: "allowsCellularConnection")
     public let reachableOnWWAN: Bool = true
 
@@ -98,7 +98,7 @@ public class Reachability {
     public var currentReachabilityStatus: Connection {
         return connection
     }
-    
+
     public var connection: Connection {
         guard isReachableFlagSet else { return .none }
 
@@ -106,17 +106,17 @@ public class Reachability {
         guard isRunningOnDevice else { return .wifi }
 
         var connection = Connection.none
-        
+
         if !isConnectionRequiredFlagSet {
             connection = .wifi
         }
-        
+
         if isConnectionOnTrafficOrDemandFlagSet {
             if !isInterventionRequiredFlagSet {
                 connection = .wifi
             }
         }
-        
+
         if isOnWWANFlagSet {
             if !allowsCellularConnection {
                 connection = .none
@@ -124,12 +124,12 @@ public class Reachability {
                 connection = .cellular
             }
         }
-        
+
         return connection
     }
-    
+
     fileprivate var previousFlags: SCNetworkReachabilityFlags?
-    
+
     fileprivate var isRunningOnDevice: Bool = {
         #if targetEnvironment(simulator)
             return false
@@ -137,58 +137,58 @@ public class Reachability {
             return true
         #endif
     }()
-    
+
     fileprivate var notifierRunning = false
     fileprivate let reachabilityRef: SCNetworkReachability
-    
+
     fileprivate let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
 
     fileprivate var usingHostname = false
-    
+
     required public init(reachabilityRef: SCNetworkReachability, usingHostname: Bool = false) {
         allowsCellularConnection = true
         self.reachabilityRef = reachabilityRef
         self.usingHostname = usingHostname
     }
-    
+
     public convenience init?(hostname: String) {
         guard let ref = SCNetworkReachabilityCreateWithName(nil, hostname) else { return nil }
         self.init(reachabilityRef: ref, usingHostname: true)
     }
-    
+
     public convenience init?() {
         var zeroAddress = sockaddr()
         zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
         zeroAddress.sa_family = sa_family_t(AF_INET)
 
         guard let ref = SCNetworkReachabilityCreateWithAddress(nil, &zeroAddress) else { return nil }
-        
+
         self.init(reachabilityRef: ref)
     }
-    
+
     deinit {
         stopNotifier()
     }
 }
 
 public extension Reachability {
-    
+
     // MARK: - *** Notifier methods ***
     func startNotifier() throws {
         guard !notifierRunning else { return }
-        
+
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())        
+        context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
             throw ReachabilityError.UnableToSetCallback
         }
-        
+
         if !SCNetworkReachabilitySetDispatchQueue(reachabilityRef, reachabilitySerialQueue) {
             stopNotifier()
             throw ReachabilityError.UnableToSetDispatchQueue
         }
-        
+
         // Perform an initial check
         reachabilitySerialQueue.async {
             self.reachabilityChanged()
@@ -196,33 +196,33 @@ public extension Reachability {
 
         notifierRunning = true
     }
-    
+
     func stopNotifier() {
         defer { notifierRunning = false }
-        
+
         SCNetworkReachabilitySetCallback(reachabilityRef, nil, nil)
         SCNetworkReachabilitySetDispatchQueue(reachabilityRef, nil)
     }
-    
+
     // MARK: - *** Connection test methods ***
     @available(*, deprecated: 4.0, message: "Please use `connection != .none`")
     var isReachable: Bool {
         guard isReachableFlagSet else { return false }
-        
+
         if isConnectionRequiredAndTransientFlagSet {
             return false
         }
-        
+
         if isRunningOnDevice {
             if isOnWWANFlagSet && !reachableOnWWAN {
                 // We don't want to connect when on cellular connection
                 return false
             }
         }
-        
+
         return true
     }
-    
+
     @available(*, deprecated: 4.0, message: "Please use `connection == .cellular`")
     var isReachableViaWWAN: Bool {
         // Check we're not on the simulator, we're REACHABLE and check we're on WWAN
@@ -233,14 +233,14 @@ public extension Reachability {
     var isReachableViaWiFi: Bool {
         // Check we're reachable
         guard isReachableFlagSet else { return false }
-        
+
         // If reachable we're reachable, but not on an iOS device (i.e. simulator), we must be on WiFi
         guard isRunningOnDevice else { return true }
-        
+
         // Check we're NOT on WWAN
         return !isOnWWANFlagSet
     }
-    
+
     var description: String {
         let W = isRunningOnDevice ? (isOnWWANFlagSet ? "W" : "-") : "X"
         let R = isReachableFlagSet ? "R" : "-"
@@ -251,7 +251,7 @@ public extension Reachability {
         let D = isConnectionOnDemandFlagSet ? "D" : "-"
         let l = isLocalAddressFlagSet ? "l" : "-"
         let d = isDirectFlagSet ? "d" : "-"
-        
+
         return "\(W)\(R) \(c)\(t)\(i)\(C)\(D)\(l)\(d)"
     }
 }
@@ -261,7 +261,7 @@ fileprivate extension Reachability {
         guard previousFlags != flags else { return }
 
         let block = connection != .none ? whenReachable : whenUnreachable
-        
+
         DispatchQueue.main.async {
             if self.usingHostname {
                 print("USING HOSTNAME ABOUT TO CALL BLOCK")
@@ -269,10 +269,10 @@ fileprivate extension Reachability {
             block?(self)
             self.notificationCenter.post(name: .reachabilityChanged, object:self)
         }
-        
+
         previousFlags = flags
     }
-    
+
     var isOnWWANFlagSet: Bool {
         #if os(iOS)
             return flags.contains(.isWWAN)
@@ -310,7 +310,7 @@ fileprivate extension Reachability {
     var isConnectionRequiredAndTransientFlagSet: Bool {
         return flags.intersection([.connectionRequired, .transientConnection]) == [.connectionRequired, .transientConnection]
     }
-    
+
     var flags: SCNetworkReachabilityFlags {
         var flags = SCNetworkReachabilityFlags()
         if SCNetworkReachabilityGetFlags(reachabilityRef, &flags) {
