@@ -159,7 +159,7 @@ public class Reachability {
     public convenience init?() {
         var zeroAddress = sockaddr()
         zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
-        zeroAddress.sa_family = sa_family_t(AF_INET)
+        zeroAddress.sa_family = sa_family_t(AF_UNSPEC)
 
         guard let ref = SCNetworkReachabilityCreateWithAddress(nil, &zeroAddress) else { return nil }
 
