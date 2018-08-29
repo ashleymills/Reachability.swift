@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.2.0] - 2018-08-29
+### Changed
+- Use a single target for all platforms
+- Add **ReachabilityTests** target
+- Remove logging
+- `Notification.Name.reachabilityChanged` is public
+- Added optional `queueQoS`  and `targetQueue` to `init(reachabilityRef: SCNetworkReachability, queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
+- Added optional `queueQoS`  and `targetQueue` to `init?(hostname: String, queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
+- Added optional `queueQoS`  and `targetQueue` to `init?(queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
+
+
 ## [4.1.0] - 2017-10-10
 ### Changed
 
