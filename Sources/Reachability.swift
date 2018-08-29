@@ -38,7 +38,7 @@ public enum ReachabilityError: Error {
 @available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-extension Notification.Name {
+public extension Notification.Name {
     public static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
