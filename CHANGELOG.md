@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added optional `queueQoS`  and `targetQueue` to `init(reachabilityRef: SCNetworkReachability, queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
 - Added optional `queueQoS`  and `targetQueue` to `init?(hostname: String, queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
 - Added optional `queueQoS`  and `targetQueue` to `init?(queueQoS: DispatchQoS = .default, targetQueue: DispatchQueue? = nil)`
+- Move macOS deployment target to 10.10
 
 
 ## [4.1.0] - 2017-10-10
