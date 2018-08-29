@@ -314,7 +314,6 @@ fileprivate extension Reachability {
     var flags: SCNetworkReachabilityFlags {
         var flags = SCNetworkReachabilityFlags()
         if SCNetworkReachabilityGetFlags(reachabilityRef, &flags) {
-            print("Returning flags \(flags)")
             return flags
         } else {
             return SCNetworkReachabilityFlags()
