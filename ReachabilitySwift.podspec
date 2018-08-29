@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     :git => 'https://github.com/ashleymills/Reachability.swift.git',
     :tag => 'v'+s.version.to_s
   }
-  s.source_files = 'Reachability/Reachability.swift'
+  s.source_files = 'Sources/Reachability.swift'
   s.framework    = 'SystemConfiguration'
 
   s.requires_arc = true
