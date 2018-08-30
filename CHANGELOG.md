@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.2.1] - 2018-08-30
+### Fixed 
+- Set reachabilty flags if `connection` called before `startNotifier` (https://github.com/ashleymills/Reachability.swift/issues/307)
+
 ## [4.2.0] - 2018-08-29
 ### Changed
 - Use a single target for all platforms
