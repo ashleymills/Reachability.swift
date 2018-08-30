@@ -94,6 +94,10 @@ public class Reachability {
     }
 
     public var connection: Connection {
+        if flags == nil {
+            try? setReachabilityFlags()
+        }
+        
         switch flags?.connection {
         case .none?, nil: return .none
         case .cellular?: return allowsCellularConnection ? .cellular : .none
@@ -171,15 +175,7 @@ public extension Reachability {
         }
 
         // Perform an initial check
-        try reachabilitySerialQueue.sync { [unowned self] in
-            var flags = SCNetworkReachabilityFlags()
-            if !SCNetworkReachabilityGetFlags(self.reachabilityRef, &flags) {
-                self.stopNotifier()
-                throw ReachabilityError.UnableToGetInitialFlags
-            }
-
-            self.flags = flags
-        }
+        try setReachabilityFlags()
 
         notifierRunning = true
     }
@@ -226,6 +222,18 @@ public extension Reachability {
 
 fileprivate extension Reachability {
 
+    func setReachabilityFlags() throws {
+        try reachabilitySerialQueue.sync { [unowned self] in
+            var flags = SCNetworkReachabilityFlags()
+            if !SCNetworkReachabilityGetFlags(self.reachabilityRef, &flags) {
+                self.stopNotifier()
+                throw ReachabilityError.UnableToGetInitialFlags
+            }
+            
+            self.flags = flags
+        }
+    }
+    
     func reachabilityChanged() {
         let block = connection != .none ? whenReachable : whenUnreachable
 
