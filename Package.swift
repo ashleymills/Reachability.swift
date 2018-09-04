@@ -14,10 +14,10 @@ let package = Package(
         .target(
             name: "Reachability",
             dependencies: [],
-            path: "Reachability"),
+            path: "Sources"),
         .testTarget(
             name: "ReachabilityTests",
             dependencies: ["Reachability"],
-            path: "ReachabilityTests"),
+            path: "Tests"),
     ]
 )
