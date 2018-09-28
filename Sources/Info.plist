@@ -15,13 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>4.2.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 Ashley Mills. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>

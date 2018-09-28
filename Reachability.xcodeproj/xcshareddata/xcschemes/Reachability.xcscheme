@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA73447B1BE7678B008AFE69"
+               BlueprintIdentifier = "335AD5962052EB22000D4D08"
                BuildableName = "ReachabilityTests.xctest"
                BlueprintName = "ReachabilityTests"
                ReferencedContainer = "container:Reachability.xcodeproj">

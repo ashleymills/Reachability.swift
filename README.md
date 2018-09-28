@@ -2,54 +2,68 @@
 
 Reachability.swift is a replacement for Apple's Reachability sample, re-written in Swift with closures.
 
-It is compatible with **iOS** (8.0 - 10.0), **OSX** (10.9 - 10.12) and **tvOS** (9.0 - 10.0)
+It is compatible with **iOS** (8.0 - 11.0), **OSX** (10.9 - 10.13) and **tvOS** (9.0 - 11.0)
 
 Inspired by https://github.com/tonymillion/Reachability
 
-#IMPORTANT - iOS 10 / Swift 3 / Breaking changes#
-
-The following iOS 10 branch contains the following breaking changes:
-
-Previously:
-```swift
-class func reachabilityForInternetConnection() throws
-```
-Now: 
-```swift
-init?()
-```
-
-Previously: 
-```swift
-init(hostname: String) throws
-```
-Now:
-```swift
-init?(hostname: String)
-```
-
-Previously:
-```swift
-public enum NetworkStatus: CustomStringConvertible {
-    case NotReachable, ReachableViaWiFi, ReachableViaWWAN
-}
-```
-Now:
-```swift
-public enum NetworkStatus: CustomStringConvertible {
-    case notReachable, reachableViaWiFi, reachableViaWWAN
-}
-```
-
-
-
 ## Supporting **Reachability.swift**
-Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. If you'd like to help keep me motivated, please download my free app, [Foto Flipper] from the App Store. (To really motivate me, pay $0.99 for the IAP!)
+Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. 
+
+If you're an iOS developer who's looking for a quick and easy way to create App Store screenshots, please try out my app [Screenshot Producer](https://itunes.apple.com/app/apple-store/id1252374855?pt=215893&ct=reachability&mt=8)…
+
+ Devices | Layout | Copy | Localize | Export      
+:------:|:------:|:------:|:------:|:------:
+![](http://is2.mzstatic.com/image/thumb/Purple118/v4/64/af/55/64af55bc-2ef0-691c-f5f3-4963685f7f63/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple128/v4/fb/4c/bd/fb4cbd2f-dd04-22ba-4fdf-5ac652693fb8/source/552x414bb.jpg) |  ![](http://is1.mzstatic.com/image/thumb/Purple118/v4/5a/4f/cf/5a4fcfdf-ca04-0307-9f2e-83178e8ad90d/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple128/v4/17/ea/56/17ea562e-e045-96e7-fcac-cfaaf4f499fd/source/552x414bb.jpg) |  ![](http://is4.mzstatic.com/image/thumb/Purple118/v4/59/9e/dd/599edd50-f05c-f413-8e88-e614731fd828/source/552x414bb.jpg)
 
 And don't forget to **★** the repo. This increases its visibility and encourages others to contribute.
 
 Thanks
 Ash
+
+# IMPORTANT
+
+## Version 4.0 breaking changes
+
+### CocoaPods:
+
+If you're adding **Reachability.swift** using CocoaPods, note that the framework name has changed from `ReachabilitySwift` to `Reachability` (for consistency with Carthage)
+
+### Previously:
+
+```swift
+enum NetworkStatus {
+    case notReachable, reachableViaWiFi, reachableViaWWAN
+}
+var currentReachabilityStatus: NetworkStatus
+```
+
+### Now:
+
+```swift
+enum Connection {
+    case none, wifi, cellular
+}
+var connection: Connection
+```
+
+### Other changes:
+
+- `reachableOnWWAN` has been renamed to `allowsCellularConnection`
+
+- `reachability.currentReachabilityString` has been deprecated. Use `"\(reachability.connection)"` instead.
+
+- `isReachable` has been deprecated. Use `connection != .none` instead.
+
+- `isReachableViaWWAN` has been deprecated. Use `connection == .cellular` instead.
+
+- The notification for reachability changes has been renamed from `ReachabilityChangedNotification` to `Notification.Name.reachabilityChanged`
+
+- All closure callbacks and notification are fired on the main queue (including when `startNotifier()` is called)
+
+
+## Got a problem?
+
+Please read https://github.com/ashleymills/Reachability.swift/blob/master/CONTRIBUTING.md before raising an issue.
 
 ## Installation
 ### Manual
@@ -73,7 +87,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
 [CocoaPods Installation]: https://guides.cocoapods.org/using/getting-started.html#getting-started
  
  4. In your code import Reachability like so:
-   `import ReachabilitySwift`
+   `import Reachability`
 
 ### Carthage
 [Carthage][] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
@@ -93,33 +107,31 @@ To install Reachability.swift with Carthage:
 
 5. Add `$(SRCROOT)/Carthage/Build/iOS/Reachability.framework` to `Input Files` of Run Script Phase for Carthage.
 
+6. In your code import Reachability like so:
+`import Reachability`
+
+
 [Carthage]: https://github.com/Carthage/Carthage
 [Homebrew]: http://brew.sh
-[Foto Flipper]: http://itunes.com/apps/fotoflipper
+[Photo Flipper]: https://itunes.apple.com/app/apple-store/id749627884?pt=215893&ct=GitHubReachability&mt=8
 
 ## Example - closures
+
+NOTE: All closures are run on the **main queue**.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
 let reachability = Reachability()!
 
 reachability.whenReachable = { reachability in
-    // this is called on a background thread, but UI updates must
-    // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
-        if reachability.isReachableViaWiFi() {
-            print("Reachable via WiFi")
-        } else {
-            print("Reachable via Cellular")
-        }
+    if reachability.connection == .wifi {
+        print("Reachable via WiFi")
+    } else {
+        print("Reachable via Cellular")
     }
 }
-reachability.whenUnreachable = { reachability in
-    // this is called on a background thread, but UI updates must
-    // be on the main thread, like this:
-    dispatch_async(dispatch_get_main_queue()) {
-        print("Not reachable")
-    }
+reachability.whenUnreachable = { _ in
+    print("Not reachable")
 }
 
 do {
@@ -137,7 +149,7 @@ reachability.stopNotifier()
 
 ## Example - notifications
 
-This sample will use `NSNotification`s to notify when the interface has changed. They will be delivered on the **MAIN THREAD**, so you *can* do UI updates from within the function.
+NOTE: All notifications are delivered on the **main queue**.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
@@ -145,7 +157,7 @@ let reachability = Reachability()!
 
 //declare this inside of viewWillAppear
 
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
+     NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
     do{
       try reachability.startNotifier()
     }catch{
@@ -156,17 +168,16 @@ let reachability = Reachability()!
 and
 
 ```swift
-func reachabilityChanged(note: NSNotification) {
+@objc func reachabilityChanged(note: Notification) {
 
   let reachability = note.object as! Reachability
 
-  if reachability.isReachable() {
-    if reachability.isReachableViaWiFi() {
+  switch reachability.connection {
+  case .wifi:
       print("Reachable via WiFi")
-    } else {
+  case .cellular:
       print("Reachable via Cellular")
-    }
-  } else {
+  case .none:
     print("Network not reachable")
   }
 }
@@ -176,14 +187,8 @@ and for stopping notifications
 
 ```swift
 reachability.stopNotifier()
-NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                    name: ReachabilityChangedNotification,
-                                                    object: reachability)
+NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
 ```
-
-## Got a problem?
-
-Please read https://github.com/ashleymills/Reachability.swift/wiki/Raising-an-issue before raising an issue.
 
 ## Want to help?
 
