@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   }
   s.source_files = 'Sources/Reachability.swift'
   s.framework    = 'SystemConfiguration'
-  s.framework    = 'CoreTelephony'
+  s.ios.framework    = 'CoreTelephony'
 
   s.requires_arc = true
 end
