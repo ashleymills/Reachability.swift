@@ -1,8 +1,8 @@
 
 # Stack Overflow
-**Stack Overflow** is a fantastic resource for programmers, with many active users who are usually able to answer questions much quicker than I can. 
+**Stack Overflow** is a fantastic resource for programmers, with many active users who are usually able to answer questions much quicker than I can. Tag then with `reachability-swift`
 
-[Follow this link](http://stackoverflow.com/questions/ask?tags=reachability%20swift) to ask your question on SO
+[Follow this link](http://stackoverflow.com/questions/ask?tags=reachability-swift) to ask your question on SO
 
 # Raising an issue here
 
