@@ -40,7 +40,7 @@ public enum ReachabilityError: Error {
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
 public extension Notification.Name {
-    public static let reachabilityChanged = Notification.Name("reachabilityChanged")
+    static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
 public class Reachability {
@@ -74,7 +74,7 @@ public class Reachability {
     public var whenReachable: NetworkReachable?
     public var whenUnreachable: NetworkUnreachable?
 
-    @available(*, deprecated: 4.0, renamed: "allowsCellularConnection")
+    @available(*, deprecated, renamed: "allowsCellularConnection")
     public let reachableOnWWAN: Bool = true
 
     /// Set to `false` to force Reachability.connection to .none when on cellular connection (default value `true`)
@@ -83,7 +83,7 @@ public class Reachability {
     // The notification center on which "reachability changed" events are being posted
     public var notificationCenter: NotificationCenter = NotificationCenter.default
 
-    @available(*, deprecated: 4.0, renamed: "connection.description")
+    @available(*, deprecated, renamed: "connection.description")
     public var currentReachabilityString: String {
         return "\(connection)"
     }
@@ -188,18 +188,18 @@ public extension Reachability {
     }
 
     // MARK: - *** Connection test methods ***
-    @available(*, deprecated: 4.0, message: "Please use `connection != .none`")
+    @available(*, deprecated, message: "Please use `connection != .none`")
     var isReachable: Bool {
         return connection != .none
     }
 
-    @available(*, deprecated: 4.0, message: "Please use `connection == .cellular`")
+    @available(*, deprecated, message: "Please use `connection == .cellular`")
     var isReachableViaWWAN: Bool {
         // Check we're not on the simulator, we're REACHABLE and check we're on WWAN
         return connection == .cellular
     }
 
-    @available(*, deprecated: 4.0, message: "Please use `connection == .wifi`")
+   @available(*, deprecated, message: "Please use `connection == .wifi`")
     var isReachableViaWiFi: Bool {
         return connection == .wifi
     }
