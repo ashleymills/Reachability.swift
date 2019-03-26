@@ -238,9 +238,9 @@ fileprivate extension Reachability {
         let block = connection != .none ? whenReachable : whenUnreachable
 
         DispatchQueue.main.async { [weak self] in
-            guard let strongSelf = self else { return }
-            block?(strongSelf)
-            strongSelf.notificationCenter.post(name: .reachabilityChanged, object: strongSelf)
+            guard let self = self else { return }
+            block?(self)
+            self.notificationCenter.post(name: .reachabilityChanged, object: self)
         }
     }
 }
