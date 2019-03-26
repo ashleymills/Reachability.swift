@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'ReachabilitySwift'
-  s.version      = '4.3.0'
+  s.version      = '4.3.1'
   s.module_name = 'Reachability'
   s.homepage     = 'https://github.com/ashleymills/Reachability.swift'
   s.authors      = {
@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   }
   s.source_files = 'Sources/Reachability.swift'
   s.framework    = 'SystemConfiguration'
+  s.ios.framework    = 'CoreTelephony'
 
   s.requires_arc = true
 end

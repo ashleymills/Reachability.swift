@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.1] - 2018-10-18
+### Fixed 
+- Link CoreTelephony.framework required in iOS 12
+
 ## [4.3.0] - 2018-10-01
 ### Changed 
 - Updates for Swift 4.2
