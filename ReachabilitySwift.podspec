@@ -22,4 +22,5 @@ Pod::Spec.new do |s|
   s.ios.framework    = 'CoreTelephony'
 
   s.requires_arc = true
+  s.swift_version = '5.0'
 end
