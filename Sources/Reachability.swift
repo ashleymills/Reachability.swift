@@ -152,7 +152,6 @@ public class Reachability {
 public extension Reachability {
 
     // MARK: - *** Notifier methods ***
-
     func startNotifier() throws {
         guard !notifierRunning else { return }
 
