@@ -159,22 +159,25 @@ public extension Reachability {
         let callback: SCNetworkReachabilityCallBack = { (reachability, flags, info) in
             guard let info = info else { return }
 
-            let reachability = Unmanaged<Reachability>.fromOpaque(info).takeUnretainedValue()
-            reachability.flags = flags
+            let weakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info).takeUnretainedValue()
+            weakifiedReachability.reachability?.flags = flags
         }
+
+        let weakifiedReachability = ReachabilityWeakifier(reachability: self)
 
         var context = SCNetworkReachabilityContext(
             version: 0,
-            info: UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque()),
+            info: UnsafeMutableRawPointer(Unmanaged<ReachabilityWeakifier>.passUnretained(weakifiedReachability).toOpaque()),
             retain: { (info: UnsafeRawPointer) -> UnsafeRawPointer in
-                return UnsafeRawPointer(Unmanaged<Reachability>.fromOpaque(info).retain().toOpaque())
+                return UnsafeRawPointer(Unmanaged<ReachabilityWeakifier>.fromOpaque(info).retain().toOpaque())
             },
             release: { (info: UnsafeRawPointer) -> Void in
-                Unmanaged<Reachability>.fromOpaque(info).release()
+                Unmanaged<ReachabilityWeakifier>.fromOpaque(info).release()
             },
             copyDescription: { (info: UnsafeRawPointer) -> Unmanaged<CFString> in
-                let reachability = Unmanaged<Reachability>.fromOpaque(info).takeUnretainedValue()
-                return Unmanaged.passRetained(reachability.description as CFString)
+                let weakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info).takeUnretainedValue()
+                let description = weakifiedReachability.reachability?.description ?? "nil"
+                return Unmanaged.passRetained(description as CFString)
             }
         )
 
@@ -326,5 +329,37 @@ extension SCNetworkReachabilityFlags {
     }
     var isConnectionRequiredAndTransientFlagSet: Bool {
         return intersection([.connectionRequired, .transientConnection]) == [.connectionRequired, .transientConnection]
+    }
+}
+
+/**
+ The `ReachabilityWeakifier` class wraps the `Reachability` class in a weak
+ manner in order to break retain cycles when interacting with CoreFoundation
+ APIs. CoreFoundation-style callbacks expect a pair or retain/release in
+ addition to the typical info paramter.
+
+ If we passed `SCNetworkReachabilitySetCallback` a direct reference to our
+ `Reachability` class without also providing corresponding retain/release
+ callbacks, then a race condition can lead to crashes when:
+   - `Reachability` is deallocated on thread X
+   - A `SCNetworkReachability` callback(s) is already in flight on thread Y
+
+ If we passed `Reachability` directly but also provided retain/release
+ callbacks as required by CoreFoundation, we would avoid race condition
+ crashes, but create a retain cycle which would only be broken after calling
+ `stopNotifier()`.
+
+ By both providing retain/release callbacks and wrapping `Reachability` in
+ a weak wrapper, we:
+   - fix the race condition crashes by interacting correctly with CoreFoundation
+     APIs. See "Memory Management Programming Guide for Core Foundation".
+   - Don't alter the public API of `Reachability.swift`
+   - Don't introduce any retain cycles thereby still allowing for automatic
+     stopping of the notifier on `deinit`.
+ */
+private class ReachabilityWeakifier {
+    weak var reachability: Reachability?
+    init(reachability: Reachability) {
+        self.reachability = reachability
     }
 }
