@@ -152,6 +152,7 @@ public class Reachability {
 public extension Reachability {
 
     // MARK: - *** Notifier methods ***
+
     func startNotifier() throws {
         guard !notifierRunning else { return }
 
@@ -162,8 +163,21 @@ public extension Reachability {
             reachability.flags = flags
         }
 
-        var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())
+        var context = SCNetworkReachabilityContext(
+            version: 0,
+            info: UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque()),
+            retain: { (info: UnsafeRawPointer) -> UnsafeRawPointer in
+                return UnsafeRawPointer(Unmanaged<Reachability>.fromOpaque(info).retain().toOpaque())
+            },
+            release: { (info: UnsafeRawPointer) -> Void in
+                Unmanaged<Reachability>.fromOpaque(info).release()
+            },
+            copyDescription: { (info: UnsafeRawPointer) -> Unmanaged<CFString> in
+                let reachability = Unmanaged<Reachability>.fromOpaque(info).takeUnretainedValue()
+                return Unmanaged.passRetained(reachability.description as CFString)
+            }
+        )
+
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
             throw ReachabilityError.UnableToSetCallback
