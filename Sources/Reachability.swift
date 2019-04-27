@@ -168,18 +168,23 @@ public extension Reachability {
         }
 
         let weakifiedReachability = ReachabilityWeakifier(reachability: self)
+        let opaqueWeakifiedReachability = Unmanaged<ReachabilityWeakifier>.passUnretained(weakifiedReachability).toOpaque()
 
         var context = SCNetworkReachabilityContext(
             version: 0,
-            info: UnsafeMutableRawPointer(Unmanaged<ReachabilityWeakifier>.passUnretained(weakifiedReachability).toOpaque()),
+            info: UnsafeMutableRawPointer(opaqueWeakifiedReachability),
             retain: { (info: UnsafeRawPointer) -> UnsafeRawPointer in
-                return UnsafeRawPointer(Unmanaged<ReachabilityWeakifier>.fromOpaque(info).retain().toOpaque())
+                let unmanagedWeakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info)
+                _ = unmanagedWeakifiedReachability.retain()
+                return UnsafeRawPointer(unmanagedWeakifiedReachability.toOpaque())
             },
             release: { (info: UnsafeRawPointer) -> Void in
-                Unmanaged<ReachabilityWeakifier>.fromOpaque(info).release()
+                let unmanagedWeakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info)
+                unmanagedWeakifiedReachability.release()
             },
             copyDescription: { (info: UnsafeRawPointer) -> Unmanaged<CFString> in
-                let weakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info).takeUnretainedValue()
+                let unmanagedWeakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info)
+                let weakifiedReachability = unmanagedWeakifiedReachability.takeUnretainedValue()
                 let description = weakifiedReachability.reachability?.description ?? "nil"
                 return Unmanaged.passRetained(description as CFString)
             }
