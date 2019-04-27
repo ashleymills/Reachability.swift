@@ -158,7 +158,12 @@ public extension Reachability {
         let callback: SCNetworkReachabilityCallBack = { (reachability, flags, info) in
             guard let info = info else { return }
 
+            // `weakifiedReachability` is guaranteed to exist by virtue of our retain
+            // release callbacks which we provided to the `SCNetworkReachabilityContext`.
             let weakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info).takeUnretainedValue()
+
+            // The weak `reachability` _may_ no longer exist if the `Reachability`
+            // object has since been deallocated but a callback was already in flight.
             weakifiedReachability.reachability?.flags = flags
         }
 
