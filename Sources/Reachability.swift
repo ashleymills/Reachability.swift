@@ -158,8 +158,8 @@ public extension Reachability {
         let callback: SCNetworkReachabilityCallBack = { (reachability, flags, info) in
             guard let info = info else { return }
 
-            // `weakifiedReachability` is guaranteed to exist by virtue of our retain
-            // release callbacks which we provided to the `SCNetworkReachabilityContext`.
+            // `weakifiedReachability` is guaranteed to exist by virtue of our
+            // retain/release callbacks which we provided to the `SCNetworkReachabilityContext`.
             let weakifiedReachability = Unmanaged<ReachabilityWeakifier>.fromOpaque(info).takeUnretainedValue()
 
             // The weak `reachability` _may_ no longer exist if the `Reachability`
@@ -342,13 +342,12 @@ extension SCNetworkReachabilityFlags {
 }
 
 /**
- The `ReachabilityWeakifier` class weakly wraps the `Reachability` class
- in order to break retain cycles when interacting with CoreFoundation
- APIs.
+ `ReachabilityWeakifier` weakly wraps the `Reachability` class
+ in order to break retain cycles when interacting with CoreFoundation.
 
- CoreFoundation callbacks expect a pair or retain/release whenever providing
- an info parameter. These callbacks exist to guard against memory management
- race conditions when invoking the callbacks.
+ CoreFoundation callbacks expect a pair of retain/release whenever an
+ opaque `info` parameter is provided. These callbacks exist to guard
+ against memory management race conditions when invoking the callbacks.
 
  #### Race Condition
 
@@ -362,8 +361,10 @@ extension SCNetworkReachabilityFlags {
 
  If we pass `Reachability` to CoreFoundtion while also providing retain/
  release callbacks, we would create a retain cycle once CoreFoundation
- retains our `Reachability` class. This cycle would only be broken after
- manually calling `stopNotifier()` — `deinit` would never be called.
+ retains our `Reachability` class. This fixes the crashes and his how
+ CoreFoundation expects the API to be used, but doesn't play nicely with
+ Swift/ARC. This cycle would only be broken after manually calling
+ `stopNotifier()` — `deinit` would never be called.
 
  #### ReachabilityWeakifier
 
