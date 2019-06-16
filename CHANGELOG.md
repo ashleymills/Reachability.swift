@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Thanks to:  
+- @p4checo
+
+### Changed
+- `init()` methods now `throw`
+- `ReachabilityError` contains the error code returned by `SCError(`) after an error occurs.
+- Renamed error cases to start with lowercase
+### Added
+- Allow configuring the notification `DispatchQueue`, which was previously hardcoded to `DispatchQueue.main`. It is now an optional, which if set to `nil` will use the notifier's internal queue to fire notifications. The default is still `.main`
 
 ## [4.3.1] - 2018-10-18
 ### Fixed 
