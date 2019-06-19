@@ -291,7 +291,7 @@ extension SCNetworkReachabilityFlags {
         #if targetEnvironment(simulator)
         return .wifi
         #else
-        var connection = Connection.none
+        var connection = Connection.unavailable
 
         if !isConnectionRequiredFlagSet {
             connection = .wifi

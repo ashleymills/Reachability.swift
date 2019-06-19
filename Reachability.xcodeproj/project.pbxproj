@@ -131,6 +131,7 @@
 		CA6187611F8D21D700FD5234 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA6187621F8D21D700FD5234 /* ReachabilitySwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReachabilitySwift.podspec; sourceTree = "<group>"; };
 		CA6187651F8D220200FD5234 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		CA66930222BACD5E001BB352 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +230,7 @@
 		AA7344681BE7678B008AFE69 = {
 			isa = PBXGroup;
 			children = (
+				CA66930222BACD5E001BB352 /* Package.swift */,
 				CA1983301F6FD0CD007D2DD1 /* README.md */,
 				CA6187651F8D220200FD5234 /* CHANGELOG.md */,
 				CA6187601F8D21D700FD5234 /* CONTRIBUTING.md */,
