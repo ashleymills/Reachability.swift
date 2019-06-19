@@ -61,12 +61,15 @@ public class Reachability {
     }
 
     public enum Connection: CustomStringConvertible {
-        case none, wifi, cellular
+        @available(*, deprecated, renamed: "unavailable")
+        case none
+        case unavailable, wifi, cellular
         public var description: String {
             switch self {
             case .cellular: return "Cellular"
             case .wifi: return "WiFi"
-            case .none: return "No Connection"
+            case .unavailable: return "No Connection"
+            case .none: return "unavailable"
             }
         }
     }
@@ -99,8 +102,9 @@ public class Reachability {
         }
         
         switch flags?.connection {
-        case .none?, nil: return .none
-        case .cellular?: return allowsCellularConnection ? .cellular : .none
+        case .unavailable?, nil: return .unavailable
+        case .none?: return .unavailable
+        case .cellular?: return allowsCellularConnection ? .cellular : .unavailable
         case .wifi?: return .wifi
         }
     }
@@ -230,7 +234,7 @@ public extension Reachability {
     // MARK: - *** Connection test methods ***
     @available(*, deprecated, message: "Please use `connection != .none`")
     var isReachable: Bool {
-        return connection != .none
+        return connection != .unavailable
     }
 
     @available(*, deprecated, message: "Please use `connection == .cellular`")
@@ -267,7 +271,7 @@ fileprivate extension Reachability {
     func notifyReachabilityChanged() {
         let notify = { [weak self] in
             guard let self = self else { return }
-            self.connection != .none ? self.whenReachable?(self) : self.whenUnreachable?(self)
+            self.connection != .unavailable ? self.whenReachable?(self) : self.whenUnreachable?(self)
             self.notificationCenter.post(name: .reachabilityChanged, object: self)
         }
 
@@ -281,7 +285,7 @@ extension SCNetworkReachabilityFlags {
     typealias Connection = Reachability.Connection
 
     var connection: Connection {
-        guard isReachableFlagSet else { return .none }
+        guard isReachableFlagSet else { return .unavailable }
 
         // If we're reachable, but not on an iOS device (i.e. simulator), we must be on WiFi
         #if targetEnvironment(simulator)

@@ -102,7 +102,7 @@ class ViewController: NSViewController {
     @objc func reachabilityChanged(_ note: Notification) {
         let reachability = note.object as! Reachability
         
-        if reachability.connection != .none {
+        if reachability.connection != .unavailable {
             updateLabelColourWhenReachable(reachability)
         } else {
             updateLabelColourWhenNotReachable(reachability)
