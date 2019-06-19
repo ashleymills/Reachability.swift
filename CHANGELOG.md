@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fixed a crash which could occur if Reachability was deallocated at the same time a system thread was calling back into Reachability
 ### Deprecated
-- `connection != .none` has been deprecated. Use `connection != .unavailable` instead.
+- To resolve an issue when using optional Reachability vars, `Connection.none` has been deprecated. Use `Connection.unavailable` instead.
     
 
 ## [4.3.1] - 2018-10-18
