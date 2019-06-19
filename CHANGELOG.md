@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Thanks to:  
 - @p4checo
+- @connorpower
 
 ### Changed
 - `init()` methods now `throw`
@@ -15,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Renamed error cases to start with lowercase
 ### Added
 - Allow configuring the notification `DispatchQueue`, which was previously hardcoded to `DispatchQueue.main`. It is now an optional, which if set to `nil` will use the notifier's internal queue to fire notifications. The default is still `.main`
+### Fixed
+- Fixed a crash which could occur if Reachability was deallocated at the same time a system thread was calling back into Reachability
 
 ## [4.3.1] - 2018-10-18
 ### Fixed 
