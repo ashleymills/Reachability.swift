@@ -36,10 +36,10 @@ class ViewController: UIViewController {
     func setupReachability(_ hostName: String?, useClosures: Bool) {
         let reachability: Reachability?
         if let hostName = hostName {
-            reachability = Reachability(hostname: hostName)
+            reachability = try? Reachability(hostname: hostName)
             hostNameLabel.text = hostName
         } else {
-            reachability = Reachability()
+            reachability = try? Reachability()
             hostNameLabel.text = "No host name"
         }
         self.reachability = reachability
