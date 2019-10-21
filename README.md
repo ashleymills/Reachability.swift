@@ -81,7 +81,7 @@ NOTE: All closures are run on the **main queue**.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
-let reachability = Reachability()!
+let reachability = try! Reachability()
 
 reachability.whenReachable = { reachability in
     if reachability.connection == .wifi {
@@ -113,7 +113,7 @@ NOTE: All notifications are delivered on the **main queue**.
 
 ```swift
 //declare this property where it won't go out of scope relative to your listener
-let reachability = Reachability()!
+let reachability = try! Reachability()
 
 //declare this inside of viewWillAppear
 
