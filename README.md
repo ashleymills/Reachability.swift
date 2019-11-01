@@ -9,6 +9,8 @@ Inspired by https://github.com/tonymillion/Reachability
 ## Supporting **Reachability.swift**
 Keeping **Reachability.swift** up-to-date is a time consuming task. Making updates, reviewing pull requests, responding to issues and answering emails all take time. 
 
+Please consider sponsoring me https://github.com/sponsors/ashleymills, it's a great way to say thanks!
+
 If you're an iOS developer who's looking for a quick and easy way to create App Store screenshots, please try out my app [Screenshot Producer](https://itunes.apple.com/app/apple-store/id1252374855?pt=215893&ct=reachability&mt=8)…
 
  Devices | Layout | Copy | Localize | Export      
