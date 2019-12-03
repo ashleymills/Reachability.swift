@@ -2,7 +2,7 @@
 
 Reachability.swift is a replacement for Apple's Reachability sample, re-written in Swift with closures.
 
-It is compatible with **iOS** (8.0 - 12.0), **OSX** (10.9 - 10.14) and **tvOS** (9.0 - 12.0)
+It is compatible with **iOS** (8.0 - 13.2), **OSX** (10.9 - 10.14) and **tvOS** (9.0 - 12.0)
 
 Inspired by https://github.com/tonymillion/Reachability
 
