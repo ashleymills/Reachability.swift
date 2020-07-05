@@ -77,6 +77,13 @@ To install Reachability.swift with Carthage:
 [Homebrew]: http://brew.sh
 [Photo Flipper]: https://itunes.apple.com/app/apple-store/id749627884?pt=215893&ct=GitHubReachability&mt=8
 
+### Swift Package Manager (SPM)
+The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler. To integrate using Apple's Swift package manager from xcode :
+
+1. File -> Swift Packages -> Add Package Dependency...
+
+2. Enter package URL : https://github.com/ashleymills/Reachability.swift, choose the latest release
+
 ## Example - closures
 
 NOTE: All closures are run on the **main queue**.
