@@ -61,17 +61,17 @@ public class Reachability {
     }
 
     public enum Connection: CustomStringConvertible {
-        @available(*, deprecated, renamed: "unavailable")
-        case none
         case unavailable, wifi, cellular
         public var description: String {
             switch self {
             case .cellular: return "Cellular"
             case .wifi: return "WiFi"
             case .unavailable: return "No Connection"
-            case .none: return "unavailable"
             }
         }
+        
+        @available(*, deprecated, renamed: "unavailable")
+        public static let none: Connection = .unavailable
     }
 
     public var whenReachable: NetworkReachable?
@@ -103,7 +103,6 @@ public class Reachability {
         
         switch flags?.connection {
         case .unavailable?, nil: return .unavailable
-        case .none?: return .unavailable
         case .cellular?: return allowsCellularConnection ? .cellular : .unavailable
         case .wifi?: return .wifi
         }
