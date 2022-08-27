@@ -40,7 +40,7 @@ Just drop the **Reachability.swift** file into your project. That's it!
 
     ``` ruby
     use_frameworks!
-    pod 'ReachabilitySwift', :git => 'https://github.com/codenameDuchess/Reachability.swift.git'
+    pod 'ReachabilitySwift'
     ```
 
  3. Run `pod install`.
