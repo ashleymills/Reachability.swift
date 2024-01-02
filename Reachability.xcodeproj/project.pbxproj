@@ -106,6 +106,7 @@
 		00C54B251C09CF68001C3F12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C54B281C09CF68001C3F12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00C54B2A1C09CF68001C3F12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		038915512B43EB0E00FF33BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		335AD5882052EA92000D4D08 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		335AD5892052EA92000D4D08 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		335AD58A2052EA92000D4D08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,6 +237,7 @@
 				CA6187601F8D21D700FD5234 /* CONTRIBUTING.md */,
 				CA6187611F8D21D700FD5234 /* LICENSE */,
 				CA6187621F8D21D700FD5234 /* ReachabilitySwift.podspec */,
+				038915512B43EB0E00FF33BB /* PrivacyInfo.xcprivacy */,
 				335AD5872052EA92000D4D08 /* Sources */,
 				335AD58B2052EA92000D4D08 /* Tests */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
