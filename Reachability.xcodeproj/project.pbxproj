@@ -11,6 +11,7 @@
 		00C54B241C09CF68001C3F12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C54B231C09CF68001C3F12 /* ViewController.swift */; };
 		00C54B261C09CF68001C3F12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C54B251C09CF68001C3F12 /* Assets.xcassets */; };
 		00C54B291C09CF68001C3F12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C54B271C09CF68001C3F12 /* Main.storyboard */; };
+		038915562B43EF8500FF33BB /* PrivacyInfo.xcprivacy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 038915522B43EEDF00FF33BB /* PrivacyInfo.xcprivacy */; };
 		335AD58E2052EA92000D4D08 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335AD5882052EA92000D4D08 /* Reachability.swift */; };
 		335AD58F2052EA92000D4D08 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 335AD5892052EA92000D4D08 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		335AD5A22052EB32000D4D08 /* ReachabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335AD58C2052EA92000D4D08 /* ReachabilityTests.swift */; };
@@ -64,6 +65,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		038915552B43EF7100FF33BB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				038915562B43EF8500FF33BB /* PrivacyInfo.xcprivacy in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57A45A361C197F4800384AE4 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,7 +117,7 @@
 		00C54B251C09CF68001C3F12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C54B281C09CF68001C3F12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00C54B2A1C09CF68001C3F12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		038915512B43EB0E00FF33BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		038915522B43EEDF00FF33BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		335AD5882052EA92000D4D08 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		335AD5892052EA92000D4D08 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		335AD58A2052EA92000D4D08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +204,7 @@
 		335AD5872052EA92000D4D08 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				038915522B43EEDF00FF33BB /* PrivacyInfo.xcprivacy */,
 				335AD5882052EA92000D4D08 /* Reachability.swift */,
 				335AD5892052EA92000D4D08 /* Reachability.h */,
 				335AD58A2052EA92000D4D08 /* Info.plist */,
@@ -237,7 +249,6 @@
 				CA6187601F8D21D700FD5234 /* CONTRIBUTING.md */,
 				CA6187611F8D21D700FD5234 /* LICENSE */,
 				CA6187621F8D21D700FD5234 /* ReachabilitySwift.podspec */,
-				038915512B43EB0E00FF33BB /* PrivacyInfo.xcprivacy */,
 				335AD5872052EA92000D4D08 /* Sources */,
 				335AD58B2052EA92000D4D08 /* Tests */,
 				AA7344911BE76820008AFE69 /* ReachabilitySample */,
@@ -348,6 +359,7 @@
 			buildConfigurationList = AA7344861BE7678B008AFE69 /* Build configuration list for PBXNativeTarget "Reachability" */;
 			buildPhases = (
 				AA73446D1BE7678B008AFE69 /* Sources */,
+				038915552B43EF7100FF33BB /* CopyFiles */,
 				AA73446E1BE7678B008AFE69 /* Frameworks */,
 				AA73446F1BE7678B008AFE69 /* Headers */,
 				AA7344701BE7678B008AFE69 /* Resources */,
