@@ -3,8 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSPrivacyAccessedAPITypes</key>
-	<array>
-		<dict/>
-	</array>
+	<array/>
 </dict>
 </plist>
