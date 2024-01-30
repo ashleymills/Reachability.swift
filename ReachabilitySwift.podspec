@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     :tag => 'v'+s.version.to_s
   }
   s.source_files = 'Sources/Reachability.swift'
-  s.resource_bundles = {"Kingfisher" => ["Sources/PrivacyInfo.xcprivacy"]}
+  s.resource_bundles = {"ReachabilitySwift" => ["Sources/PrivacyInfo.xcprivacy"]}
   s.framework    = 'SystemConfiguration'
   s.ios.framework    = 'CoreTelephony'
 
