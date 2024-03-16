@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT' }
 
 # Source Info
-  s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.ios.deployment_target = "12.0"
+  s.osx.deployment_target = "10.13"
   s.tvos.deployment_target  = "9.0"
   s.source       =  {
     :git => 'https://github.com/ashleymills/Reachability.swift.git',
