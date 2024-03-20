@@ -43,7 +43,7 @@ public extension Notification.Name {
     static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
-public class Reachability {
+@objc public class Reachability: NSObject {
 
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUnreachable = (Reachability) -> ()
@@ -247,7 +247,7 @@ public extension Reachability {
         return connection == .wifi
     }
 
-    var description: String {
+    @objc override var description: String {
         return flags?.description ?? "unavailable flags"
     }
 }
