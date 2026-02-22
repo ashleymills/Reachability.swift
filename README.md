@@ -160,11 +160,11 @@ NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, obje
 ```
 
 ## Want to help?
-
+ordenes en tiempo real
 Got a bug fix, or a new feature? Create a pull request and go for it!
-
+ordenes mejor pagadas 
 ## Let me know!
-
+shopper ordenes radar 
 If you use **Reachability.swift**, please let me know about your app and I'll put a link [here…](https://github.com/ashleymills/Reachability.swift/wiki/Apps-using-Reachability.swift) and tell your friends!
 
 Cheers,
